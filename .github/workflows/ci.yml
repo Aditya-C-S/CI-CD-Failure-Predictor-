@@ -1,32 +1,33 @@
-name: Dependency Error Dataset
+name: CI-CD Failure Predictor CI
 
 on:
   push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
-  dependency-test:
-
+  test:
     runs-on: ubuntu-latest
 
     steps:
-
       - name: Checkout Repository
         uses: actions/checkout@v4
 
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: "3.12"
 
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Check App Syntax
+      - name: Check Application Syntax & Core Modules
         run: |
-          python -c "import app"
+          python -c "import src.api.main; import src.parser.parser_v2; import src.rca.rca_engine; print('Syntax and core imports verified!')"
 
-      - name: Run Tests
+      - name: Run Core Test Suite
         run: |
-          pytest
+          pytest tests/test_prediction.py tests/test_parser.py tests/test_rca.py -v

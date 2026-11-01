@@ -1,0 +1,21 @@
+ci_job	Set up job	[TIMESTAMP] Runner Image: ubuntu-22.04
+ci_job	Set up job	[TIMESTAMP] Version: [VERSION_ID]
+ci_job	Set up job	[TIMESTAMP] Included Software: Buildx v0.35.0, Docker 28.0.4
+ci_job	Checkout Repository	[TIMESTAMP] [command]/usr/bin/git checkout --progress --force refs/heads/main
+ci_job	Build Container Image	[TIMESTAMP] ##[group]Run docker build
+ci_job	Build Container Image	[TIMESTAMP] [command]/usr/bin/docker build -t app-d1:01 .
+ci_job	Build Container Image	[TIMESTAMP] #1 [internal] load build definition from Dockerfile
+ci_job	Build Container Image	[TIMESTAMP] #1 transferring dockerfile: 97B done
+ci_job	Build Container Image	[TIMESTAMP] #1 DONE 0.1s
+ci_job	Build Container Image	[TIMESTAMP] #2 [internal] load .dockerignore
+ci_job	Build Container Image	[TIMESTAMP] #2 transferring context: 35B done
+ci_job	Build Container Image	[TIMESTAMP] #2 DONE 0.0s
+ci_job	Build Container Image	[TIMESTAMP] #3 [1/2] FROM docker.io/library/python:3.11-slim
+ci_job	Build Container Image	[TIMESTAMP] #3 resolve docker.io/library/python:3.11-slim done
+ci_job	Build Container Image	[TIMESTAMP] #3 DONE 0.3s
+ci_job	Build Container Image	[TIMESTAMP] #4 [2/2] COPY config/settings_01.yaml /app/data/
+ci_job	Build Container Image	[TIMESTAMP] #4 ERROR: failed to calculate checksum of ref buildref_501: "/config/settings_01.yaml": not found
+ci_job	Build Container Image	[TIMESTAMP] ERROR: failed to solve: failed to calculate checksum of ref buildref_501: "/config/settings_01.yaml": not found
+ci_job	Build Container Image	[TIMESTAMP] ##[error]Process completed with exit code 1.
+ci_job	Post Checkout Repository	[TIMESTAMP] Post job cleanup.
+ci_job	Complete job	[TIMESTAMP] Cleaning up orphan processes

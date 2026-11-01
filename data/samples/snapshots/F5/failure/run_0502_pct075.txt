@@ -1,0 +1,12 @@
+ci_job	Set up job	[TIMESTAMP] Runner Image: ubuntu-22.04
+ci_job	Set up job	[TIMESTAMP] Version: [VERSION_ID]
+ci_job	Set up job	[TIMESTAMP] Operating System: Linux 6.5.0-1014-azure
+ci_job	Checkout Repository	[TIMESTAMP] [command]/usr/bin/git checkout --progress --force refs/heads/main
+ci_job	Set up Docker Buildx	[TIMESTAMP] [command]/usr/bin/docker buildx create --name builder-ci --use
+ci_job	Set up Docker Buildx	[TIMESTAMP] builder-ci
+ci_job	Build Container Image	[TIMESTAMP] ##[group]Run docker build
+ci_job	Build Container Image	[TIMESTAMP] [command]/usr/bin/docker build -t app-d2:01 .
+ci_job	Build Container Image	[TIMESTAMP] #1 [internal] load build definition from Dockerfile
+ci_job	Build Container Image	[TIMESTAMP] #1 transferring dockerfile: 84B done
+ci_job	Build Container Image	[TIMESTAMP] #1 ERROR: dockerfile parse error on line 3: unknown instruction: INCLUDELIB
+ci_job	Build Container Image	[TIMESTAMP] dockerfile parse error on line 3: unknown instruction: INCLUDELIB

@@ -1,0 +1,58 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.orig
+.pytest_cache/
+.coverage
+htmlcov/
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+.venv/
+venv/
+env/
+**/venv/
+**/env/
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Logs and temporary files
+*.log
+/logs/
+tmp/
+temp/
+!data/samples/logs/
+
+# IDE and operating system
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Generated test and coverage artifacts
+coverage.xml
+junit.xml
+
+# Archives and Large Bundles (extracted artifacts are tracked)
+*.zip
+*.tar
+*.tar.gz
+*.7z
+docker/.ssh/
+docker/certs/
+
+# Redundant duplicate training dataset copies in model delivery packages
+**/data_v2/
+
+# Runtime demo run output (directory tracked via .gitkeep)
+data/demo_runs/*.json
+!data/demo_runs/.gitkeep
+
+# Temporary audit extractions
+scratch/audit_fresh_extract/

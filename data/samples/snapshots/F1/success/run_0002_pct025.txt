@@ -1,0 +1,53 @@
+ci_job	Set up job	[TIMESTAMP] Current runner version: '[RUNNER_VERSION]'
+ci_job	Set up job	[TIMESTAMP] ##[group]Runner Image Provisioner
+ci_job	Set up job	[TIMESTAMP] Hosted Compute Agent
+ci_job	Set up job	[TIMESTAMP] Version: [VERSION_ID]
+ci_job	Set up job	[TIMESTAMP] Commit: [COMMIT_SHA]
+ci_job	Set up job	[TIMESTAMP] Build Date: [TIMESTAMP]
+ci_job	Set up job	[TIMESTAMP] Worker ID: [GUID]
+ci_job	Set up job	[TIMESTAMP] Region: [REGION]
+ci_job	Set up job	[TIMESTAMP] Cloud: Azure
+ci_job	Set up job	[TIMESTAMP] ##[endgroup]
+ci_job	Set up job	[TIMESTAMP] ##[group]Operating System
+ci_job	Set up job	[TIMESTAMP] Ubuntu
+ci_job	Set up job	[TIMESTAMP] 24.04.x
+ci_job	Set up job	[TIMESTAMP] LTS
+ci_job	Set up job	[TIMESTAMP] ##[endgroup]
+ci_job	Set up job	[TIMESTAMP] ##[group]Runner Image
+ci_job	Set up job	[TIMESTAMP] Image: ubuntu-24.04
+ci_job	Set up job	[TIMESTAMP] Version: [VERSION_ID]
+ci_job	Set up job	[TIMESTAMP] Included Software: https://github.com/actions/runner-images/blob/ubuntu24/[VERSION_ID]/images/ubuntu/Ubuntu2404-Readme.md
+ci_job	Set up job	[TIMESTAMP] Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261012.334
+ci_job	Set up job	[TIMESTAMP] ##[endgroup]
+ci_job	Set up job	[TIMESTAMP] ##[group]GITHUB_TOKEN Permissions
+ci_job	Set up job	[TIMESTAMP] Contents: read
+ci_job	Set up job	[TIMESTAMP] Metadata: read
+ci_job	Set up job	[TIMESTAMP] ##[endgroup]
+ci_job	Set up job	[TIMESTAMP] Secret source: Actions
+ci_job	Set up job	[TIMESTAMP] Cache mode: write
+ci_job	Set up job	[TIMESTAMP] Prepare workflow directory
+ci_job	Set up job	[TIMESTAMP] Prepare all required actions
+ci_job	Set up job	[TIMESTAMP] Getting action download info
+ci_job	Set up job	[TIMESTAMP] Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+ci_job	Set up job	[TIMESTAMP] Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+ci_job	Set up job	[TIMESTAMP] Complete job name: [JOB_NAME]
+ci_job	Checkout Repository	[TIMESTAMP] ##[group]Run actions/checkout@v4
+ci_job	Checkout Repository	[TIMESTAMP] with:
+ci_job	Checkout Repository	[TIMESTAMP]   repository: [REPO]
+ci_job	Checkout Repository	[TIMESTAMP]   token: ***
+ci_job	Checkout Repository	[TIMESTAMP]   ssh-strict: true
+ci_job	Checkout Repository	[TIMESTAMP]   ssh-user: git
+ci_job	Checkout Repository	[TIMESTAMP]   persist-credentials: true
+ci_job	Checkout Repository	[TIMESTAMP]   clean: true
+ci_job	Checkout Repository	[TIMESTAMP]   sparse-checkout-cone-mode: true
+ci_job	Checkout Repository	[TIMESTAMP]   fetch-depth: 1
+ci_job	Checkout Repository	[TIMESTAMP]   fetch-tags: false
+ci_job	Checkout Repository	[TIMESTAMP]   show-progress: true
+ci_job	Checkout Repository	[TIMESTAMP]   lfs: false
+ci_job	Checkout Repository	[TIMESTAMP]   submodules: false
+ci_job	Checkout Repository	[TIMESTAMP]   set-safe-directory: true
+ci_job	Checkout Repository	[TIMESTAMP]   allow-unsafe-pr-checkout: false
+ci_job	Checkout Repository	[TIMESTAMP] ##[endgroup]
+ci_job	Checkout Repository	[TIMESTAMP] Syncing repository: [REPO]
+ci_job	Checkout Repository	[TIMESTAMP] ##[group]Getting Git version info
+ci_job	Checkout Repository	[TIMESTAMP] Working directory is '/home/runner/work/[REPO]/[REPO]'

@@ -1,0 +1,11 @@
+ci_job	Set up job	[TIMESTAMP] Runner Image: ubuntu-22.04
+ci_job	Set up job	[TIMESTAMP] Version: [VERSION_ID]
+ci_job	Set up job	[TIMESTAMP] Included Software: Buildx v0.35.0, Docker 28.0.4
+ci_job	Checkout Repository	[TIMESTAMP] [command]/usr/bin/git checkout --progress --force refs/heads/main
+ci_job	Build Container Image	[TIMESTAMP] ##[group]Run docker build
+ci_job	Build Container Image	[TIMESTAMP] [command]/usr/bin/docker build -t app-d1:01 .
+ci_job	Build Container Image	[TIMESTAMP] #1 [internal] load build definition from Dockerfile
+ci_job	Build Container Image	[TIMESTAMP] #1 transferring dockerfile: 97B done
+ci_job	Build Container Image	[TIMESTAMP] #1 DONE 0.1s
+ci_job	Build Container Image	[TIMESTAMP] #2 [internal] load .dockerignore
+ci_job	Build Container Image	[TIMESTAMP] #2 transferring context: 35B done

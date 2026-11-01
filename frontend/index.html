@@ -1,0 +1,1755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AI-Powered CI/CD Pipeline Failure Prediction and Assisted Root Cause Analysis">
+  <title>CI/CD Failure Predictor &amp; RCA Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css?v=3.0">
+  <script src="/static/cytoscape.min.js"></script>
+</head>
+<body class="dark-theme">
+  <div id="app-root">
+    <!-- Backdrop for mobile drawer -->
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+    <!-- Collapsible Sidebar Navigation -->
+    <aside class="app-sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <a href="#overview" class="sidebar-brand">
+          <div class="sidebar-brand-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+            </svg>
+          </div>
+          <span class="brand-text">CI/CD Intel</span>
+        </a>
+        <button type="button" class="sidebar-toggle-btn" id="sidebar-toggle-btn" title="Toggle Sidebar" aria-label="Toggle Sidebar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <nav class="sidebar-nav">
+        <!-- Main Group -->
+        <div class="nav-group">
+          <div class="nav-group-title">Main</div>
+          <ul class="nav-items">
+            <li>
+              <a class="nav-link active" data-route="overview">
+                <span class="nav-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="14" width="7" height="7"></rect>
+                    <rect x="3" y="14" width="7" height="7"></rect>
+                  </svg>
+                </span>
+                <span class="nav-text">Overview</span>
+              </a>
+            </li>
+            <li>
+              <a class="nav-link" data-route="live-pipeline">
+                <span class="nav-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                  </svg>
+                </span>
+                <span class="nav-text">Live Pipeline</span>
+              </a>
+            </li>
+            <li>
+              <a class="nav-link" data-route="run-history">
+                <span class="nav-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                  </svg>
+                </span>
+                <span class="nav-text">Run History</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Intelligence Group -->
+        <div class="nav-group">
+          <div class="nav-group-title">Intelligence</div>
+          <ul class="nav-items">
+            <li>
+              <a class="nav-link" data-route="metadata-intel">
+                <span class="nav-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                  </svg>
+                </span>
+                <span class="nav-text">Metadata Intel</span>
+              </a>
+            </li>
+            <li>
+              <a class="nav-link" data-route="graph-intel">
+                <span class="nav-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="18" cy="5" r="3"></circle>
+                    <circle cx="6" cy="12" r="3"></circle>
+                    <circle cx="18" cy="19" r="3"></circle>
+                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                  </svg>
+                </span>
+                <span class="nav-text">Graph Intel</span>
+              </a>
+            </li>
+            <li>
+              <a class="nav-link" data-route="model-comparison">
+                <span class="nav-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="20" x2="18" y2="10"></line>
+                    <line x1="12" y1="20" x2="12" y2="4"></line>
+                    <line x1="6" y1="20" x2="6" y2="14"></line>
+                  </svg>
+                </span>
+                <span class="nav-text">Model Compare</span>
+              </a>
+            </li>
+            <li>
+              <a class="nav-link" data-route="rca">
+                <span class="nav-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+                </span>
+                <span class="nav-text">Root Cause (RCA)</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- System Group -->
+        <div class="nav-group">
+          <div class="nav-group-title">System</div>
+          <ul class="nav-items">
+            <li>
+              <a class="nav-link" data-route="demo-control">
+                <span class="nav-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                </span>
+                <span class="nav-text">Demo Control</span>
+              </a>
+            </li>
+            <li>
+              <a class="nav-link" data-route="system-health">
+                <span class="nav-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                  </svg>
+                </span>
+                <span class="nav-text">System Health</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="/graph-explorer" target="_blank" rel="noopener noreferrer" class="nav-link" title="Open Neo4j Graph Explorer in new tab">
+          <span class="nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+          </span>
+          <span class="nav-text">Neo4j Explorer &nearr;</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- App Main Area -->
+    <main class="app-main">
+      <!-- Fixed Header -->
+      <header class="app-header">
+        <div class="header-left">
+          <button type="button" class="icon-btn mobile-menu-btn" id="mobile-sidebar-toggle" style="display: none;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+          <div class="breadcrumbs">
+            <span id="breadcrumb-parent">Dashboard</span>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current" id="breadcrumb-current">Overview</span>
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <!-- Backend System Health Indicator Pill -->
+          <div id="header-system-status">
+            <span class="badge badge-healthy">
+              <span class="status-dot pulse"></span> System: Checking...
+            </span>
+          </div>
+
+          <!-- Theme Toggle (Dark/Light) -->
+          <button type="button" class="icon-btn" id="btn-theme-toggle" title="Toggle Light/Dark Theme" aria-label="Toggle Theme">
+            <span id="theme-icon">
+              <!-- Default dark mode icon (Sun) -->
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+              </svg>
+            </span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Scrollable Main Content -->
+      <div class="content-body">
+        
+        <!-- ===================================================================
+             VIEW 1: OVERVIEW (UI Batch A)
+             =================================================================== -->
+        <section class="view-container view-page" data-view="overview" id="view-overview">
+          <div class="page-header">
+            <div>
+              <h2 class="page-title">DevOps Pipeline Intelligence</h2>
+              <p class="page-subtitle">Real-time CI/CD failure prediction, telemetry monitoring, and graph impact diagnostics.</p>
+            </div>
+            <div style="display: flex; gap: 0.75rem;">
+              <button type="button" class="btn btn-secondary" id="overview-refresh-btn">
+                <svg id="overview-refresh-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="23 4 23 10 17 10"></polyline>
+                  <polyline points="1 20 1 14 7 14"></polyline>
+                  <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                </svg>
+                Refresh
+              </button>
+              <button type="button" class="btn btn-primary" id="quick-action-launch-demo">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                Launch Demo
+              </button>
+            </div>
+          </div>
+
+          <!-- KPI Metrics Row -->
+          <div class="metrics-grid">
+            <div class="metric-card">
+              <div class="metric-header">
+                <span class="metric-label">System Health</span>
+                <span class="metric-icon">💚</span>
+              </div>
+              <div class="metric-value" id="metric-overall-status">
+                <span class="badge badge-healthy">HEALTHY</span>
+              </div>
+              <div class="metric-footer">
+                FastAPI, Models &amp; Persistence Online
+              </div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-header">
+                <span class="metric-label">Neo4j Graph</span>
+                <span class="metric-icon">🕸️</span>
+              </div>
+              <div class="metric-value" id="metric-neo4j-status">
+                <span class="badge badge-info">Checking...</span>
+              </div>
+              <div class="metric-footer">
+                AST Tree-sitter fallback available
+              </div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-header">
+                <span class="metric-label">Runtime Predictors</span>
+                <span class="metric-icon">⚡</span>
+              </div>
+              <div class="metric-value" id="metric-runtime-models">
+                <span class="font-bold">3/3</span>
+              </div>
+              <div class="metric-footer">
+                BiLSTM v2, Linear SVM, Logistic Reg
+              </div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-header">
+                <span class="metric-label">Commit Metadata</span>
+                <span class="metric-icon">📊</span>
+              </div>
+              <div class="metric-value" id="metric-metadata-model">
+                <span class="badge badge-healthy">LightGBM</span>
+              </div>
+              <div class="metric-footer">
+                Calibrated 38-feature gatekeeper
+              </div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-header">
+                <span class="metric-label">Early Warnings</span>
+                <span class="metric-icon">⚠️</span>
+              </div>
+              <div class="metric-value" id="metric-warnings-count">
+                <span class="font-bold">0</span>
+              </div>
+              <div class="metric-footer">
+                Telemetry thresholds monitored
+              </div>
+            </div>
+          </div>
+
+          <!-- Latest Execution Card (Includes Prominent Demo ID & Copy Button) -->
+          <div id="latest-run-card-container">
+            <!-- Rendered dynamically by overviewController -->
+            <div class="card" style="padding: 2rem; text-align: center;">
+              <span class="text-muted">Loading latest pipeline run...</span>
+            </div>
+          </div>
+
+          <!-- Recent Activity Table -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                </svg>
+                Recent Pipeline Executions
+              </h3>
+              <button type="button" class="btn btn-secondary btn-sm" id="quick-action-view-health">
+                Subsystem Diagnostics &rarr;
+              </button>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Demo Run ID</th>
+                    <th>Status</th>
+                    <th>Scenario</th>
+                    <th>Commit</th>
+                    <th>Runtime Risk</th>
+                    <th>Created</th>
+                  </tr>
+                </thead>
+                <tbody id="recent-runs-table-body">
+                  <tr>
+                    <td colspan="6" class="text-center text-muted py-4">Fetching execution records...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ===================================================================
+             VIEW 2: DEMO CONTROL & SCENARIOS (UI Batch A)
+             =================================================================== -->
+        <section class="view-container view-page" data-view="demo-control" id="view-demo-control" style="display: none;">
+          <div class="page-header">
+            <div>
+              <h2 class="page-title">Demo Control &amp; Scenario Orchestration</h2>
+              <p class="page-subtitle">Inject controlled failure scenarios, select runtime prediction models, and dispatch simulated or live CI/CD workflows.</p>
+            </div>
+          </div>
+
+          <!-- Mode & Predictor Controls -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="3"></circle>
+                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                </svg>
+                Execution Parameters
+              </h3>
+            </div>
+            <div class="card-body">
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; align-items: flex-end;">
+                
+                <div class="form-group">
+                  <label class="form-label" for="demo-model-select">Runtime Predictor Architecture</label>
+                  <select id="demo-model-select" class="form-select">
+                    <option value="logistic_regression">TF-IDF + Logistic Regression (Verified Baseline, ECE=3.8%)</option>
+                    <option value="svm">TF-IDF + Linear SVM (High Precision)</option>
+                    <option value="bilstm2" selected>BiLSTM v2 (Retrained 5-Fold Ensemble)</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Execution Mode</label>
+                  <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.4rem 0;">
+                    <input type="checkbox" id="demo-dry-run-toggle" checked>
+                    <span>Local Simulation Mode (Instant, No GitHub Token Needed)</span>
+                  </label>
+                  <span id="demo-mode-hint" style="font-size: 0.75rem; color: var(--text-muted);">
+                    Local Simulation Mode: simulates CI telemetry checkpoints instantly.
+                  </span>
+                </div>
+
+                <div>
+                  <button type="button" class="btn btn-primary" id="btn-dispatch-scenario" style="width: 100%; height: 42px;">
+                    <svg id="dispatch-btn-spinner" class="spin hidden" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <line x1="12" y1="2" x2="12" y2="6"></line>
+                      <line x1="12" y1="18" x2="12" y2="22"></line>
+                      <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line>
+                      <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line>
+                      <line x1="2" y1="12" x2="6" y2="12"></line>
+                      <line x1="18" y1="12" x2="22" y2="12"></line>
+                      <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line>
+                      <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
+                    </svg>
+                    <span id="dispatch-btn-text">Launch Demo Scenario</span>
+                  </button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Scenario Selection Grid -->
+          <div>
+            <h3 style="font-size: 1.1rem; font-weight: 600; margin-bottom: 0.75rem;">Select Failure Injection Scenario</h3>
+            <div class="scenario-grid" id="scenario-cards-grid">
+              <!-- Rendered dynamically by demoControlController -->
+            </div>
+          </div>
+
+          <!-- Active Run Banner & SPECIAL REQUIREMENT: Prominent Demo ID Display & Copy Button -->
+          <div id="active-demo-run-banner-container">
+            <!-- Rendered dynamically upon dispatch -->
+          </div>
+        </section>
+
+
+        <!-- ===================================================================
+             VIEW 3: SYSTEM HEALTH & DIAGNOSTICS (UI Batch A)
+             =================================================================== -->
+        <section class="view-container view-page" data-view="system-health" id="view-system-health" style="display: none;">
+          <div class="page-header">
+            <div>
+              <h2 class="page-title">System Health &amp; Subsystem Diagnostics</h2>
+              <p class="page-subtitle">Deep telemetry inspection across FastAPI, Neo4j, Runtime Prediction Models, Metadata Gatekeeper, and Storage.</p>
+            </div>
+            <div>
+              <button type="button" class="btn btn-secondary" id="health-refresh-btn">
+                <svg id="health-refresh-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="23 4 23 10 17 10"></polyline>
+                  <polyline points="1 20 1 14 7 14"></polyline>
+                  <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                </svg>
+                Run Health Check
+              </button>
+            </div>
+          </div>
+
+          <!-- Overall System Status Banner -->
+          <div id="health-overall-banner" class="health-overall-banner banner-healthy">
+            <div class="banner-status-left">
+              <div class="status-icon-large">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+              </div>
+              <div>
+                <div class="banner-status-title">System Operational</div>
+                <div class="banner-status-desc" id="health-last-checked-time">Connecting to /api/health/system...</div>
+              </div>
+            </div>
+            <div class="banner-status-right">
+              <span class="badge badge-healthy">HEALTHY</span>
+            </div>
+          </div>
+
+          <!-- 6 Subsystem Component Diagnostic Cards -->
+          <div class="components-grid">
+            
+            <!-- 1. FastAPI Backend -->
+            <div class="card health-card">
+              <div class="health-card-header">
+                <h3 class="health-card-title">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                    <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                    <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                    <line x1="6" y1="18" x2="6.01" y2="18"></line>
+                  </svg>
+                  FastAPI Backend
+                </h3>
+              </div>
+              <div class="card-body" id="comp-backend-content">
+                <span class="text-muted">Loading backend diagnostics...</span>
+              </div>
+            </div>
+
+            <!-- 2. Neo4j Knowledge Graph -->
+            <div class="card health-card">
+              <div class="health-card-header">
+                <h3 class="health-card-title">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="18" cy="5" r="3"></circle>
+                    <circle cx="6" cy="12" r="3"></circle>
+                    <circle cx="18" cy="19" r="3"></circle>
+                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                  </svg>
+                  Neo4j Knowledge Graph
+                </h3>
+              </div>
+              <div class="card-body" id="comp-neo4j-content">
+                <span class="text-muted">Loading graph diagnostics...</span>
+              </div>
+            </div>
+
+            <!-- 3. Runtime Prediction Models -->
+            <div class="card health-card">
+              <div class="health-card-header">
+                <h3 class="health-card-title">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                  </svg>
+                  Runtime Predictor Suite
+                </h3>
+              </div>
+              <div class="card-body" id="comp-runtime-models-content">
+                <span class="text-muted">Loading runtime models diagnostics...</span>
+              </div>
+            </div>
+
+            <!-- 4. Commit Metadata Model -->
+            <div class="card health-card">
+              <div class="health-card-header">
+                <h3 class="health-card-title">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                  </svg>
+                  Commit Metadata Model
+                </h3>
+              </div>
+              <div class="card-body" id="comp-metadata-model-content">
+                <span class="text-muted">Loading LightGBM diagnostics...</span>
+              </div>
+            </div>
+
+            <!-- 5. Ingestion Engine -->
+            <div class="card health-card">
+              <div class="health-card-header">
+                <h3 class="health-card-title">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="4 17 10 11 4 5"></polyline>
+                    <line x1="12" y1="19" x2="20" y2="19"></line>
+                  </svg>
+                  Log Ingestion Engine
+                </h3>
+              </div>
+              <div class="card-body" id="comp-ingestion-content">
+                <span class="text-muted">Loading telemetry ingestion status...</span>
+              </div>
+            </div>
+
+            <!-- 6. Persistence & Storage -->
+            <div class="card health-card">
+              <div class="health-card-header">
+                <h3 class="health-card-title">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                  </svg>
+                  Run Storage &amp; Persistence
+                </h3>
+              </div>
+              <div class="card-body" id="comp-storage-content">
+                <span class="text-muted">Loading filesystem persistence status...</span>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+
+        <!-- ===================================================================
+             VIEW 4: LIVE PIPELINE MONITORING (UI Batch B)
+             =================================================================== -->
+        <section class="view-container view-page" data-view="live-pipeline" id="view-live-pipeline" style="display: none;">
+          <div class="page-header">
+            <div>
+              <h2 class="page-title">Live Pipeline Execution &amp; Risk Monitoring</h2>
+              <p class="page-subtitle">Real-time log streaming, multi-depth checkpoint tracking, failure risk gauge, Parser V2 evidence, and early-warning detection.</p>
+            </div>
+            <div style="display: flex; gap: 0.75rem; align-items: center;">
+              <select id="live-run-select" class="form-select" style="min-width: 240px; height: 38px;">
+                <option value="">-- Active Demo Run --</option>
+              </select>
+              <button type="button" class="btn btn-secondary" id="live-pipeline-refresh-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="23 4 23 10 17 10"></polyline>
+                  <polyline points="1 20 1 14 7 14"></polyline>
+                  <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                </svg>
+                Refresh Telemetry
+              </button>
+              <button type="button" class="btn btn-outline-danger" id="btn-clear-live-session" title="Clear current live session view">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="15" y1="9" x2="9" y2="15"></line>
+                  <line x1="9" y1="9" x2="15" y2="15"></line>
+                </svg>
+                Clear Live Session
+              </button>
+            </div>
+          </div>
+
+          <!-- Empty State when no run is active -->
+          <div id="live-pipeline-empty-state" class="empty-state-card" style="display: none;">
+            <div class="empty-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+              </svg>
+            </div>
+            <h3 class="empty-title">No Active Pipeline Execution Selected</h3>
+            <p class="empty-desc">
+              Launch a failure-injection demonstration scenario or connect a live GitHub Actions runner to stream real-time CI/CD execution telemetry.
+            </p>
+            <button type="button" class="btn btn-primary" id="live-empty-launch-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+              Go to Demo Control &rarr;
+            </button>
+          </div>
+
+          <!-- Main Live Content Area -->
+          <div id="live-pipeline-content-area" class="live-pipeline-grid">
+            
+            <!-- 1.1 Pipeline Run Header Card -->
+            <div class="live-header-card">
+              <div class="live-header-top-row">
+                <div class="live-demo-id-group">
+                  <span class="demo-id-label">Active Demo ID:</span>
+                  <span class="demo-id-value" id="live-header-run-id">—</span>
+                  <button type="button" class="btn-copy-prominent" id="btn-live-copy-demo-id" title="Copy Demo ID" aria-label="Copy Demo ID">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    <span class="copy-feedback-text">Copy Demo ID</span>
+                  </button>
+                </div>
+                <div style="display: flex; gap: 0.75rem; align-items: center;">
+                  <div id="live-header-status-badge">
+                    <span class="badge badge-neutral">PENDING</span>
+                  </div>
+                  <div id="live-connection-status-pill" class="badge badge-neutral">
+                    <span class="status-dot"></span> DISCONNECTED
+                  </div>
+                </div>
+              </div>
+
+              <div class="live-header-meta-grid">
+                <div class="meta-item">
+                  <span class="meta-label">Repository</span>
+                  <span class="meta-val" id="live-header-repo">—</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-label">Commit SHA</span>
+                  <span class="meta-val font-mono" id="live-header-commit">—</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-label">Scenario Preset</span>
+                  <span class="meta-val font-bold" id="live-header-scenario">—</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-label">Runtime Predictor</span>
+                  <span class="meta-val" id="live-header-predictor">—</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-label">Started At</span>
+                  <span class="meta-val text-xs text-muted" id="live-header-started-at">—</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-label">Elapsed Duration</span>
+                  <span class="meta-val font-mono font-bold" id="live-elapsed-duration">—</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-label">Execution Source</span>
+                  <span class="meta-val" id="live-header-source">—</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 1.2 & 1.3 Midsection: Live Risk Gauge + Checkpoint Timeline -->
+            <div class="live-middle-columns">
+              
+              <!-- 1.2 Visual Failure-Risk Gauge -->
+              <div class="risk-gauge-card">
+                <div style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
+                  <span class="metric-label">Runtime Failure Risk</span>
+                  <span id="live-risk-tier-badge" class="badge badge-healthy">LOW RISK</span>
+                </div>
+
+                <div class="gauge-svg-wrapper">
+                  <svg class="gauge-svg" viewBox="0 0 120 120">
+                    <circle class="gauge-bg-circle" cx="60" cy="60" r="54"></circle>
+                    <circle id="live-risk-gauge-circle" class="gauge-progress-circle" cx="60" cy="60" r="54"></circle>
+                  </svg>
+                  <div class="gauge-center-text">
+                    <span id="live-risk-percent" class="gauge-percent">0%</span>
+                    <span class="text-xs text-muted">P(Failure)</span>
+                  </div>
+                </div>
+
+                <div class="gauge-meta-details">
+                  <div style="display: flex; justify-content: space-between;">
+                    <span id="live-risk-depth">Depth: 25%</span>
+                    <span id="live-risk-model">BiLSTM v2</span>
+                  </div>
+                  <div style="text-align: left; margin-top: 0.25rem;">
+                    <span id="live-risk-timestamp" class="text-xs text-muted">Awaiting telemetry...</span>
+                  </div>
+                </div>
+
+                <!-- Mini Risk Progression Sparkline -->
+                <div style="width: 100%; text-align: left;">
+                  <span class="metric-label" style="font-size: 0.7rem;">Risk Progression Over Time</span>
+                  <div id="live-risk-progression-graph" style="margin-top: 0.4rem;">
+                    <span class="text-muted text-xs">Awaiting predictions...</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 1.3 Checkpoint Timeline (25%, 50%, 75%, 100%) -->
+              <div class="timeline-card">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <h3 class="card-title">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <line x1="12" y1="2" x2="12" y2="22"></line>
+                      <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                    </svg>
+                    Pipeline Checkpoint Progression
+                  </h3>
+                  <span class="text-xs text-muted font-mono">ACTUAL vs PROJECTED</span>
+                </div>
+                <div class="checkpoint-timeline-grid" id="live-checkpoint-timeline">
+                  <!-- Rendered dynamically -->
+                </div>
+              </div>
+
+            </div>
+
+            <!-- 1.4 Dedicated Terminal-Style Log Viewer -->
+            <div class="terminal-card">
+              <div class="terminal-header">
+                <div class="terminal-title-area">
+                  <div class="terminal-traffic-lights">
+                    <span class="traffic-light light-red"></span>
+                    <span class="traffic-light light-yellow"></span>
+                    <span class="traffic-light light-green"></span>
+                  </div>
+                  <span>CI/CD Runner Telemetry Stream</span>
+                  <span id="live-log-lines-count" class="badge badge-neutral" style="font-size: 0.7rem;">0 lines</span>
+                  <span id="live-last-log-timestamp" class="text-xs text-muted" style="margin-left: 0.5rem;">—</span>
+                </div>
+                <div class="terminal-controls">
+                  <button type="button" class="btn-terminal active" id="btn-toggle-autoscroll" title="Toggle Auto-scroll">Auto-scroll: ON</button>
+                  <button type="button" class="btn-terminal" id="btn-clear-log-view" title="Clear displayed logs buffer">Clear View</button>
+                  <button type="button" class="btn-terminal" id="btn-copy-visible-logs" title="Copy displayed terminal logs">Copy Visible Logs</button>
+                </div>
+              </div>
+              <div class="terminal-body" id="live-terminal-content">
+                <span class="terminal-dim">// Connecting to telemetry stream...</span>
+              </div>
+            </div>
+
+            <!-- 1.5 & 1.6 Bottom Row: Parser V2 Evidence + Early Warning Events -->
+            <div class="live-bottom-columns">
+              
+              <!-- 1.5 Parser V2 Evidence Stream -->
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="11" cy="11" r="8"></circle>
+                      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    Parser V2 Structured Evidence Stream
+                  </h3>
+                  <span class="text-xs text-muted">Ground Truth Extraction</span>
+                </div>
+                <div class="card-body" id="live-evidence-stream-container">
+                  <div class="evidence-empty-box">
+                    <span class="text-muted text-sm">No structured failure evidence detected in stream.</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 1.6 Early Warning Panel (Threshold = 70%) -->
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                      <line x1="12" y1="9" x2="12" y2="13"></line>
+                      <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                    </svg>
+                    Early Failure Warnings
+                  </h3>
+                  <div style="display: flex; gap: 0.5rem; align-items: center;">
+                    <span class="text-xs text-muted">Threshold: 70%</span>
+                    <span id="live-warnings-count-badge" class="badge badge-unhealthy">0</span>
+                  </div>
+                </div>
+                <div class="card-body" id="live-early-warnings-container">
+                  <div class="warning-empty-box">
+                    <span class="text-muted text-sm">No threshold crossings detected.</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+
+
+        <!-- ===================================================================
+             VIEW 5: RUN HISTORY & INSPECTOR (UI Batch B)
+             =================================================================== -->
+        <section class="view-container view-page" data-view="run-history" id="view-run-history" style="display: none;">
+          <div class="page-header">
+            <div>
+              <h2 class="page-title">Pipeline Execution History &amp; Inspector</h2>
+              <p class="page-subtitle">Search, filter, and deeply inspect historical pipeline executions, predictions, checkpoint evolutions, and RCA reports.</p>
+            </div>
+            <div style="display: flex; gap: 0.75rem;">
+              <button type="button" class="btn btn-secondary" id="btn-compare-selected-runs" disabled>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="18" y1="20" x2="18" y2="10"></line>
+                  <line x1="12" y1="20" x2="12" y2="4"></line>
+                  <line x1="6" y1="20" x2="6" y2="14"></line>
+                </svg>
+                Compare Selected (0/2)
+              </button>
+              <button type="button" class="btn btn-secondary" id="history-refresh-btn">
+                <svg id="history-refresh-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="23 4 23 10 17 10"></polyline>
+                  <polyline points="1 20 1 14 7 14"></polyline>
+                  <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                </svg>
+                Refresh
+              </button>
+            </div>
+          </div>
+
+          <!-- 2.2 Search & Filters Toolbar -->
+          <div class="history-filter-toolbar">
+            <div class="history-filter-row">
+              <div class="form-group">
+                <label class="form-label" for="history-search-run-id">Search Demo Run ID</label>
+                <input type="text" id="history-search-run-id" class="form-input" placeholder="e.g. demo_run_202610...">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="history-search-commit">Search Commit SHA</label>
+                <input type="text" id="history-search-commit" class="form-input" placeholder="e.g. 7-char hash...">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="history-filter-scenario">Scenario</label>
+                <select id="history-filter-scenario" class="form-select">
+                  <option value="all">All Scenarios</option>
+                  <option value="none">Clean Pipeline (none)</option>
+                  <option value="dependency">Dependency Failure (dependency)</option>
+                  <option value="syntax">Syntax Failure (syntax)</option>
+                  <option value="pytest">Pytest Failure (pytest)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="history-filter-status">Outcome / Status</label>
+                <select id="history-filter-status" class="form-select">
+                  <option value="all">All Statuses</option>
+                  <option value="success">Success / Passed</option>
+                  <option value="failed">Failed</option>
+                  <option value="running">Running</option>
+                  <option value="pending">Pending / Dispatched</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="history-filter-model">Predictor Model</label>
+                <select id="history-filter-model" class="form-select">
+                  <option value="all">All Models</option>
+                  <option value="bilstm2">BiLSTM v2 (Ensemble)</option>
+                  <option value="svm">Linear SVM</option>
+                  <option value="logistic_regression">Logistic Regression</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="history-sort-by">Sort Order</label>
+                <select id="history-sort-by" class="form-select">
+                  <option value="newest">Newest First</option>
+                  <option value="oldest">Oldest First</option>
+                  <option value="highest_risk">Highest Risk First</option>
+                  <option value="lowest_risk">Lowest Risk First</option>
+                </select>
+              </div>
+
+              <div>
+                <button type="button" class="btn btn-secondary" id="history-clear-filters-btn" style="width: 100%; height: 38px;">
+                  Clear Filters
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2.1 Execution History Table -->
+          <div class="card">
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th style="width: 40px; text-align: center;">Sel</th>
+                    <th>Demo Run ID</th>
+                    <th>Status</th>
+                    <th>Repo</th>
+                    <th>Commit</th>
+                    <th>Scenario</th>
+                    <th>Predictor</th>
+                    <th>Risk %</th>
+                    <th>Created</th>
+                    <th>Duration</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="history-runs-table-body">
+                  <tr>
+                    <td colspan="11" class="text-center text-muted py-5">Loading execution history...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Pagination Bar -->
+            <div class="history-footer-pagination">
+              <span id="history-records-count-label" class="text-xs text-muted">Showing 0 runs</span>
+              <div style="display: flex; gap: 0.5rem; align-items: center;">
+                <button type="button" class="btn btn-secondary btn-sm" id="history-prev-page-btn" disabled>&larr; Prev</button>
+                <span id="history-page-indicator" class="text-xs font-mono">Page 1 of 1</span>
+                <button type="button" class="btn btn-secondary btn-sm" id="history-next-page-btn" disabled>Next &rarr;</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="view-container view-page" data-view="metadata-intel" id="view-metadata-intel" style="display: none;">
+          <div class="page-header" style="flex-wrap: wrap; gap: 1rem;">
+            <div>
+              <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+                <h2 class="page-title" style="margin: 0;">Pre-Build Commit Metadata Intelligence</h2>
+                <span id="meta-mode-indicator" class="status-pill badge-healthy font-mono">ACTUAL RUN PREDICTION</span>
+                <span id="meta-run-scenario-badge" class="status-pill badge-neutral font-semibold" style="display: none;"></span>
+              </div>
+              <p class="page-subtitle" style="margin-top: 0.25rem;">Gatekeeper failure probability prediction, 38-feature canonical schema audit, SHAP waterfall explanation drivers, and commit diff comparison.</p>
+            </div>
+            <div style="display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap;">
+              <div style="display: flex; flex-direction: column; gap: 0.25rem;">
+                <label for="meta-run-select" class="text-xs text-muted font-semibold">Demo Run Selector</label>
+                <select id="meta-run-select" class="form-select" style="min-width: 250px; height: 38px;">
+                  <option value="">-- Select Run / Commit --</option>
+                </select>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 0.25rem;">
+                <label for="meta-repo-input" class="text-xs text-muted font-semibold">Repository</label>
+                <input type="text" id="meta-repo-input" class="form-input" placeholder="Repository" value="Aditya-C-S/demo-order-service" style="width: 200px; height: 38px; font-family: var(--font-mono, monospace);">
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 0.25rem;">
+                <label for="meta-commit-input" class="text-xs text-muted font-semibold">Commit SHA</label>
+                <div style="display: flex; gap: 0.25rem;">
+                  <input type="text" id="meta-commit-input" class="form-input" placeholder="Commit SHA (HEAD)" value="HEAD" style="width: 140px; height: 38px; font-family: var(--font-mono, monospace);">
+                  <button type="button" class="btn btn-primary" id="meta-btn-analyze" style="height: 38px;">
+                    <span id="meta-loading-indicator" class="spinner-small" style="display: none; margin-right: 4px;"></span>
+                    Analyze
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Scenario Simulation / Demo Presets (Isolated Evaluation) -->
+          <div class="card meta-simulation-card" style="margin-bottom: 1.25rem; border-left: 4px solid var(--accent-primary, #6366f1);">
+            <div class="card-header-clean">
+              <div class="card-title-group">
+                <span class="card-icon">🧪</span>
+                <h3 class="card-title">Scenario Simulation / Demo Presets</h3>
+              </div>
+              <span class="text-xs text-muted">Simulate canonical LightGBM gatekeeper response for reference benchmark scenarios without mutating active run state</span>
+            </div>
+            <div style="padding: 0.75rem 0 0.25rem 0; display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: center;">
+              <span class="text-xs text-muted font-semibold uppercase tracking-wider" style="margin-right: 4px;">Presets:</span>
+              <button type="button" class="btn-preset-pill" data-meta-preset="clean" title="Nominal PR with mature repo history and test coverage">
+                <span class="preset-pill-dot" style="background: var(--risk-green, #10b981);"></span>
+                Clean Nominal Commit (~18.0%)
+              </button>
+              <button type="button" class="btn-preset-pill" data-meta-preset="dependency" title="PR with package updates and zero test churn">
+                <span class="preset-pill-dot" style="background: var(--risk-yellow, #f59e0b);"></span>
+                Dependency Failure PR (~46.2%)
+              </button>
+              <button type="button" class="btn-preset-pill" data-meta-preset="pytest" title="PR with test fixture deletions and code churn imbalance">
+                <span class="preset-pill-dot" style="background: var(--risk-orange, #f97316);"></span>
+                Pytest / Test Failure PR (~64.0%)
+              </button>
+              <button type="button" class="btn-preset-pill" data-meta-preset="syntax" title="PR with high churn density in critical modules by external author">
+                <span class="preset-pill-dot" style="background: var(--risk-red, #ef4444);"></span>
+                Syntax Error PR (~68.4%)
+              </button>
+            </div>
+          </div>
+
+          <!-- Model Info Meta Banner -->
+          <div id="meta-model-info-banner" class="model-info-banner-container"></div>
+
+          <!-- Section 1 & Section 2: Gatekeeper Risk Overview & Feature Provenance -->
+          <div class="dashboard-grid-2">
+            <!-- Section 1: Gatekeeper Failure Risk Assessment -->
+            <div class="card meta-overview-card">
+              <div class="card-header-clean">
+                <div class="card-title-group">
+                  <span class="card-icon">⚡</span>
+                  <h3 class="card-title">Gatekeeper Failure Risk Assessment</h3>
+                </div>
+                <span class="status-pill badge-neutral" id="meta-verdict-badge">EVALUATING</span>
+              </div>
+              <div class="meta-gauge-container">
+                <div class="meta-gauge-score-row">
+                  <div class="meta-gauge-visual-wrap">
+                    <svg class="meta-semicircle-gauge" viewBox="0 0 160 90" width="160" height="90">
+                      <!-- Gauge Track Arc -->
+                      <path d="M 20 80 A 60 60 0 0 1 140 80" fill="none" stroke="var(--bg-tertiary, #1e293b)" stroke-width="14" stroke-linecap="round" />
+                      <!-- Gauge Colored Fill Arc -->
+                      <path id="meta-gauge-arc-fill" d="M 20 80 A 60 60 0 0 1 140 80" fill="none" stroke="var(--risk-green, #10b981)" stroke-width="14" stroke-linecap="round" stroke-dasharray="188.5" stroke-dashoffset="188.5" style="transition: stroke-dashoffset 0.8s ease, stroke 0.4s ease;" />
+                      <!-- Ticks -->
+                      <circle cx="20" cy="80" r="3" fill="var(--text-muted, #64748b)" />
+                      <circle cx="80" cy="20" r="3" fill="var(--text-muted, #64748b)" />
+                      <circle cx="140" cy="80" r="3" fill="var(--text-muted, #64748b)" />
+                    </svg>
+                    <div class="meta-gauge-num" id="meta-risk-gauge-val">0.0%</div>
+                  </div>
+                  <div class="meta-gauge-details">
+                    <div class="meta-verdict-text font-semibold" id="meta-verdict-desc">Evaluating commit telemetry...</div>
+                    <div class="text-xs text-muted">Thresholds: Fast-Track &lt;25% &bull; Gate Policy 50% &bull; Alert &ge;65%</div>
+                    <div class="meta-context-tags">
+                      <span class="context-tag">Commit: <strong class="font-mono text-accent" id="meta-commit-display">HEAD</strong></span>
+                      <span class="context-tag">Model: <strong id="meta-model-name-display">LightGBM Calibrated</strong></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="progress-track-large" style="margin-top: 1rem;">
+                  <div class="progress-fill-large" id="meta-risk-gauge-bar" style="width: 0%;"></div>
+                </div>
+              </div>
+              <div class="meta-stat-row">
+                <div class="stat-mini">
+                  <span class="stat-mini-label">Inference Latency</span>
+                  <span class="stat-mini-val font-mono text-accent" id="meta-latency-val">--</span>
+                </div>
+                <div class="stat-mini">
+                  <span class="stat-mini-label">Raw Probability Score</span>
+                  <span class="stat-mini-val font-mono" id="meta-raw-score-val">--</span>
+                </div>
+                <div class="stat-mini">
+                  <span class="stat-mini-label">Gate Policy Cutoff</span>
+                  <span class="stat-mini-val font-mono text-warning">0.5000</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 2: Feature Provenance & Completeness -->
+            <div class="card meta-completeness-card">
+              <div class="card-header-clean">
+                <div class="card-title-group">
+                  <span class="card-icon">🛡️</span>
+                  <h3 class="card-title">Feature Provenance &amp; Completeness</h3>
+                </div>
+                <span class="badge-accent font-mono font-bold" id="meta-completeness-pct">0.0%</span>
+              </div>
+              <div class="completeness-body">
+                <div class="provenance-top-row">
+                  <div>
+                    <div class="text-xs text-muted uppercase font-semibold">Completeness Ratio</div>
+                    <div class="provenance-headline" id="meta-completeness-summary">17 of 38 measured</div>
+                  </div>
+                  <div class="text-xs text-secondary text-right" id="meta-completeness-subtext">44.7% observed commit telemetry</div>
+                </div>
+
+                <!-- Provenance Stacked Bar (Measured | Derived | Presets | Defaults) -->
+                <div class="provenance-stacked-bar-container">
+                  <div class="provenance-stacked-bar">
+                    <div class="prov-seg seg-measured" id="meta-prov-seg-measured" style="width: 44.7%;" title="Measured Git/CI"></div>
+                    <div class="prov-seg seg-derived" id="meta-prov-seg-derived" style="width: 5.3%;" title="Derived Ratios"></div>
+                    <div class="prov-seg seg-preset" id="meta-prov-seg-preset" style="width: 50.0%;" title="Scenario Presets"></div>
+                    <div class="prov-seg seg-default" id="meta-prov-seg-default" style="width: 0%;" title="Calibrated Defaults"></div>
+                  </div>
+                </div>
+
+                <div class="completeness-chips-grid" id="meta-completeness-breakdown">
+                  <!-- Chips rendered dynamically -->
+                </div>
+                <div class="callout-note text-xs" style="margin-top: 0.75rem;">
+                  <strong>Provenance Guarantee:</strong> Measured features are extracted directly from Git churn and CI commit telemetry. Default values use TravisTorrent population medians for neutral imputation without fabrication.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 4: Commit Change Summary KPI Cards -->
+          <div class="card meta-commit-summary-card" style="margin-top: 1.25rem;">
+            <div class="card-header-clean">
+              <div class="card-title-group">
+                <span class="card-icon">📊</span>
+                <h3 class="card-title">Commit Change Summary</h3>
+              </div>
+              <span class="text-xs text-muted">Primary Git diff and historical commit metrics</span>
+            </div>
+            <div class="commit-summary-kpi-grid" id="meta-commit-kpi-grid">
+              <div class="kpi-card">
+                <span class="kpi-num" id="kpi-files-changed">--</span>
+                <span class="kpi-label">Files Changed</span>
+              </div>
+              <div class="kpi-card">
+                <span class="kpi-num font-mono text-accent" id="kpi-source-churn">--</span>
+                <span class="kpi-label">Source Churn (lines)</span>
+              </div>
+              <div class="kpi-card">
+                <span class="kpi-num font-mono" id="kpi-test-churn">--</span>
+                <span class="kpi-label">Test Churn (lines)</span>
+              </div>
+              <div class="kpi-card">
+                <span class="kpi-num font-mono" id="kpi-test-ratio">--</span>
+                <span class="kpi-label">Test / Source Ratio</span>
+              </div>
+              <div class="kpi-card">
+                <span class="kpi-num font-mono" id="kpi-churn-density">--</span>
+                <span class="kpi-label">Churn Density (lines/file)</span>
+              </div>
+              <div class="kpi-card">
+                <span class="kpi-num font-mono" id="kpi-build-num">--</span>
+                <span class="kpi-label">Historical Build #</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 3: SHAP Waterfall Risk Drivers & Explainability -->
+          <div class="card meta-shap-card" style="margin-top: 1.25rem;">
+            <div class="card-header-clean">
+              <div class="card-title-group">
+                <span class="card-icon">🌊</span>
+                <h3 class="card-title">SHAP — Top Risk Drivers &amp; Explainability</h3>
+              </div>
+              <span class="text-xs text-muted font-mono">TreeExplainer &bull; Platt Calibrated</span>
+            </div>
+            <p class="text-xs text-muted" style="margin: 0.25rem 0 0.75rem 0;">
+              Feature attribution marginal contributions to pre-build failure probability. Positive values increase failure risk; negative values support passing build outcome.
+            </p>
+            <div id="meta-shap-drivers-container" style="padding: 0.5rem 0;">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+
+          <!-- Section 5: Commit Comparison Section -->
+          <div class="card meta-compare-card" style="margin-top: 1.25rem;">
+            <div class="card-header-clean">
+              <div class="card-title-group">
+                <span class="card-icon">⚖️</span>
+                <h3 class="card-title">Commit &amp; Run Metadata Comparison</h3>
+              </div>
+              <select id="meta-compare-select" class="form-select" style="min-width: 260px; height: 34px;">
+                <option value="">-- None (Select run to compare) --</option>
+              </select>
+            </div>
+            <div id="meta-comparison-results" style="display: none; margin-top: 1rem;">
+              <div id="meta-comparison-notice" style="margin-bottom: 1rem;"></div>
+              
+              <!-- Comparison KPI Summary Cards -->
+              <div class="comparison-kpi-row" id="meta-comparison-kpis" style="margin-bottom: 1.25rem;">
+                <!-- Rendered dynamically -->
+              </div>
+
+              <!-- Collapsible Detailed 38-Feature Comparison Table -->
+              <details class="comparison-details-accordion">
+                <summary class="comparison-details-summary">
+                  <span>Advanced Feature-Level Comparison (All 38 Dimensions)</span>
+                  <span class="text-xs text-muted">Click to inspect full delta breakdown</span>
+                </summary>
+                <div class="table-responsive" style="margin-top: 0.75rem;">
+                  <table class="data-table">
+                    <thead>
+                      <tr>
+                        <th>Metric / Dimension</th>
+                        <th>Current Selection (A)</th>
+                        <th>Comparison Run (B)</th>
+                        <th>Delta (&Delta;)</th>
+                      </tr>
+                    </thead>
+                    <tbody id="meta-comparison-tbody">
+                      <!-- Rendered dynamically -->
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+            </div>
+          </div>
+
+          <!-- Section 6: Advanced: 38-Feature Schema & Provenance Audit (Collapsed Accordion) -->
+          <div class="card meta-schema-card" style="margin-top: 1.25rem;">
+            <details id="meta-schema-accordion" class="meta-advanced-details">
+              <summary class="meta-advanced-summary">
+                <div class="summary-header-left">
+                  <span class="card-icon">📋</span>
+                  <div>
+                    <h3 class="card-title" style="display: inline-block; margin-right: 8px;">Advanced: 38-Feature Schema &amp; Provenance Audit</h3>
+                    <span class="text-xs text-muted">All 38 canonical TravisTorrent dimensions, raw observations, and lineage</span>
+                  </div>
+                </div>
+                <div class="summary-header-right">
+                  <span class="status-pill badge-neutral font-mono">38 FEATURES</span>
+                  <span class="accordion-toggle-hint">Click to expand &#9662;</span>
+                </div>
+              </summary>
+              <div id="meta-features-accordion-container" class="accordion-container" style="margin-top: 1rem;">
+                <!-- Rendered dynamically -->
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section class="view-container view-page" data-view="graph-intel" id="view-graph-intel" style="display: none;">
+          <div class="page-header">
+            <div>
+              <h2 class="page-title">Neo4j Knowledge Graph &amp; Blast Radius Impact</h2>
+              <p class="page-subtitle">Interactive dependency topology, Graph Impact Score (GIS), transitive blast radius analysis, and Tree-Sitter AST fallback hierarchy.</p>
+            </div>
+            <div style="display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap;">
+              <select id="graph-run-select" class="form-select" style="min-width: 220px; height: 38px;">
+                <option value="">-- Select Run / Commit --</option>
+              </select>
+              <input type="text" id="graph-changed-files-input" class="form-input" placeholder="Changed file(s) comma separated" value="src/order_service.py" style="min-width: 220px; height: 38px; font-family: var(--font-mono, monospace);">
+              <button type="button" class="btn btn-primary" id="graph-btn-analyze-blast" style="height: 38px;">
+                <span id="graph-loading-indicator" class="spinner-small" style="display: none; margin-right: 4px;"></span>
+                Analyze Impact
+              </button>
+              <a href="/graph-explorer?repo_id=Aditya-C-S/demo-order-service&mode=full" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" id="btn-open-full-graph" title="Open complete repository architecture graph in a full-screen tab" style="height: 38px; display: inline-flex; align-items: center; gap: 6px; text-decoration: none;">
+                <span>Open Full Graph</span>
+                <span style="font-size: 14px;">↗</span>
+              </a>
+              <a href="/graph-explorer?repo_id=Aditya-C-S/demo-order-service&mode=blast_radius" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" id="btn-open-graph-explorer" title="Open standalone Graph Explorer tab" style="height: 38px; display: inline-flex; align-items: center; gap: 6px; text-decoration: none;">
+                <span>Graph Explorer</span>
+                <span style="font-size: 14px;">↗</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Mode Toggle Bar -->
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.75rem;">
+            <div class="btn-group" role="group" aria-label="Graph Mode" style="display: inline-flex;">
+              <button type="button" class="btn btn-sm btn-primary active" id="btn-graph-mode-blast" data-graph-mode="blast_radius" style="border-top-right-radius: 0; border-bottom-right-radius: 0;">
+                Changed-File Blast Radius
+              </button>
+              <button type="button" class="btn btn-sm btn-secondary" id="btn-graph-mode-full" data-graph-mode="full" style="border-top-left-radius: 0; border-bottom-left-radius: 0;">
+                Full Repository Architecture
+              </button>
+            </div>
+            <!-- Target Presets -->
+            <div class="meta-presets-bar" style="margin-bottom: 0;">
+              <span class="text-xs text-muted font-semibold uppercase tracking-wider">Target Entities:</span>
+              <button type="button" class="btn-preset-pill" data-graph-preset="src/order_service.py">Order Service</button>
+              <button type="button" class="btn-preset-pill" data-graph-preset="src/validator.py">Validator</button>
+              <button type="button" class="btn-preset-pill" data-graph-preset="src/processor.py">Processor</button>
+              <button type="button" class="btn-preset-pill" data-graph-preset="src/config.py">Config</button>
+            </div>
+          </div>
+
+          <!-- Connection Diagnostic Banner -->
+          <div id="graph-connection-banner" class="graph-status-alert alert-online" style="margin-bottom: 1rem;">
+            <!-- Rendered dynamically -->
+          </div>
+
+          <!-- Top Grid: Graph Impact Score & Blast Radius Summary -->
+          <div class="dashboard-grid-2">
+            <!-- 3.3 Graph Impact Score Card -->
+            <div class="card gis-score-card">
+              <div class="card-header-clean">
+                <div class="card-title-group">
+                  <span class="card-icon">🎯</span>
+                  <h3 class="card-title">Graph Impact Score (GIS)</h3>
+                </div>
+                <span class="status-pill badge-neutral" id="gis-tier-badge">EVALUATING</span>
+              </div>
+              <div class="gis-body">
+                <div class="gis-score-row">
+                  <div class="gis-score-num" id="gis-score-value">0.0</div>
+                  <div class="gis-details">
+                    <div class="font-semibold text-sm" id="gis-score-desc">Calculating structural blast radius...</div>
+                    <div class="text-xs text-muted font-mono" style="margin-top: 3px;">
+                      Formula: 0.5&times;Centrality + 0.3&times;BlastRadius + 0.2&times;Depth
+                    </div>
+                  </div>
+                </div>
+                <div class="progress-track-large" style="margin-top: 0.85rem;">
+                  <div class="progress-fill-large" id="gis-score-bar" style="width: 0%;"></div>
+                </div>
+                <div class="meta-stat-row" style="margin-top: 1rem;">
+                  <div class="stat-mini">
+                    <span class="stat-mini-label">Downstream Callers</span>
+                    <span class="stat-mini-val font-mono" id="gis-callers-count">0</span>
+                  </div>
+                  <div class="stat-mini">
+                    <span class="stat-mini-label">Dependency Depth</span>
+                    <span class="stat-mini-val font-mono" id="gis-depth-val">1</span>
+                  </div>
+                  <div class="stat-mini">
+                    <span class="stat-mini-label">Affected Tests</span>
+                    <span class="stat-mini-val font-mono" id="gis-testing-val">0</span>
+                  </div>
+                </div>
+                <div class="callout-note text-xs" style="margin-top: 0.75rem;">
+                  <strong>Structural Metric Notice:</strong> Graph Impact Score measures structural code change magnitude and blast radius. It does NOT predict CI failure probability.
+                </div>
+              </div>
+            </div>
+
+            <!-- 3.4 Blast Radius Analysis Panel -->
+            <div class="card blast-radius-panel-card">
+              <div class="card-header-clean">
+                <div class="card-title-group">
+                  <span class="card-icon">💥</span>
+                  <h3 class="card-title">Transitive Blast Radius Summary</h3>
+                </div>
+                <span class="text-xs text-muted">Direct &amp; Indirect Call Hierarchy</span>
+              </div>
+              <div id="graph-blast-summary-container" style="padding: 0.5rem 0;">
+                <!-- Rendered dynamically -->
+              </div>
+            </div>
+          </div>
+
+          <!-- 3.2 Interactive Cytoscape Canvas & Controls -->
+          <div class="card graph-canvas-card" style="margin-top: 1.25rem;">
+            <!-- Canvas Toolbar Controls -->
+            <div class="graph-toolbar">
+              <div class="graph-controls-left">
+                <input type="text" id="graph-search-input" class="form-input form-input-sm" placeholder="Search symbol or file..." style="width: 200px;">
+                <select id="graph-filter-select" class="form-select form-select-sm" style="width: 140px;">
+                  <option value="ALL">All Node Types</option>
+                  <option value="FILE">Files Only</option>
+                  <option value="FUNCTION">Functions Only</option>
+                  <option value="CLASS">Classes Only</option>
+                  <option value="TEST">Tests Only</option>
+                </select>
+                <select id="graph-layout-select" class="form-select form-select-sm" style="width: 130px;">
+                  <option value="cose">CoSE Force</option>
+                  <option value="concentric">Concentric</option>
+                  <option value="breadthfirst">Breadthfirst</option>
+                  <option value="grid">Grid</option>
+                </select>
+              </div>
+              <div class="graph-controls-right">
+                <button type="button" class="btn btn-secondary btn-sm" id="graph-btn-zoom-in" title="Zoom In">+</button>
+                <button type="button" class="btn btn-secondary btn-sm" id="graph-btn-zoom-out" title="Zoom Out">&minus;</button>
+                <button type="button" class="btn btn-secondary btn-sm" id="graph-btn-fit" title="Fit to View">Fit View</button>
+              </div>
+            </div>
+
+            <!-- Graph Layout with Sidebar Inspector -->
+            <div class="graph-viewport-grid">
+              <!-- Cytoscape Canvas Container -->
+              <div id="cy-container" class="cy-canvas-element"></div>
+
+              <!-- 3.5 Graph Node Inspector Panel -->
+              <div class="graph-node-inspector-sidebar" id="graph-node-inspector-panel">
+                <div class="inspector-sidebar-title">
+                  <span class="font-bold text-sm">Node Inspector</span>
+                  <span class="text-xs text-muted">Click node on canvas</span>
+                </div>
+                <div id="graph-node-inspector-content" style="margin-top: 0.75rem;">
+                  <div class="text-xs text-muted text-center" style="padding: 2rem 1rem;">
+                    Click any node or relationship on the Cytoscape canvas to inspect symbol properties, call hierarchy, and blast radius.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="view-container view-page" data-view="model-comparison" id="view-model-comparison" style="display: none;">
+          <div class="page-header">
+            <div>
+              <h2 class="page-title">Multi-Model Comparison &amp; Risk Progression</h2>
+              <p class="page-subtitle">Side-by-side performance across BiLSTM v2 5-fold ensemble, Linear SVM, and Logistic Regression baseline across 25%, 50%, 75%, and 100% visibility stages.</p>
+            </div>
+            <div style="display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap;">
+              <select id="comp-run-select" class="form-select" style="min-width: 240px; height: 38px;">
+                <option value="">-- Select Run (Demo ID) --</option>
+              </select>
+              <select id="comp-depth-select" class="form-select" style="width: 120px; height: 38px;">
+                <option value="75">75% Depth</option>
+                <option value="50">50% Depth</option>
+                <option value="25">25% Depth</option>
+                <option value="100">100% Depth</option>
+              </select>
+              <button type="button" class="btn btn-secondary" id="comp-btn-refresh" style="height: 38px;">
+                <span id="comp-loading-indicator" class="spinner-small" style="display: none; margin-right: 4px;"></span>
+                Refresh
+              </button>
+              <button type="button" class="btn btn-secondary" id="comp-btn-eval-sample" style="height: 38px;">
+                Eval Sample
+              </button>
+            </div>
+          </div>
+
+          <!-- Multi-Model Consensus Banner -->
+          <div id="comp-consensus-banner" class="model-consensus-banner" style="margin-bottom: 1.25rem;">
+            <!-- Rendered dynamically -->
+          </div>
+
+          <!-- 4.1 Architecture Overview Cards (3 Columns) -->
+          <div class="dashboard-grid-3" style="margin-bottom: 1.25rem;">
+            <!-- BiLSTM v2 Card -->
+            <div class="card model-card-bilstm">
+              <div class="card-header-clean">
+                <div>
+                  <span class="status-pill badge-accent font-bold">PRIMARY RUNTIME</span>
+                  <h3 class="card-title" style="margin-top: 4px;">BiLSTM v2 Ensemble</h3>
+                </div>
+                <span class="status-pill badge-healthy">READY</span>
+              </div>
+              <p class="text-xs text-muted" style="margin-top: 4px;">
+                5-Fold Cross-Validated Bidirectional LSTM trained on sequential log tokens with attention pooling.
+              </p>
+              <div class="model-meta-list" style="margin-top: 0.75rem;">
+                <div class="model-meta-item"><span>Sequence Length:</span> <strong>500 tokens</strong></div>
+                <div class="model-meta-item"><span>Embedding / Hidden:</span> <strong>128 / 64 dims</strong></div>
+                <div class="model-meta-item"><span>Vocabulary:</span> <strong>20,000 words</strong></div>
+                <div class="model-meta-item"><span>Checkpoints:</span> <strong>25%, 50%, 75%, 100%</strong></div>
+                <div class="model-meta-item"><span>Clean Baseline:</span> <strong>22% (Low Risk)</strong></div>
+              </div>
+            </div>
+
+            <!-- Linear SVM Card -->
+            <div class="card model-card-svm">
+              <div class="card-header-clean">
+                <div>
+                  <span class="status-pill badge-info font-bold">FAST CLASSIFIER</span>
+                  <h3 class="card-title" style="margin-top: 4px;">TF-IDF + Linear SVM</h3>
+                </div>
+                <span class="status-pill badge-healthy">READY</span>
+              </div>
+              <p class="text-xs text-muted" style="margin-top: 4px;">
+                Support Vector Machine with linear hyperplane and Platt sigmoid scaling for ultra-low latency inference.
+              </p>
+              <div class="model-meta-list" style="margin-top: 0.75rem;">
+                <div class="model-meta-item"><span>N-Gram Range:</span> <strong>(1, 2) word n-grams</strong></div>
+                <div class="model-meta-item"><span>Max Features:</span> <strong>10,000 TF-IDF</strong></div>
+                <div class="model-meta-item"><span>Latency (p50):</span> <strong>~21.5 ms</strong></div>
+                <div class="model-meta-item"><span>Decision Boundary:</span> <strong>Linear Margin</strong></div>
+                <div class="model-meta-item"><span>Clean Baseline:</span> <strong>30% (Low Risk)</strong></div>
+              </div>
+            </div>
+
+            <!-- Logistic Regression Card -->
+            <div class="card model-card-lr">
+              <div class="card-header-clean">
+                <div>
+                  <span class="status-pill badge-scenario font-bold">PROBABILISTIC BASELINE</span>
+                  <h3 class="card-title" style="margin-top: 4px;">TF-IDF + Logistic Reg</h3>
+                </div>
+                <span class="status-pill badge-healthy">READY</span>
+              </div>
+              <p class="text-xs text-muted" style="margin-top: 4px;">
+                Calibrated classical linear log-odds classifier with L2 regularization serving as interpretable baseline.
+              </p>
+              <div class="model-meta-list" style="margin-top: 0.75rem;">
+                <div class="model-meta-item"><span>Regularization:</span> <strong>L2 (C = 1.0)</strong></div>
+                <div class="model-meta-item"><span>Feature Space:</span> <strong>TF-IDF Sublinear</strong></div>
+                <div class="model-meta-item"><span>Latency (p50):</span> <strong>~22.0 ms</strong></div>
+                <div class="model-meta-item"><span>Decision Model:</span> <strong>Sigmoid Logistic</strong></div>
+                <div class="model-meta-item"><span>Clean Baseline:</span> <strong>31% (Low Risk)</strong></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4.2 Same-Run Multi-Checkpoint Comparison Table -->
+          <div class="card" style="margin-bottom: 1.25rem;">
+            <div class="card-header-clean">
+              <div class="card-title-group">
+                <span class="card-icon">📊</span>
+                <h3 class="card-title">Same-Run Multi-Model Prediction Breakdown</h3>
+              </div>
+              <span class="text-xs text-muted font-mono">Calibrated Boundaries: &le;40% Low, &gt;40%&lt;70% Moderate, &ge;70% Critical</span>
+            </div>
+            <div class="table-responsive" style="margin-top: 0.75rem;">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Model &amp; Version</th>
+                    <th>Depth Checkpoint</th>
+                    <th>Prediction Type</th>
+                    <th>Failure Probability</th>
+                    <th>Risk Tier</th>
+                    <th>Confidence</th>
+                    <th>Inference Latency</th>
+                  </tr>
+                </thead>
+                <tbody id="comp-table-tbody">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- 4.3 Multi-Model Depth Progression Chart -->
+          <div class="card" style="margin-bottom: 1.25rem;">
+            <div class="card-header-clean">
+              <div class="card-title-group">
+                <span class="card-icon">📈</span>
+                <h3 class="card-title">Checkpoint Risk Progression (25% &rarr; 50% &rarr; 75% &rarr; 100%)</h3>
+              </div>
+              <span class="text-xs text-muted">Tracking failure probability amplification as log stream matures</span>
+            </div>
+            <div id="comp-progression-bars-container" style="padding: 1rem 0;">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+
+          <!-- 4.4 Log Processing & Tokenization Notes -->
+          <div class="card">
+            <div class="card-header-clean">
+              <div class="card-title-group">
+                <span class="card-icon">💡</span>
+                <h3 class="card-title">Runtime Log Ingestion &amp; Feature Calibration Deep Dive</h3>
+              </div>
+              <span class="status-pill badge-neutral">Architecture Insights</span>
+            </div>
+            <div class="tokenization-notes-body" style="padding: 0.5rem 0;">
+              <div class="dashboard-grid-2">
+                <div>
+                  <h4 class="font-semibold text-sm">Parser V2 Token Filtering</h4>
+                  <p class="text-xs text-secondary" style="margin-top: 4px; line-height: 1.6;">
+                    Incoming build stream lines are pre-filtered to strip ANSI escape codes, timestamp noise, and ephemeral thread IDs.
+                    Specific regex patterns detect tracebacks, compiler faults, package manager errors, and assertion failures.
+                  </p>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-sm">Sequence Attention vs. N-Gram Bag of Words</h4>
+                  <p class="text-xs text-secondary" style="margin-top: 4px; line-height: 1.6;">
+                    BiLSTM v2 preserves order and temporal context between steps (e.g. <code>pip install</code> preceding <code>ModuleNotFoundError</code>),
+                    allowing early warning at 25% visibility before classical n-gram counters observe full error manifests.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="view-container view-page" data-view="rca" id="view-rca" style="display: none;">
+          <div class="page-header">
+            <div>
+              <h2 class="page-title">Assisted Root Cause Analysis &amp; Remediation</h2>
+              <p class="page-subtitle">Parser V2 pattern extraction, deterministic failure categorization, candidate root cause ranking, and prescriptive DevOps fix commands.</p>
+            </div>
+            <div style="display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap;">
+              <select id="rca-run-select" class="form-select" style="min-width: 240px; height: 38px;">
+                <option value="">-- Select Run (Demo ID) --</option>
+              </select>
+              <button type="button" class="btn btn-secondary" id="rca-btn-refresh" style="height: 38px;">
+                <span id="rca-loading-indicator" class="spinner-small" style="display: none; margin-right: 4px;"></span>
+                Refresh
+              </button>
+              <button type="button" class="btn btn-primary" id="rca-btn-reanalyze" style="height: 38px;">
+                Re-Analyze RCA
+              </button>
+            </div>
+          </div>
+
+          <!-- Clean Run Nominal Card (Hidden if failed) -->
+          <div id="rca-clean-run-card" class="clean-run-card" style="display: none; margin-bottom: 1.25rem;">
+            <div class="clean-run-header">
+              <span class="clean-check-icon">&check;</span>
+              <div>
+                <h3 class="font-bold text-base" style="color: var(--status-healthy);">Nominal Pipeline Execution</h3>
+                <p class="text-xs text-muted" id="rca-clean-run-desc" style="margin-top: 2px;">
+                  All build stages executed without error signatures. No failure patterns identified by Parser V2.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- RCA Content Area -->
+          <div id="rca-content-area">
+            <!-- 5.1 RCA Overview Card -->
+            <div class="card rca-overview-card" style="margin-bottom: 1.25rem;">
+              <div class="card-header-clean">
+                <div class="card-title-group">
+                  <span class="card-icon">🔍</span>
+                  <h3 class="card-title">Failure Classification &amp; Confidence</h3>
+                </div>
+                <span class="status-pill badge-unhealthy" id="rca-category-badge">UNKNOWN_FAILURE</span>
+              </div>
+              <div class="rca-overview-body" style="padding: 0.5rem 0;">
+                <div class="rca-hero-summary font-semibold text-base" id="rca-summary-text">
+                  Evaluating failure signatures...
+                </div>
+                <div class="dashboard-grid-2" style="margin-top: 1rem;">
+                  <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                      <span class="text-xs text-muted font-semibold">RCA Engine Confidence:</span>
+                      <span class="font-mono font-bold text-accent" id="rca-confidence-val">88%</span>
+                    </div>
+                    <div class="progress-track-large" style="margin-top: 0.35rem;">
+                      <div class="progress-fill-large" id="rca-confidence-bar" style="width: 88%;"></div>
+                    </div>
+                    <div class="text-xs text-muted" id="rca-confidence-rationale" style="margin-top: 0.35rem;">
+                      Definitive error signature matched by Parser V2 with AST stack trace context.
+                    </div>
+                  </div>
+                  <div class="rca-meta-stats-grid">
+                    <div class="stat-mini">
+                      <span class="stat-mini-label">Failing Stage</span>
+                      <span class="stat-mini-val font-mono text-danger" id="rca-stage-val">BUILD</span>
+                    </div>
+                    <div class="stat-mini">
+                      <span class="stat-mini-label">Evidence Items</span>
+                      <span class="stat-mini-val font-mono" id="rca-evidence-count-val">0 signals</span>
+                    </div>
+                    <div class="stat-mini">
+                      <span class="stat-mini-label">Inspected Run</span>
+                      <span class="stat-mini-val font-mono text-xs" id="rca-run-id-display">--</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 5.3 Candidate Root Causes -->
+            <div class="card" style="margin-bottom: 1.25rem;">
+              <div class="card-header-clean">
+                <div class="card-title-group">
+                  <span class="card-icon">🎯</span>
+                  <h3 class="card-title">Candidate Root Causes (Ranked)</h3>
+                </div>
+                <span class="text-xs text-muted">What, Where &amp; Why Breakdown</span>
+              </div>
+              <div id="rca-candidates-container" style="padding: 0.5rem 0;">
+                <!-- Rendered dynamically -->
+              </div>
+            </div>
+
+            <!-- 5.2 Chronological Evidence Timeline -->
+            <div class="card" style="margin-bottom: 1.25rem;">
+              <div class="card-header-clean">
+                <div class="card-title-group">
+                  <span class="card-icon">⏱️</span>
+                  <h3 class="card-title">Chronological Log Evidence Timeline</h3>
+                </div>
+                <span class="text-xs text-muted font-mono">Parser V2 Traceback &amp; AST Analysis</span>
+              </div>
+              <div id="rca-evidence-timeline-container" style="padding: 0.5rem 0;">
+                <!-- Rendered dynamically -->
+              </div>
+            </div>
+
+            <!-- 5.4 Prescriptive Remediation Suggestions -->
+            <div class="card">
+              <div class="card-header-clean">
+                <div class="card-title-group">
+                  <span class="card-icon">🛠️</span>
+                  <h3 class="card-title">Prescriptive DevOps Remediation &amp; Fix Commands</h3>
+                </div>
+                <span class="status-pill badge-healthy">Actionable Patches</span>
+              </div>
+              <div id="rca-remediation-container" style="padding: 0.5rem 0;">
+                <!-- Rendered dynamically -->
+              </div>
+              <div class="callout-note text-xs" style="margin-top: 1rem;">
+                <strong>Advisory Disclaimer:</strong> Remediation recommendations are AI-assisted insights generated by deterministic Parser V2 pattern matching and deep RCA classification. Review before production deployment.
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Run Detail Inspector Modal -->
+  <div class="modal-overlay" id="run-inspector-modal" role="dialog" aria-modal="true" aria-labelledby="inspector-modal-title">
+    <div class="modal-dialog-large">
+      <div class="modal-header-bar">
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+            <line x1="8" y1="21" x2="16" y2="21"></line>
+            <line x1="12" y1="17" x2="12" y2="21"></line>
+          </svg>
+          <h3 id="inspector-modal-title" style="font-size: 1.1rem; font-weight: 700;">Deep Run Execution Inspector</h3>
+        </div>
+        <button type="button" class="icon-btn" id="btn-close-run-inspector" title="Close" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body-scrollable" id="inspector-details-container">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Run Comparison Modal -->
+  <div class="modal-overlay" id="run-comparison-modal" role="dialog" aria-modal="true" aria-labelledby="comparison-modal-title">
+    <div class="modal-dialog-large">
+      <div class="modal-header-bar">
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="20" x2="18" y2="10"></line>
+            <line x1="12" y1="20" x2="12" y2="4"></line>
+            <line x1="6" y1="20" x2="6" y2="14"></line>
+          </svg>
+          <h3 id="comparison-modal-title" style="font-size: 1.1rem; font-weight: 700;">Side-by-Side Pipeline Run Comparison</h3>
+        </div>
+        <button type="button" class="icon-btn" id="btn-close-run-comparison" title="Close" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body-scrollable" id="comparison-content-container">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Global Toast Notification Container -->
+  <div id="toast-container" aria-live="polite"></div>
+
+  <!-- Entry Script (ES Module) -->
+  <script type="module" src="/static/app.js?v=3.0"></script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+================================================================================
+ORC INTEGRATION AUDIT - EXECUTIVE SUMMARY
+================================================================================
+
+Date: October 22, 2026
+Scope: Code-only audit (no modifications made)
+Status: Ready for implementation phase
+
+================================================================================
+CALL SEQUENCE VERIFIED
+================================================================================
+
+process_commit(repo_id, target_sha, repo_path, base_sha)
+  1. Check checkpoint cache → return if COMPLETE
+  2. Initialize MetadataAdapter, GraphAdapter (repo_id explicit)
+  3. PREDICTION: metadata_adapter.predict(owner, repo, target_sha)
+     ✓ Extracts 38 features, runs LightGBM
+     ✓ Returns: failure_probability, verdict, shap_drivers
+  4. GRAPH SYNC (ALWAYS runs):
+     ✓ Computes base_sha if not provided
+     ✓ Calls: update_graph_from_diff(..., repo_id=repo_id)
+     ✓ Saves to checkpoint
+  5. INVESTIGATION (conditional on threshold):
+     if failure_probability >= investigation_threshold:
+       ✓ Query graph for connected files
+     else:
+       ✓ Skip investigation, return None
+  6. Mark checkpoint COMPLETE
+  
+Result: CommitPredictionResult with all fields preserved
+
+================================================================================
+VERIFICATION CHECKLIST
+================================================================================
+
+PASS - Prediction preserves 38-feature schema
+PASS - Prediction preserves LightGBM verdict
+PASS - Prediction preserves SHAP drivers
+PASS - Graph sync happens for ALL commits (high and low risk)
+PASS - Investigation threshold is configurable (default 0.50)
+PASS - Threshold configurable via env var INVESTIGATION_THRESHOLD
+PASS - repo_id explicitly passed to all graph operations (never inferred)
+PASS - Checkpoint/retry mechanism prevents infinite loops
+PASS - Low-risk investigation correctly skipped (returns None)
+PASS - Retry logic reuses cached prediction
+
+FAIL - Post-sync verification missing (no query to confirm target SHA reached)
+FAIL - Database configuration mismatch (code: neo4j, graph-doc-gen: graphdoc)
+FAIL - No end-to-end integration test with REAL predictors/graph
+FAIL - No cross-repo isolation integration test
+FAIL - CLI does not expose --investigation-threshold flag (env var works)
+
+================================================================================
+CRITICAL FINDINGS
+================================================================================
+
+1. DATABASE CONFIG MISMATCH (HIGH RISK)
+   Problem: GraphAdapter connects to NEO4J_DATABASE=neo4j by default
+            graph-doc-gen uses database="graphdoc"
+   Impact:  Production integration will fail (writes to wrong database)
+   Fix:     Update .env or pass database param to GraphAdapter
+   
+2. MISSING POST-SYNC VERIFICATION (HIGH RISK)
+   Problem: sync_to_sha() returns SYNCHRONIZED without verifying graph state
+            No query to confirm nodes exist for target_sha and repo_id
+   Impact:  Silent failures possible (returns success even if sync failed)
+   Fix:     Query Neo4j after update_graph_from_diff() to verify
+   
+3. NO END-TO-END TESTS (HIGH RISK)
+   Problem: All existing tests mock MetadataAdapter and GraphAdapter
+            No test exercises REAL prediction + REAL graph sync
+   Impact:  Hidden integration bugs, untested with graphdoc database
+   Fix:     Add integration tests with real predictors and graph engine
+   
+4. INVESTIGATION THRESHOLD CLI FLAG MISSING (MEDIUM RISK)
+   Problem: Configurable via env var, but not CLI flag
+   Impact:  Users must edit .env to change threshold
+   Fix:     Add --investigation-threshold argument to main()
+
+================================================================================
+SAFE PRACTICES (NO CHANGES NEEDED)
+================================================================================
+
+✓ Explicit repo_id passing (lines 77, 120 of graph_adapter.py)
+✓ Graph sync unconditional (line 142 of orchestrator.py)
+✓ Investigation threshold check (line 168 of orchestrator.py)
+✓ Retry logic prevents infinite loops (max_retries=3)
+✓ Checkpoint keyed by (repo_id, target_sha) - strong collision protection
+✓ Features, verdicts, SHAP drivers preserved in result
+✓ Error handling for invalid commits
+✓ Exponential backoff for retries
+
+================================================================================
+FILES INVOLVED (Audit Only - Not Modified)
+================================================================================
+
+Core Orchestration:
+  src/orchestrator.py (259 lines) - Main flow
+  src/adapters/metadata_adapter.py (94 lines) - Prediction chain
+  src/adapters/graph_adapter.py (176 lines) - Graph sync chain
+  src/models/result.py (64 lines) - Result schema
+  src/storage/checkpoint.py (186 lines) - Checkpoint storage
+  src/main.py (149 lines) - CLI entry point
+
+Tests Existing:
+  tests/test_orchestrator.py - 7 tests (all mocked)
+  tests/test_graph_adapter_repo_isolation.py - 6 tests (isolation only)
+  tests/test_checkpoint.py - Checkpoint tests
+
+Tests Missing:
+  tests/test_e2e_integration.py - (does not exist)
+  tests/test_e2e_cross_repo.py - (does not exist)
+
+================================================================================
+NEXT STEPS
+================================================================================
+
+Phase 1: Critical Fixes (blocks production)
+  [ ] Fix database configuration to use graphdoc
+  [ ] Add post-sync verification query to sync_to_sha()
+  [ ] Add end-to-end integration tests (real predictor + real graph)
+
+Phase 2: Enhancements (improves usability)
+  [ ] Add --investigation-threshold CLI flag
+  [ ] Add retry validation (verify cached prediction SHA matches)
+  [ ] Add detailed error logs for debugging
+
+Phase 3: Documentation
+  [ ] Document database target (graphdoc)
+  [ ] Document retry behavior and limits
+  [ ] Document investigation threshold tuning
+
+================================================================================
+NO MODIFICATIONS PLANNED TO:
+================================================================================
+
+✓ Metadata-Pipeline (leave untouched - schema, LightGBM, verdict policy)
+✓ graph-doc-gen-main (leave untouched - repository isolation already tested)
+✓ Model artifacts (LightGBM weights, calibration unchanged)
+✓ 38-feature schema (preserved)
+
+================================================================================
+AUDIT COMPLETE - Code ready for Phase 1 implementation
+================================================================================

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dedicated Interactive Neo4j Code Graph & Blast Radius Explorer for CI/CD Pipeline Failure Predictor">
+  <title>Neo4j Code Graph &amp; Blast Radius Explorer — CI/CD Predictor</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/static/graph-explorer.css">
+  <script src="/static/cytoscape.min.js"></script>
+</head>
+<body>
+  <div class="explorer-root">
+    <!-- Top Navigation Header -->
+    <header class="explorer-header">
+      <div class="header-left">
+        <a href="/" class="brand-badge" title="Return to Dashboard">
+          <div class="icon-wrap">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+            </svg>
+          </div>
+          <span>Graph Explorer</span>
+        </a>
+
+        <!-- Repository Selection Dropdown -->
+        <div style="display: flex; align-items: center; gap: 0.4rem;">
+          <span style="font-size: 0.72rem; color: var(--text-dim);">Repo:</span>
+          <select id="selectRepo" class="control-select" style="max-width: 200px;">
+            <option value="demo-order-service">demo-order-service</option>
+            <option value="msiemens/tinydb">msiemens/tinydb</option>
+            <option value="audit_test/repo_a">audit_test/repo_a</option>
+            <option value="CI-CD-Failure-Predictor">CI-CD-Failure-Predictor</option>
+          </select>
+        </div>
+
+        <!-- Changed Files Input / Indicator -->
+        <div style="display: flex; align-items: center; gap: 0.4rem;">
+          <span style="font-size: 0.72rem; color: var(--text-dim);">Changed:</span>
+          <input type="text" id="inputChangedFiles" class="control-select" style="width: 170px; font-family: var(--font-mono); font-size: 0.72rem;" placeholder="e.g. tinydb/storages.py" value="tinydb/storages.py">
+          <button id="btnApplyRepo" class="btn-ctrl" title="Refresh Graph Data" style="width: 24px; height: 24px;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- View Mode Switcher -->
+      <div class="header-center">
+        <div class="mode-toggle-group">
+          <button id="btnModeBlast" class="mode-btn active" type="button" title="View only changed file, callers, and blast-radius affected dependencies">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+            Blast Radius Subgraph
+          </button>
+          <button id="btnModeFull" class="mode-btn" type="button" title="View complete repository architecture with blast radius highlighted">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            Full Architecture
+          </button>
+        </div>
+      </div>
+
+      <!-- Right Header Actions -->
+      <div class="header-right">
+        <div class="stat-pill">
+          <span>Nodes:</span> <strong id="headerNodeCount">0</strong>
+        </div>
+        <div class="stat-pill">
+          <span>Edges:</span> <strong id="headerEdgeCount">0</strong>
+        </div>
+        <a href="/" class="btn-header">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          Dashboard
+        </a>
+      </div>
+    </header>
+
+    <!-- Sub-Toolbar: Search, Layout Switcher, and Filters -->
+    <div class="explorer-subbar">
+      <!-- Search Input -->
+      <div style="display: flex; align-items: center; gap: 0.4rem;">
+        <div class="search-box-wrap">
+          <svg class="search-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" id="graphSearchInput" class="search-input" placeholder="Search file, function, class..." autocomplete="off">
+          <button id="btnSearchClear" class="search-clear-btn" title="Clear Search">✕</button>
+        </div>
+        <span id="searchMatchCount" class="search-match-count"></span>
+        <button id="btnSearchPrev" class="btn-ctrl" title="Previous Match" style="display: none; width: 24px; height: 24px;">▲</button>
+        <button id="btnSearchNext" class="btn-ctrl" title="Next Match" style="display: none; width: 24px; height: 24px;">▼</button>
+      </div>
+
+      <!-- Layout & Filter Controls -->
+      <div class="subbar-controls">
+        <label style="font-size: 0.72rem; color: var(--text-dim);" for="selectLayout">Layout:</label>
+        <select id="selectLayout" class="control-select">
+          <option value="breadthfirst" selected>Hierarchical (Breadth-First)</option>
+          <option value="cose">Force-Directed (CoSE)</option>
+          <option value="concentric">Concentric</option>
+          <option value="circle">Circular</option>
+        </select>
+
+        <button id="btnFitScreen" class="btn-ctrl" title="Fit to Screen (Spacebar)">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+        </button>
+
+        <button id="btnZoomIn" class="btn-ctrl" title="Zoom In (+)">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+
+        <button id="btnZoomOut" class="btn-ctrl" title="Zoom Out (-)">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+
+        <button id="btnResetLayout" class="btn-ctrl" title="Recompute Layout">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/></svg>
+        </button>
+
+        <div style="height: 18px; width: 1px; background: var(--border-subtle); margin: 0 0.2rem;"></div>
+
+        <!-- Filter Toggle -->
+        <button id="btnToggleFilters" class="btn-ctrl" title="Filter Nodes & Edges" style="width: auto; padding: 0 0.5rem; gap: 0.3rem;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+          <span style="font-size: 0.72rem;">Filters</span>
+        </button>
+
+        <!-- Toggle Inspector Panel -->
+        <button id="btnToggleInspector" class="btn-ctrl" title="Toggle Side Inspector Panel">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="15" y1="3" x2="15" y2="21"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Collapsible Filter Drawer (Hidden by default) -->
+    <div id="filterDrawer" style="display: none; background: rgba(15, 23, 42, 0.95); border-bottom: 1px solid var(--border-subtle); padding: 0.6rem 1rem; z-index: 14; backdrop-filter: blur(8px);">
+      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+        <div style="display: flex; align-items: center; gap: 1.25rem;">
+          <div style="display: flex; align-items: center; gap: 0.6rem;">
+            <span style="font-size: 0.7rem; font-weight: 600; color: var(--text-dim); text-transform: uppercase;">Node Types:</span>
+            <label class="filter-checkbox-label"><input type="checkbox" id="chkNodeFile" checked> File</label>
+            <label class="filter-checkbox-label"><input type="checkbox" id="chkNodeFunction" checked> Function</label>
+            <label class="filter-checkbox-label"><input type="checkbox" id="chkNodeClass" checked> Class</label>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.6rem;">
+            <span style="font-size: 0.7rem; font-weight: 600; color: var(--text-dim); text-transform: uppercase;">Edge Types:</span>
+            <label class="filter-checkbox-label"><input type="checkbox" id="chkEdgeCalls" checked> CALLS</label>
+            <label class="filter-checkbox-label"><input type="checkbox" id="chkEdgeContains" checked> CONTAINS</label>
+            <label class="filter-checkbox-label"><input type="checkbox" id="chkEdgeImports" checked> IMPORTS</label>
+          </div>
+        </div>
+        <button id="btnResetFilters" class="btn-ctrl" style="width: auto; padding: 0.2rem 0.6rem; font-size: 0.72rem;">Reset Filters</button>
+      </div>
+    </div>
+
+    <!-- Main Workspace -->
+    <main class="explorer-workspace">
+      <!-- Cytoscape Graph Canvas -->
+      <div id="cyGraphCanvas"></div>
+
+      <!-- Floating Canvas Navigation Controls (Bottom-Left) -->
+      <div class="canvas-floating-controls">
+        <button id="floatFit" class="btn-ctrl" title="Fit to Screen">⛶</button>
+        <button id="floatZoomIn" class="btn-ctrl" title="Zoom In">+</button>
+        <button id="floatZoomOut" class="btn-ctrl" title="Zoom Out">−</button>
+        <button id="floatReset" class="btn-ctrl" title="Reset Layout">↺</button>
+      </div>
+
+      <!-- Floating Legend (Bottom-Right) -->
+      <div class="canvas-legend" id="canvasLegend">
+        <div class="legend-title">Legend</div>
+        <div class="legend-items">
+          <div class="legend-item"><span class="legend-swatch file"></span> File Node</div>
+          <div class="legend-item"><span class="legend-swatch func"></span> Function Node</div>
+          <div class="legend-item"><span class="legend-swatch class"></span> Class Node</div>
+          <div class="legend-item"><span class="legend-swatch changed"></span> Changed (Origin)</div>
+          <div class="legend-item"><span class="legend-swatch affected"></span> Affected (Blast)</div>
+          <div class="legend-item"><span class="legend-line calls"></span> calls (AST)</div>
+          <div class="legend-item"><span class="legend-line contains"></span> contains</div>
+        </div>
+      </div>
+
+      <!-- Side Inspector Panel -->
+      <aside class="explorer-inspector" id="sideInspector">
+        <div class="inspector-header">
+          <h3>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            <span id="inspectorTitle">Node Inspector</span>
+          </h3>
+          <button id="btnCloseInspector" class="btn-ctrl" style="width: 20px; height: 20px; font-size: 0.7rem;" title="Close Panel">✕</button>
+        </div>
+
+        <div class="inspector-body" id="inspectorContent">
+          <!-- Populated by JavaScript on node selection / default state -->
+        </div>
+      </aside>
+
+      <!-- Loading / Error Overlay -->
+      <div id="loadingOverlay" class="overlay-state">
+        <div class="spinner"></div>
+        <div class="overlay-msg" id="loadingMsg">Loading Neo4j Graph Data...</div>
+        <div class="overlay-sub" id="loadingSub">Querying AST call hierarchy &amp; repository dependencies</div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/static/graph-explorer.js"></script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+ci_job	Set up job	[TIMESTAMP] Runner Image: ubuntu-22.04
+ci_job	Set up job	[TIMESTAMP] Version: [VERSION_ID]
+ci_job	Set up job	[TIMESTAMP] Operating System: Linux 6.5.0-1014-azure
+ci_job	Checkout Repository	[TIMESTAMP] [command]/usr/bin/git checkout --progress --force refs/heads/main

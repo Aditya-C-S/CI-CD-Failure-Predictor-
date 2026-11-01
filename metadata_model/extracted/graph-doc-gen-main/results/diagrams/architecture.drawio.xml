@@ -1,0 +1,120 @@
+<mxfile host="app.diagrams.net" modified="2023-10-27T12:00:00.000Z" agent="Mozilla/5.0" etag="some_etag" version="22.0.8" type="atlas">
+  <diagram id="1" name="Page-1">
+    <mxGraphModel dx="1434" dy="806" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- Main Application Cluster -->
+        <mxCell id="app_cluster" value="&lt;b&gt;Application&lt;/b&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="200" y="100" width="600" height="500" as="geometry" />
+        </mxCell>
+
+        <!-- Module 1: Entry Point -->
+        <mxCell id="module1" value="&lt;b&gt;Module 1&lt;/b&gt;&lt;br&gt;Entry Point" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#333333;" vertex="1" parent="app_cluster">
+          <mxGeometry x="225" y="40" width="150" height="70" as="geometry" />
+        </mxCell>
+
+        <!-- Module 4: Banking System Module -->
+        <mxCell id="module4" value="&lt;b&gt;Module 4&lt;/b&gt;&lt;br&gt;Banking System Module" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#333333;" vertex="1" parent="app_cluster">
+          <mxGeometry x="175" y="150" width="180" height="70" as="geometry" />
+        </mxCell>
+
+        <!-- Module 7: Wallet Management System -->
+        <mxCell id="module7" value="&lt;b&gt;Module 7&lt;/b&gt;&lt;br&gt;Wallet Management System" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#333333;" vertex="1" parent="app_cluster">
+          <mxGeometry x="425" y="150" width="180" height="70" as="geometry" />
+        </mxCell>
+
+        <!-- Module 5: Account Management System -->
+        <mxCell id="module5" value="&lt;b&gt;Module 5&lt;/b&gt;&lt;br&gt;Account Management System" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontColor=#333333;" vertex="1" parent="app_cluster">
+          <mxGeometry x="175" y="280" width="180" height="70" as="geometry" />
+        </mxCell>
+
+        <!-- Module 6: Transaction Management Module -->
+        <mxCell id="module6" value="&lt;b&gt;Module 6&lt;/b&gt;&lt;br&gt;Transaction Management Module" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontColor=#333333;" vertex="1" parent="app_cluster">
+          <mxGeometry x="425" y="280" width="180" height="70" as="geometry" />
+        </mxCell>
+
+        <!-- Module 0: Unit Testing Library (outside main cluster) -->
+        <mxCell id="module0" value="&lt;b&gt;Module 0&lt;/b&gt;&lt;br&gt;Unit Testing Library" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#f8cecc;strokeColor=#b85450;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="50" y="250" width="120" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- Relationships -->
+
+        <!-- Entry Point (1) uses Banking System (4) -->
+        <mxCell id="rel1_4" value="uses" style="endArrow=classic;html=1;rounded=0;exitX=0.25;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="module1" target="module4">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="300" y="210" as="sourcePoint" />
+            <mxPoint x="300" y="250" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="262.5" y="230" />
+              <mxPoint x="265" y="230" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Entry Point (1) uses Wallet Management (7) -->
+        <mxCell id="rel1_7" value="uses" style="endArrow=classic;html=1;rounded=0;exitX=0.75;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="module1" target="module7">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="337.5" y="210" as="sourcePoint" />
+            <mxPoint x="515" y="250" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="337.5" y="230" />
+              <mxPoint x="515" y="230" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Banking System (4) depends on Account Management (5) -->
+        <mxCell id="rel4_5" value="depends on" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="module4" target="module5">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="300" y="320" as="sourcePoint" />
+            <mxPoint x="300" y="380" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Banking System (4) depends on Transaction Management (6) -->
+        <mxCell id="rel4_6" value="depends on" style="endArrow=classic;html=1;rounded=0;exitX=0.75;exitY=1;entryX=0.25;entryY=0;" edge="1" parent="1" source="module4" target="module6">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="345" y="320" as="sourcePoint" />
+            <mxPoint x="470" y="380" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="345" y="250" />
+              <mxPoint x="470" y="250" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Wallet Management (7) depends on Account Management (5) -->
+        <mxCell id="rel7_5" value="depends on" style="endArrow=classic;html=1;rounded=0;exitX=0.25;exitY=1;entryX=0.75;entryY=0;" edge="1" parent="1" source="module7" target="module5">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="470" y="320" as="sourcePoint" />
+            <mxPoint x="340" y="380" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="470" y="250" />
+              <mxPoint x="340" y="250" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Wallet Management (7) depends on Transaction Management (6) -->
+        <mxCell id="rel7_6" value="depends on" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="module7" target="module6">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="515" y="320" as="sourcePoint" />
+            <mxPoint x="515" y="380" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Unit Testing Library (0) tests Application Cluster -->
+        <mxCell id="rel0_app" value="tests" style="endArrow=classic;html=1;rounded=0;dashed=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="module0" target="app_cluster">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="170" y="290" as="sourcePoint" />
+            <mxPoint x="200" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

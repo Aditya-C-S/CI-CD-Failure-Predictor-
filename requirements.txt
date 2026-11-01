@@ -1,0 +1,21 @@
+# CI/CD Failure Predictor & RCA Engine Dependencies
+# Python 3.10+ compatible
+
+# Core Scientific & Machine Learning
+scikit-learn>=1.5.0
+joblib>=1.4.0
+pandas>=2.2.0
+numpy>=1.26.0
+
+# API & Web Server
+fastapi>=0.110.0
+uvicorn[standard]>=0.28.0
+pydantic>=2.6.0
+python-multipart>=0.0.9
+
+# Testing & Quality Assurance
+pytest>=8.0.0
+
+# Optional / Future Teammate Deep Learning Integration
+# torch>=2.2.0
+# transformers>=4.40.0

@@ -1,0 +1,16 @@
+﻿============================= test session starts =============================
+platform win32 -- Python 3.13.4, pytest-8.4.2, pluggy-1.6.0 -- C:\Users\DHRUV HEGDE\AppData\Local\Programs\Python\Python313\python.exe
+cachedir: .pytest_cache
+hypothesis profile 'default'
+rootdir: C:\Users\DHRUV HEGDE\Desktop\orc
+plugins: anyio-4.12.1, hypothesis-6.142.4, cov-7.0.0
+collecting ... collected 6 items
+
+tests/test_graph_adapter_repo_isolation.py::TestGraphAdapterRepoIsolation::test_repo_id_passed_to_sync PASSED [ 16%]
+tests/test_graph_adapter_repo_isolation.py::TestGraphAdapterRepoIsolation::test_repo_id_passed_to_get_connected_files PASSED [ 33%]
+tests/test_graph_adapter_repo_isolation.py::TestGraphAdapterRepoIsolation::test_same_repo_id_across_sync_and_investigation PASSED [ 50%]
+tests/test_graph_adapter_repo_isolation.py::TestGraphAdapterIntegration::test_sync_returns_changed_files PASSED [ 66%]
+tests/test_graph_adapter_repo_isolation.py::TestGraphAdapterIntegration::test_get_connected_files_returns_suspicious_files PASSED [ 83%]
+tests/test_graph_adapter_repo_isolation.py::TestGraphAdapterIntegration::test_get_connected_files_empty_input PASSED [100%]
+
+============================== 6 passed in 3.82s ==============================

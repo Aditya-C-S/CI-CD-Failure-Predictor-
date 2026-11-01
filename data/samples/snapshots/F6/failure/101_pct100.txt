@@ -1,0 +1,166 @@
+ci_job	Set up job	∩╗┐[TIMESTAMP] Current runner version: '[RUNNER_VERSION]'
+ci_job	Set up job	[TIMESTAMP] ##[group]Runner Image Provisioner
+ci_job	Set up job	[TIMESTAMP] Hosted Compute Agent
+ci_job	Set up job	[TIMESTAMP] Version: [VERSION_ID]
+ci_job	Set up job	[TIMESTAMP] Commit: [COMMIT_SHA]
+ci_job	Set up job	[TIMESTAMP] Build Date: [TIMESTAMP]
+ci_job	Set up job	[TIMESTAMP] Worker ID: [GUID]
+ci_job	Set up job	[TIMESTAMP] Region: [REGION]
+ci_job	Set up job	[TIMESTAMP] Cloud: Azure
+ci_job	Set up job	[TIMESTAMP] ##[endgroup]
+ci_job	Set up job	[TIMESTAMP] ##[group]Operating System
+ci_job	Set up job	[TIMESTAMP] Ubuntu
+ci_job	Set up job	[TIMESTAMP] 24.04.x
+ci_job	Set up job	[TIMESTAMP] LTS
+ci_job	Set up job	[TIMESTAMP] ##[endgroup]
+ci_job	Set up job	[TIMESTAMP] ##[group]Runner Image
+ci_job	Set up job	[TIMESTAMP] Image: ubuntu-24.04
+ci_job	Set up job	[TIMESTAMP] Version: [VERSION_ID]
+ci_job	Set up job	[TIMESTAMP] Included Software: https://github.com/actions/runner-images/blob/ubuntu24/[VERSION_ID]/images/ubuntu/Ubuntu2404-Readme.md
+ci_job	Set up job	[TIMESTAMP] Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261012.334
+ci_job	Set up job	[TIMESTAMP] ##[endgroup]
+ci_job	Set up job	[TIMESTAMP] ##[group]GITHUB_TOKEN Permissions
+ci_job	Set up job	[TIMESTAMP] Contents: read
+ci_job	Set up job	[TIMESTAMP] Metadata: read
+ci_job	Set up job	[TIMESTAMP] ##[endgroup]
+ci_job	Set up job	[TIMESTAMP] Secret source: Actions
+ci_job	Set up job	[TIMESTAMP] Cache mode: write
+ci_job	Set up job	[TIMESTAMP] Prepare workflow directory
+ci_job	Set up job	[TIMESTAMP] Prepare all required actions
+ci_job	Set up job	[TIMESTAMP] Getting action download info
+ci_job	Set up job	[TIMESTAMP] Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+ci_job	Set up job	[TIMESTAMP] Complete job name: [JOB_NAME]
+ci_job	Checkout Repository	∩╗┐[TIMESTAMP] ##[group]Run actions/checkout@v4
+ci_job	Checkout Repository	[TIMESTAMP] with:
+ci_job	Checkout Repository	[TIMESTAMP]   repository: [REPO]
+ci_job	Checkout Repository	[TIMESTAMP]   token: ***
+ci_job	Checkout Repository	[TIMESTAMP]   ssh-strict: true
+ci_job	Checkout Repository	[TIMESTAMP]   ssh-user: git
+ci_job	Checkout Repository	[TIMESTAMP]   persist-credentials: true
+ci_job	Checkout Repository	[TIMESTAMP]   clean: true
+ci_job	Checkout Repository	[TIMESTAMP]   sparse-checkout-cone-mode: true
+ci_job	Checkout Repository	[TIMESTAMP]   fetch-depth: 1
+ci_job	Checkout Repository	[TIMESTAMP]   fetch-tags: false
+ci_job	Checkout Repository	[TIMESTAMP]   show-progress: true
+ci_job	Checkout Repository	[TIMESTAMP]   lfs: false
+ci_job	Checkout Repository	[TIMESTAMP]   submodules: false
+ci_job	Checkout Repository	[TIMESTAMP]   set-safe-directory: true
+ci_job	Checkout Repository	[TIMESTAMP]   allow-unsafe-pr-checkout: false
+ci_job	Checkout Repository	[TIMESTAMP] ##[endgroup]
+ci_job	Checkout Repository	[TIMESTAMP] Syncing repository: [REPO]
+ci_job	Checkout Repository	[TIMESTAMP] ##[group]Getting Git version info
+ci_job	Checkout Repository	[TIMESTAMP] Working directory is '/home/runner/work/[REPO]/[REPO]'
+ci_job	Checkout Repository	[TIMESTAMP] [command]/usr/bin/git version
+ci_job	Checkout Repository	[TIMESTAMP] git version 2.55.0
+ci_job	Checkout Repository	[TIMESTAMP] ##[endgroup]
+ci_job	Checkout Repository	[TIMESTAMP] Temporarily overriding HOME='/home/runner/work/[REPO]/[REPO]' before making global git config changes
+ci_job	Checkout Repository	[TIMESTAMP] Adding repository directory to the temporary git global config as a safe directory
+ci_job	Checkout Repository	[TIMESTAMP] [command]/usr/bin/git config --global --add safe.directory /home/runner/work/[REPO]/[REPO]
+ci_job	Checkout Repository	[TIMESTAMP] Deleting the contents of '/home/runner/work/[REPO]/[REPO]'
+ci_job	Checkout Repository	[TIMESTAMP] ##[group]Initializing the repository
+ci_job	Checkout Repository	[TIMESTAMP] [command]/usr/bin/git init /home/runner/work/[REPO]/[REPO]
+ci_job	Checkout Repository	[TIMESTAMP] hint: Using 'master' as the name for the initial branch. This default branch name
+ci_job	Checkout Repository	[TIMESTAMP] hint: will change to "main" in Git 3.0. To configure the initial branch name
+ci_job	Checkout Repository	[TIMESTAMP] hint: to use in all of your new repositories, which will suppress this warning,
+ci_job	Checkout Repository	[TIMESTAMP] hint: call:
+ci_job	Checkout Repository	[TIMESTAMP] hint:
+ci_job	Checkout Repository	[TIMESTAMP] hint: 	git config --global init.defaultBranch <name>
+ci_job	Checkout Repository	[TIMESTAMP] hint:
+ci_job	Checkout Repository	[TIMESTAMP] hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+ci_job	Checkout Repository	[TIMESTAMP] hint: 'development'. The just-created branch can be renamed via this command:
+ci_job	Checkout Repository	[TIMESTAMP] hint:
+ci_job	Checkout Repository	[TIMESTAMP] hint: 	git branch -m <name>
+ci_job	Checkout Repository	[TIMESTAMP] hint:
+ci_job	Checkout Repository	[TIMESTAMP] hint: Disable this message with "git config set advice.defaultBranchName false"
+ci_job	Checkout Repository	[TIMESTAMP] Initialized empty Git repository in /home/runner/work/[REPO]/[REPO]/.git/
+ci_job	Checkout Repository	[TIMESTAMP] [command]/usr/bin/git remote add origin https://github.com/DhruvHegde/log-generation
+ci_job	Checkout Repository	[TIMESTAMP] ##[endgroup]
+ci_job	Checkout Repository	[TIMESTAMP] ##[group]Disabling automatic garbage collection
+ci_job	Checkout Repository	[TIMESTAMP] [command]/usr/bin/git config --local gc.auto 0
+ci_job	Checkout Repository	[TIMESTAMP] ##[endgroup]
+ci_job	Checkout Repository	[TIMESTAMP] ##[group]Setting up auth
+ci_job	Checkout Repository	[TIMESTAMP] [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+ci_job	Checkout Repository	[TIMESTAMP] [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+ci_job	Checkout Repository	[TIMESTAMP] [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+ci_job	Checkout Repository	[TIMESTAMP] [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+ci_job	Checkout Repository	[TIMESTAMP] [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+ci_job	Checkout Repository	[TIMESTAMP] [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+ci_job	Checkout Repository	[TIMESTAMP] [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+ci_job	Checkout Repository	[TIMESTAMP] ##[endgroup]
+ci_job	Checkout Repository	[TIMESTAMP] ##[group]Fetching the repository
+ci_job	Checkout Repository	[TIMESTAMP] [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +234ac1cda3d8a50d1487c5fe98420d1a6e6067b4:refs/remotes/origin/feature/f6-config-permission-errors
+ci_job	Checkout Repository	[TIMESTAMP] From https://github.com/[REPO]
+ci_job	Checkout Repository	[TIMESTAMP]  * [new ref]         234ac1cda3d8a50d1487c5fe98420d1a6e6067b4 -> origin/feature/f6-config-permission-errors
+ci_job	Checkout Repository	[TIMESTAMP] ##[endgroup]
+ci_job	Checkout Repository	[TIMESTAMP] ##[group]Determining the checkout info
+ci_job	Checkout Repository	[TIMESTAMP] ##[endgroup]
+ci_job	Checkout Repository	[TIMESTAMP] [command]/usr/bin/git sparse-checkout disable
+ci_job	Checkout Repository	[TIMESTAMP] [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+ci_job	Checkout Repository	[TIMESTAMP] ##[group]Checking out the ref
+ci_job	Checkout Repository	[TIMESTAMP] [command]/usr/bin/git checkout --progress --force -B feature/f6-config-permission-errors refs/remotes/origin/feature/f6-config-permission-errors
+ci_job	Checkout Repository	[TIMESTAMP] Switched to a new branch 'feature/f6-config-permission-errors'
+ci_job	Checkout Repository	[TIMESTAMP] branch 'feature/f6-config-permission-errors' set up to track 'origin/feature/f6-config-permission-errors'.
+ci_job	Checkout Repository	[TIMESTAMP] ##[endgroup]
+ci_job	Checkout Repository	[TIMESTAMP] [command]/usr/bin/git log -1 --format=%H
+ci_job	Checkout Repository	[TIMESTAMP] 234ac1cda3d8a50d1487c5fe98420d1a6e6067b4
+ci_job	Execute F6 Scenario	∩╗┐[TIMESTAMP] ##[group]Run scenario="${INPUT_SCENARIO:-$(cat f6_scenario.txt)}"
+ci_job	Execute F6 Scenario	[TIMESTAMP] ^[[36;1mscenario="${INPUT_SCENARIO:-$(cat f6_scenario.txt)}"^[[0m
+ci_job	Execute F6 Scenario	[TIMESTAMP] ^[[36;1mecho "F6 scenario: $scenario"^[[0m
+ci_job	Execute F6 Scenario	[TIMESTAMP] ^[[36;1m^[[0m
+ci_job	Execute F6 Scenario	[TIMESTAMP] ^[[36;1mcase "$scenario" in^[[0m
+ci_job	Execute F6 Scenario	[TIMESTAMP] ^[[36;1m  missing_secret)^[[0m
+ci_job	Execute F6 Scenario	[TIMESTAMP] ^[[36;1m    if [ -z "$F6_REQUIRED_TOKEN" ]; then^[[0m
+ci_job	Execute F6 Scenario	[TIMESTAMP] ^[[36;1m      echo "Error: required secret F6_REQUIRED_TOKEN is missing"^[[0m
+ci_job	Execute F6 Scenario	[TIMESTAMP] ^[[36;1m      exit 1^[[0m
+ci_job	Execute F6 Scenario	[TIMESTAMP] ^[[36;1m    fi^[[0m
+ci_job	Execute F6 Scenario	[TIMESTAMP] ^[[36;1m    echo "Required secret is configured."^[[0m
+ci_job	Execute F6 Scenario	[TIMESTAMP] ^[[36;1m    ;;^[[0m
+ci_job	Execute F6 Scenario	[TIMESTAMP] ^[[36;1m  missing_variable)^[[0m
+ci_job	Execute F6 Scenario	[TIMESTAMP] ^[[36;1m    if [ -z "$F6_REQUIRED_ENV" ]; then^[[0m
+ci_job	Execute F6 Scenario	[TIMESTAMP] ^[[36;1m      echo "Error: required variable F6_REQUIRED_ENV is missing"^[[0m
+ci_job	Execute F6 Scenario	[TIMESTAMP] ^[[36;1m      exit 1^[[0m
+ci_job	Execute F6 Scenario	[TIMESTAMP] ^[[36;1m    fi^[[0m
+ci_job	Execute F6 Scenario	[TIMESTAMP] ^[[36;1m    echo "Required variable is configured."^[[0m
+ci_job	Execute F6 Scenario	[TIMESTAMP] ^[[36;1m    ;;^[[0m
+ci_job	Execute F6 Scenario	[TIMESTAMP] ^[[36;1m  permission_denied)^[[0m
+ci_job	Execute F6 Scenario	[TIMESTAMP] ^[[36;1m    echo "Error: permission denied when accessing the required CI resource"^[[0m
+ci_job	Execute F6 Scenario	[TIMESTAMP] ^[[36;1m    exit 1^[[0m
+ci_job	Execute F6 Scenario	[TIMESTAMP] ^[[36;1m    ;;^[[0m
+ci_job	Execute F6 Scenario	[TIMESTAMP] ^[[36;1m  token_lacks_permission)^[[0m
+ci_job	Execute F6 Scenario	[TIMESTAMP] ^[[36;1m    echo "Error: token lacks the required permission to access the CI resource"^[[0m
+ci_job	Execute F6 Scenario	[TIMESTAMP] ^[[36;1m    exit 1^[[0m
+ci_job	Execute F6 Scenario	[TIMESTAMP] ^[[36;1m    ;;^[[0m
+ci_job	Execute F6 Scenario	[TIMESTAMP] ^[[36;1m  success)^[[0m
+ci_job	Execute F6 Scenario	[TIMESTAMP] ^[[36;1m    echo "F6 validation completed successfully."^[[0m
+ci_job	Execute F6 Scenario	[TIMESTAMP] ^[[36;1m    exit 0^[[0m
+ci_job	Execute F6 Scenario	[TIMESTAMP] ^[[36;1m    ;;^[[0m
+ci_job	Execute F6 Scenario	[TIMESTAMP] ^[[36;1m  *)^[[0m
+ci_job	Execute F6 Scenario	[TIMESTAMP] ^[[36;1m    echo "Error: unknown F6 scenario: $scenario"^[[0m
+ci_job	Execute F6 Scenario	[TIMESTAMP] ^[[36;1m    exit 1^[[0m
+ci_job	Execute F6 Scenario	[TIMESTAMP] ^[[36;1m    ;;^[[0m
+ci_job	Execute F6 Scenario	[TIMESTAMP] ^[[36;1mesac^[[0m
+ci_job	Execute F6 Scenario	[TIMESTAMP] shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+ci_job	Execute F6 Scenario	[TIMESTAMP] env:
+ci_job	Execute F6 Scenario	[TIMESTAMP]   INPUT_SCENARIO: missing_variable
+ci_job	Execute F6 Scenario	[TIMESTAMP]   F6_REQUIRED_TOKEN: 
+ci_job	Execute F6 Scenario	[TIMESTAMP]   F6_REQUIRED_ENV: 
+ci_job	Execute F6 Scenario	[TIMESTAMP] ##[endgroup]
+ci_job	Execute F6 Scenario	[TIMESTAMP] F6 scenario: missing_variable
+ci_job	Execute F6 Scenario	[TIMESTAMP] Error: required variable F6_REQUIRED_ENV is missing
+ci_job	Execute F6 Scenario	[TIMESTAMP] ##[error]Process completed with exit code 1.
+ci_job	Post Checkout Repository	∩╗┐[TIMESTAMP] Post job cleanup.
+ci_job	Post Checkout Repository	[TIMESTAMP] [command]/usr/bin/git version
+ci_job	Post Checkout Repository	[TIMESTAMP] git version 2.55.0
+ci_job	Post Checkout Repository	[TIMESTAMP] Temporarily overriding HOME='/home/runner/work/[REPO]/[REPO]' before making global git config changes
+ci_job	Post Checkout Repository	[TIMESTAMP] Adding repository directory to the temporary git global config as a safe directory
+ci_job	Post Checkout Repository	[TIMESTAMP] [command]/usr/bin/git config --global --add safe.directory /home/runner/work/[REPO]/[REPO]
+ci_job	Post Checkout Repository	[TIMESTAMP] [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+ci_job	Post Checkout Repository	[TIMESTAMP] [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+ci_job	Post Checkout Repository	[TIMESTAMP] [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+ci_job	Post Checkout Repository	[TIMESTAMP] http.https://github.com/.extraheader
+ci_job	Post Checkout Repository	[TIMESTAMP] [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+ci_job	Post Checkout Repository	[TIMESTAMP] [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+ci_job	Post Checkout Repository	[TIMESTAMP] [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+ci_job	Post Checkout Repository	[TIMESTAMP] [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+ci_job	Complete job	∩╗┐[TIMESTAMP] Cleaning up orphan processes
+ci_job	Complete job	[TIMESTAMP] ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4. For more information see: https://github.blog/changelog/[DATE]-deprecation-of-node-20-on-github-actions-runners/

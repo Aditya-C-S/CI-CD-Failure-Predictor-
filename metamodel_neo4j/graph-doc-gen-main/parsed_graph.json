@@ -1,0 +1,947 @@
+{
+  "nodes": [
+    {
+      "type": "File",
+      "properties": {
+        "id": "repo:lithium-anode/graph-doc-gen:file:code_parser/extractor.py",
+        "path": "C:\\Users\\DHRUV HEGDE\\Desktop\\graph-doc-gen\\code_parser\\extractor.py",
+        "file_path": "C:\\Users\\DHRUV HEGDE\\Desktop\\graph-doc-gen\\code_parser\\extractor.py",
+        "rel_path": "code_parser/extractor.py",
+        "name": "extractor.py",
+        "embedding": null,
+        "repo_id": "lithium-anode/graph-doc-gen"
+      }
+    },
+    {
+      "type": "Class",
+      "properties": {
+        "id": "repo:lithium-anode/graph-doc-gen:class:code_parser/extractor.py:Extractor",
+        "name": "Extractor",
+        "file_path": "C:\\Users\\DHRUV HEGDE\\Desktop\\graph-doc-gen\\code_parser\\extractor.py",
+        "rel_path": "code_parser/extractor.py",
+        "start_line": 45,
+        "end_line": 277,
+        "embedding": null,
+        "repo_id": "lithium-anode/graph-doc-gen"
+      }
+    },
+    {
+      "type": "Function",
+      "properties": {
+        "id": "repo:lithium-anode/graph-doc-gen:function:code_parser/extractor.py:__init__",
+        "name": "__init__",
+        "file_path": "C:\\Users\\DHRUV HEGDE\\Desktop\\graph-doc-gen\\code_parser\\extractor.py",
+        "rel_path": "code_parser/extractor.py",
+        "start_line": 46,
+        "end_line": 61,
+        "embedding": null,
+        "repo_id": "lithium-anode/graph-doc-gen"
+      }
+    },
+    {
+      "type": "Function",
+      "properties": {
+        "id": "repo:lithium-anode/graph-doc-gen:function:code_parser/extractor.py:_get_embedding",
+        "name": "_get_embedding",
+        "file_path": "C:\\Users\\DHRUV HEGDE\\Desktop\\graph-doc-gen\\code_parser\\extractor.py",
+        "rel_path": "code_parser/extractor.py",
+        "start_line": 63,
+        "end_line": 71,
+        "embedding": null,
+        "repo_id": "lithium-anode/graph-doc-gen"
+      }
+    },
+    {
+      "type": "Function",
+      "properties": {
+        "id": "repo:lithium-anode/graph-doc-gen:function:code_parser/extractor.py:parse_directory",
+        "name": "parse_directory",
+        "file_path": "C:\\Users\\DHRUV HEGDE\\Desktop\\graph-doc-gen\\code_parser\\extractor.py",
+        "rel_path": "code_parser/extractor.py",
+        "start_line": 73,
+        "end_line": 117,
+        "embedding": null,
+        "repo_id": "lithium-anode/graph-doc-gen"
+      }
+    },
+    {
+      "type": "Function",
+      "properties": {
+        "id": "repo:lithium-anode/graph-doc-gen:function:code_parser/extractor.py:_parse_file_pass1",
+        "name": "_parse_file_pass1",
+        "file_path": "C:\\Users\\DHRUV HEGDE\\Desktop\\graph-doc-gen\\code_parser\\extractor.py",
+        "rel_path": "code_parser/extractor.py",
+        "start_line": 119,
+        "end_line": 149,
+        "embedding": null,
+        "repo_id": "lithium-anode/graph-doc-gen"
+      }
+    },
+    {
+      "type": "Function",
+      "properties": {
+        "id": "repo:lithium-anode/graph-doc-gen:function:code_parser/extractor.py:_traverse_pass1",
+        "name": "_traverse_pass1",
+        "file_path": "C:\\Users\\DHRUV HEGDE\\Desktop\\graph-doc-gen\\code_parser\\extractor.py",
+        "rel_path": "code_parser/extractor.py",
+        "start_line": 151,
+        "end_line": 206,
+        "embedding": null,
+        "repo_id": "lithium-anode/graph-doc-gen"
+      }
+    },
+    {
+      "type": "Function",
+      "properties": {
+        "id": "repo:lithium-anode/graph-doc-gen:function:code_parser/extractor.py:_execute_pass2",
+        "name": "_execute_pass2",
+        "file_path": "C:\\Users\\DHRUV HEGDE\\Desktop\\graph-doc-gen\\code_parser\\extractor.py",
+        "rel_path": "code_parser/extractor.py",
+        "start_line": 208,
+        "end_line": 217,
+        "embedding": null,
+        "repo_id": "lithium-anode/graph-doc-gen"
+      }
+    },
+    {
+      "type": "Function",
+      "properties": {
+        "id": "repo:lithium-anode/graph-doc-gen:function:code_parser/extractor.py:_traverse_pass2",
+        "name": "_traverse_pass2",
+        "file_path": "C:\\Users\\DHRUV HEGDE\\Desktop\\graph-doc-gen\\code_parser\\extractor.py",
+        "rel_path": "code_parser/extractor.py",
+        "start_line": 219,
+        "end_line": 244,
+        "embedding": null,
+        "repo_id": "lithium-anode/graph-doc-gen"
+      }
+    },
+    {
+      "type": "Function",
+      "properties": {
+        "id": "repo:lithium-anode/graph-doc-gen:function:code_parser/extractor.py:_find_name_node",
+        "name": "_find_name_node",
+        "file_path": "C:\\Users\\DHRUV HEGDE\\Desktop\\graph-doc-gen\\code_parser\\extractor.py",
+        "rel_path": "code_parser/extractor.py",
+        "start_line": 246,
+        "end_line": 250,
+        "embedding": null,
+        "repo_id": "lithium-anode/graph-doc-gen"
+      }
+    },
+    {
+      "type": "Function",
+      "properties": {
+        "id": "repo:lithium-anode/graph-doc-gen:function:code_parser/extractor.py:_get_call_identifier",
+        "name": "_get_call_identifier",
+        "file_path": "C:\\Users\\DHRUV HEGDE\\Desktop\\graph-doc-gen\\code_parser\\extractor.py",
+        "rel_path": "code_parser/extractor.py",
+        "start_line": 252,
+        "end_line": 262,
+        "embedding": null,
+        "repo_id": "lithium-anode/graph-doc-gen"
+      }
+    },
+    {
+      "type": "Function",
+      "properties": {
+        "id": "repo:lithium-anode/graph-doc-gen:function:code_parser/extractor.py:get_graph",
+        "name": "get_graph",
+        "file_path": "C:\\Users\\DHRUV HEGDE\\Desktop\\graph-doc-gen\\code_parser\\extractor.py",
+        "rel_path": "code_parser/extractor.py",
+        "start_line": 264,
+        "end_line": 277,
+        "embedding": null,
+        "repo_id": "lithium-anode/graph-doc-gen"
+      }
+    },
+    {
+      "type": "File",
+      "properties": {
+        "id": "repo:lithium-anode/graph-doc-gen:file:database/neo4j_client.py",
+        "path": "C:\\Users\\DHRUV HEGDE\\Desktop\\graph-doc-gen\\database\\neo4j_client.py",
+        "file_path": "C:\\Users\\DHRUV HEGDE\\Desktop\\graph-doc-gen\\database\\neo4j_client.py",
+        "rel_path": "database/neo4j_client.py",
+        "name": "neo4j_client.py",
+        "embedding": null,
+        "repo_id": "lithium-anode/graph-doc-gen"
+      }
+    },
+    {
+      "type": "Class",
+      "properties": {
+        "id": "repo:lithium-anode/graph-doc-gen:class:database/neo4j_client.py:Neo4jClient",
+        "name": "Neo4jClient",
+        "file_path": "C:\\Users\\DHRUV HEGDE\\Desktop\\graph-doc-gen\\database\\neo4j_client.py",
+        "rel_path": "database/neo4j_client.py",
+        "start_line": 6,
+        "end_line": 66,
+        "embedding": null,
+        "repo_id": "lithium-anode/graph-doc-gen"
+      }
+    },
+    {
+      "type": "Function",
+      "properties": {
+        "id": "repo:lithium-anode/graph-doc-gen:function:database/neo4j_client.py:__init__",
+        "name": "__init__",
+        "file_path": "C:\\Users\\DHRUV HEGDE\\Desktop\\graph-doc-gen\\database\\neo4j_client.py",
+        "rel_path": "database/neo4j_client.py",
+        "start_line": 7,
+        "end_line": 11,
+        "embedding": null,
+        "repo_id": "lithium-anode/graph-doc-gen"
+      }
+    },
+    {
+      "type": "Function",
+      "properties": {
+        "id": "repo:lithium-anode/graph-doc-gen:function:database/neo4j_client.py:close",
+        "name": "close",
+        "file_path": "C:\\Users\\DHRUV HEGDE\\Desktop\\graph-doc-gen\\database\\neo4j_client.py",
+        "rel_path": "database/neo4j_client.py",
+        "start_line": 13,
+        "end_line": 14,
+        "embedding": null,
+        "repo_id": "lithium-anode/graph-doc-gen"
+      }
+    },
+    {
+      "type": "Function",
+      "properties": {
+        "id": "repo:lithium-anode/graph-doc-gen:function:database/neo4j_client.py:clear_database",
+        "name": "clear_database",
+        "file_path": "C:\\Users\\DHRUV HEGDE\\Desktop\\graph-doc-gen\\database\\neo4j_client.py",
+        "rel_path": "database/neo4j_client.py",
+        "start_line": 16,
+        "end_line": 18,
+        "embedding": null,
+        "repo_id": "lithium-anode/graph-doc-gen"
+      }
+    },
+    {
+      "type": "Function",
+      "properties": {
+        "id": "repo:lithium-anode/graph-doc-gen:function:database/neo4j_client.py:create_node",
+        "name": "create_node",
+        "file_path": "C:\\Users\\DHRUV HEGDE\\Desktop\\graph-doc-gen\\database\\neo4j_client.py",
+        "rel_path": "database/neo4j_client.py",
+        "start_line": 20,
+        "end_line": 23,
+        "embedding": null,
+        "repo_id": "lithium-anode/graph-doc-gen"
+      }
+    },
+    {
+      "type": "Function",
+      "properties": {
+        "id": "repo:lithium-anode/graph-doc-gen:function:database/neo4j_client.py:create_relationship",
+        "name": "create_relationship",
+        "file_path": "C:\\Users\\DHRUV HEGDE\\Desktop\\graph-doc-gen\\database\\neo4j_client.py",
+        "rel_path": "database/neo4j_client.py",
+        "start_line": 25,
+        "end_line": 32,
+        "embedding": null,
+        "repo_id": "lithium-anode/graph-doc-gen"
+      }
+    },
+    {
+      "type": "Function",
+      "properties": {
+        "id": "repo:lithium-anode/graph-doc-gen:function:database/neo4j_client.py:upload_graph",
+        "name": "upload_graph",
+        "file_path": "C:\\Users\\DHRUV HEGDE\\Desktop\\graph-doc-gen\\database\\neo4j_client.py",
+        "rel_path": "database/neo4j_client.py",
+        "start_line": 34,
+        "end_line": 66,
+        "embedding": null,
+        "repo_id": "lithium-anode/graph-doc-gen"
+      }
+    },
+    {
+      "type": "File",
+      "properties": {
+        "id": "repo:lithium-anode/graph-doc-gen:file:enrichment/cgl.py",
+        "path": "C:\\Users\\DHRUV HEGDE\\Desktop\\graph-doc-gen\\enrichment\\cgl.py",
+        "file_path": "C:\\Users\\DHRUV HEGDE\\Desktop\\graph-doc-gen\\enrichment\\cgl.py",
+        "rel_path": "enrichment/cgl.py",
+        "name": "cgl.py",
+        "embedding": null,
+        "repo_id": "lithium-anode/graph-doc-gen"
+      }
+    },
+    {
+      "type": "File",
+      "properties": {
+        "id": "repo:lithium-anode/graph-doc-gen:file:enrichment/clustering.py",
+        "path": "C:\\Users\\DHRUV HEGDE\\Desktop\\graph-doc-gen\\enrichment\\clustering.py",
+        "file_path": "C:\\Users\\DHRUV HEGDE\\Desktop\\graph-doc-gen\\enrichment\\clustering.py",
+        "rel_path": "enrichment/clustering.py",
+        "name": "clustering.py",
+        "embedding": null,
+        "repo_id": "lithium-anode/graph-doc-gen"
+      }
+    },
+    {
+      "type": "File",
+      "properties": {
+        "id": "repo:lithium-anode/graph-doc-gen:file:enrichment/llm_summarizer.py",
+        "path": "C:\\Users\\DHRUV HEGDE\\Desktop\\graph-doc-gen\\enrichment\\llm_summarizer.py",
+        "file_path": "C:\\Users\\DHRUV HEGDE\\Desktop\\graph-doc-gen\\enrichment\\llm_summarizer.py",
+        "rel_path": "enrichment/llm_summarizer.py",
+        "name": "llm_summarizer.py",
+        "embedding": null,
+        "repo_id": "lithium-anode/graph-doc-gen"
+      }
+    },
+    {
+      "type": "File",
+      "properties": {
+        "id": "repo:lithium-anode/graph-doc-gen:file:enrichment/readme_generator.py",
+        "path": "C:\\Users\\DHRUV HEGDE\\Desktop\\graph-doc-gen\\enrichment\\readme_generator.py",
+        "file_path": "C:\\Users\\DHRUV HEGDE\\Desktop\\graph-doc-gen\\enrichment\\readme_generator.py",
+        "rel_path": "enrichment/readme_generator.py",
+        "name": "readme_generator.py",
+        "embedding": null,
+        "repo_id": "lithium-anode/graph-doc-gen"
+      }
+    },
+    {
+      "type": "File",
+      "properties": {
+        "id": "repo:lithium-anode/graph-doc-gen:file:maintenance/diff_agent.py",
+        "path": "C:\\Users\\DHRUV HEGDE\\Desktop\\graph-doc-gen\\maintenance\\diff_agent.py",
+        "file_path": "C:\\Users\\DHRUV HEGDE\\Desktop\\graph-doc-gen\\maintenance\\diff_agent.py",
+        "rel_path": "maintenance/diff_agent.py",
+        "name": "diff_agent.py",
+        "embedding": null,
+        "repo_id": "lithium-anode/graph-doc-gen"
+      }
+    },
+    {
+      "type": "Function",
+      "properties": {
+        "id": "repo:lithium-anode/graph-doc-gen:function:maintenance/diff_agent.py:update_graph_from_diff",
+        "name": "update_graph_from_diff",
+        "file_path": "C:\\Users\\DHRUV HEGDE\\Desktop\\graph-doc-gen\\maintenance\\diff_agent.py",
+        "rel_path": "maintenance/diff_agent.py",
+        "start_line": 6,
+        "end_line": 83,
+        "embedding": null,
+        "repo_id": "lithium-anode/graph-doc-gen"
+      }
+    },
+    {
+      "type": "File",
+      "properties": {
+        "id": "repo:lithium-anode/graph-doc-gen:file:maintenance/export.py",
+        "path": "C:\\Users\\DHRUV HEGDE\\Desktop\\graph-doc-gen\\maintenance\\export.py",
+        "file_path": "C:\\Users\\DHRUV HEGDE\\Desktop\\graph-doc-gen\\maintenance\\export.py",
+        "rel_path": "maintenance/export.py",
+        "name": "export.py",
+        "embedding": null,
+        "repo_id": "lithium-anode/graph-doc-gen"
+      }
+    },
+    {
+      "type": "Function",
+      "properties": {
+        "id": "repo:lithium-anode/graph-doc-gen:function:maintenance/export.py:_export_static",
+        "name": "_export_static",
+        "file_path": "C:\\Users\\DHRUV HEGDE\\Desktop\\graph-doc-gen\\maintenance\\export.py",
+        "rel_path": "maintenance/export.py",
+        "start_line": 6,
+        "end_line": 59,
+        "embedding": null,
+        "repo_id": "lithium-anode/graph-doc-gen"
+      }
+    },
+    {
+      "type": "Function",
+      "properties": {
+        "id": "repo:lithium-anode/graph-doc-gen:function:maintenance/export.py:_export_langchain",
+        "name": "_export_langchain",
+        "file_path": "C:\\Users\\DHRUV HEGDE\\Desktop\\graph-doc-gen\\maintenance\\export.py",
+        "rel_path": "maintenance/export.py",
+        "start_line": 61,
+        "end_line": 100,
+        "embedding": null,
+        "repo_id": "lithium-anode/graph-doc-gen"
+      }
+    },
+    {
+      "type": "Function",
+      "properties": {
+        "id": "repo:lithium-anode/graph-doc-gen:function:maintenance/export.py:export_diagram",
+        "name": "export_diagram",
+        "file_path": "C:\\Users\\DHRUV HEGDE\\Desktop\\graph-doc-gen\\maintenance\\export.py",
+        "rel_path": "maintenance/export.py",
+        "start_line": 103,
+        "end_line": 129,
+        "embedding": null,
+        "repo_id": "lithium-anode/graph-doc-gen"
+      }
+    },
+    {
+      "type": "File",
+      "properties": {
+        "id": "repo:lithium-anode/graph-doc-gen:file:maintenance/stats.py",
+        "path": "C:\\Users\\DHRUV HEGDE\\Desktop\\graph-doc-gen\\maintenance\\stats.py",
+        "file_path": "C:\\Users\\DHRUV HEGDE\\Desktop\\graph-doc-gen\\maintenance\\stats.py",
+        "rel_path": "maintenance/stats.py",
+        "name": "stats.py",
+        "embedding": null,
+        "repo_id": "lithium-anode/graph-doc-gen"
+      }
+    },
+    {
+      "type": "Function",
+      "properties": {
+        "id": "repo:lithium-anode/graph-doc-gen:function:maintenance/stats.py:print_performance_stats",
+        "name": "print_performance_stats",
+        "file_path": "C:\\Users\\DHRUV HEGDE\\Desktop\\graph-doc-gen\\maintenance\\stats.py",
+        "rel_path": "maintenance/stats.py",
+        "start_line": 3,
+        "end_line": 53,
+        "embedding": null,
+        "repo_id": "lithium-anode/graph-doc-gen"
+      }
+    },
+    {
+      "type": "File",
+      "properties": {
+        "id": "repo:lithium-anode/graph-doc-gen:file:mcp_server/server.py",
+        "path": "C:\\Users\\DHRUV HEGDE\\Desktop\\graph-doc-gen\\mcp_server\\server.py",
+        "file_path": "C:\\Users\\DHRUV HEGDE\\Desktop\\graph-doc-gen\\mcp_server\\server.py",
+        "rel_path": "mcp_server/server.py",
+        "name": "server.py",
+        "embedding": null,
+        "repo_id": "lithium-anode/graph-doc-gen"
+      }
+    },
+    {
+      "type": "Function",
+      "properties": {
+        "id": "repo:lithium-anode/graph-doc-gen:function:mcp_server/server.py:query_graph",
+        "name": "query_graph",
+        "file_path": "C:\\Users\\DHRUV HEGDE\\Desktop\\graph-doc-gen\\mcp_server\\server.py",
+        "rel_path": "mcp_server/server.py",
+        "start_line": 7,
+        "end_line": 18,
+        "embedding": null,
+        "repo_id": "lithium-anode/graph-doc-gen"
+      }
+    },
+    {
+      "type": "Function",
+      "properties": {
+        "id": "repo:lithium-anode/graph-doc-gen:function:mcp_server/server.py:trace_call_chain",
+        "name": "trace_call_chain",
+        "file_path": "C:\\Users\\DHRUV HEGDE\\Desktop\\graph-doc-gen\\mcp_server\\server.py",
+        "rel_path": "mcp_server/server.py",
+        "start_line": 21,
+        "end_line": 36,
+        "embedding": null,
+        "repo_id": "lithium-anode/graph-doc-gen"
+      }
+    },
+    {
+      "type": "Function",
+      "properties": {
+        "id": "repo:lithium-anode/graph-doc-gen:function:mcp_server/server.py:run_server",
+        "name": "run_server",
+        "file_path": "C:\\Users\\DHRUV HEGDE\\Desktop\\graph-doc-gen\\mcp_server\\server.py",
+        "rel_path": "mcp_server/server.py",
+        "start_line": 38,
+        "end_line": 40,
+        "embedding": null,
+        "repo_id": "lithium-anode/graph-doc-gen"
+      }
+    },
+    {
+      "type": "Module",
+      "properties": {
+        "id": "repo:lithium-anode/graph-doc-gen:module:ExternalModule",
+        "name": "External Dependencies",
+        "summary": "Third-party libraries and frameworks (e.g., Spring Boot, JPA)",
+        "repo_id": "lithium-anode/graph-doc-gen"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:file:code_parser/extractor.py",
+      "to": "repo:lithium-anode/graph-doc-gen:class:code_parser/extractor.py:Extractor",
+      "type": "CONTAINS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:class:code_parser/extractor.py:Extractor",
+      "to": "repo:lithium-anode/graph-doc-gen:function:code_parser/extractor.py:__init__",
+      "type": "CONTAINS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:class:code_parser/extractor.py:Extractor",
+      "to": "repo:lithium-anode/graph-doc-gen:function:code_parser/extractor.py:_get_embedding",
+      "type": "CONTAINS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:class:code_parser/extractor.py:Extractor",
+      "to": "repo:lithium-anode/graph-doc-gen:function:code_parser/extractor.py:parse_directory",
+      "type": "CONTAINS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:class:code_parser/extractor.py:Extractor",
+      "to": "repo:lithium-anode/graph-doc-gen:function:code_parser/extractor.py:_parse_file_pass1",
+      "type": "CONTAINS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:class:code_parser/extractor.py:Extractor",
+      "to": "repo:lithium-anode/graph-doc-gen:function:code_parser/extractor.py:_traverse_pass1",
+      "type": "CONTAINS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:class:code_parser/extractor.py:Extractor",
+      "to": "repo:lithium-anode/graph-doc-gen:function:code_parser/extractor.py:_execute_pass2",
+      "type": "CONTAINS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:class:code_parser/extractor.py:Extractor",
+      "to": "repo:lithium-anode/graph-doc-gen:function:code_parser/extractor.py:_traverse_pass2",
+      "type": "CONTAINS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:class:code_parser/extractor.py:Extractor",
+      "to": "repo:lithium-anode/graph-doc-gen:function:code_parser/extractor.py:_find_name_node",
+      "type": "CONTAINS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:class:code_parser/extractor.py:Extractor",
+      "to": "repo:lithium-anode/graph-doc-gen:function:code_parser/extractor.py:_get_call_identifier",
+      "type": "CONTAINS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:class:code_parser/extractor.py:Extractor",
+      "to": "repo:lithium-anode/graph-doc-gen:function:code_parser/extractor.py:get_graph",
+      "type": "CONTAINS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:file:database/neo4j_client.py",
+      "to": "repo:lithium-anode/graph-doc-gen:class:database/neo4j_client.py:Neo4jClient",
+      "type": "CONTAINS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:class:database/neo4j_client.py:Neo4jClient",
+      "to": "repo:lithium-anode/graph-doc-gen:function:database/neo4j_client.py:__init__",
+      "type": "CONTAINS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:class:database/neo4j_client.py:Neo4jClient",
+      "to": "repo:lithium-anode/graph-doc-gen:function:database/neo4j_client.py:close",
+      "type": "CONTAINS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:class:database/neo4j_client.py:Neo4jClient",
+      "to": "repo:lithium-anode/graph-doc-gen:function:database/neo4j_client.py:clear_database",
+      "type": "CONTAINS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:class:database/neo4j_client.py:Neo4jClient",
+      "to": "repo:lithium-anode/graph-doc-gen:function:database/neo4j_client.py:create_node",
+      "type": "CONTAINS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:class:database/neo4j_client.py:Neo4jClient",
+      "to": "repo:lithium-anode/graph-doc-gen:function:database/neo4j_client.py:create_relationship",
+      "type": "CONTAINS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:class:database/neo4j_client.py:Neo4jClient",
+      "to": "repo:lithium-anode/graph-doc-gen:function:database/neo4j_client.py:upload_graph",
+      "type": "CONTAINS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:file:maintenance/diff_agent.py",
+      "to": "repo:lithium-anode/graph-doc-gen:function:maintenance/diff_agent.py:update_graph_from_diff",
+      "type": "CONTAINS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:file:maintenance/export.py",
+      "to": "repo:lithium-anode/graph-doc-gen:function:maintenance/export.py:_export_static",
+      "type": "CONTAINS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:file:maintenance/export.py",
+      "to": "repo:lithium-anode/graph-doc-gen:function:maintenance/export.py:_export_langchain",
+      "type": "CONTAINS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:file:maintenance/export.py",
+      "to": "repo:lithium-anode/graph-doc-gen:function:maintenance/export.py:export_diagram",
+      "type": "CONTAINS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:file:maintenance/stats.py",
+      "to": "repo:lithium-anode/graph-doc-gen:function:maintenance/stats.py:print_performance_stats",
+      "type": "CONTAINS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:file:mcp_server/server.py",
+      "to": "repo:lithium-anode/graph-doc-gen:function:mcp_server/server.py:query_graph",
+      "type": "CONTAINS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:file:mcp_server/server.py",
+      "to": "repo:lithium-anode/graph-doc-gen:function:mcp_server/server.py:trace_call_chain",
+      "type": "CONTAINS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:file:mcp_server/server.py",
+      "to": "repo:lithium-anode/graph-doc-gen:function:mcp_server/server.py:run_server",
+      "type": "CONTAINS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:file:code_parser/extractor.py",
+      "to": "repo:lithium-anode/graph-doc-gen:module:ExternalModule",
+      "type": "IMPORTS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:file:code_parser/extractor.py",
+      "to": "repo:lithium-anode/graph-doc-gen:module:ExternalModule",
+      "type": "IMPORTS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:file:code_parser/extractor.py",
+      "to": "repo:lithium-anode/graph-doc-gen:module:ExternalModule",
+      "type": "IMPORTS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:file:code_parser/extractor.py",
+      "to": "repo:lithium-anode/graph-doc-gen:module:ExternalModule",
+      "type": "IMPORTS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:file:code_parser/extractor.py",
+      "to": "repo:lithium-anode/graph-doc-gen:module:ExternalModule",
+      "type": "IMPORTS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:file:code_parser/extractor.py",
+      "to": "repo:lithium-anode/graph-doc-gen:module:ExternalModule",
+      "type": "IMPORTS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:file:code_parser/extractor.py",
+      "to": "repo:lithium-anode/graph-doc-gen:module:ExternalModule",
+      "type": "IMPORTS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:function:code_parser/extractor.py:parse_directory",
+      "to": "repo:lithium-anode/graph-doc-gen:function:code_parser/extractor.py:_parse_file_pass1",
+      "type": "CALLS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:function:code_parser/extractor.py:parse_directory",
+      "to": "repo:lithium-anode/graph-doc-gen:function:code_parser/extractor.py:_execute_pass2",
+      "type": "CALLS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:function:code_parser/extractor.py:_parse_file_pass1",
+      "to": "repo:lithium-anode/graph-doc-gen:function:code_parser/extractor.py:_get_embedding",
+      "type": "CALLS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:function:code_parser/extractor.py:_parse_file_pass1",
+      "to": "repo:lithium-anode/graph-doc-gen:function:code_parser/extractor.py:_traverse_pass1",
+      "type": "CALLS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:function:code_parser/extractor.py:_traverse_pass1",
+      "to": "repo:lithium-anode/graph-doc-gen:function:code_parser/extractor.py:_find_name_node",
+      "type": "CALLS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:function:code_parser/extractor.py:_traverse_pass1",
+      "to": "repo:lithium-anode/graph-doc-gen:function:code_parser/extractor.py:_get_embedding",
+      "type": "CALLS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:function:code_parser/extractor.py:_traverse_pass1",
+      "to": "repo:lithium-anode/graph-doc-gen:function:code_parser/extractor.py:_find_name_node",
+      "type": "CALLS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:function:code_parser/extractor.py:_traverse_pass1",
+      "to": "repo:lithium-anode/graph-doc-gen:function:code_parser/extractor.py:_get_embedding",
+      "type": "CALLS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:function:code_parser/extractor.py:_execute_pass2",
+      "to": "repo:lithium-anode/graph-doc-gen:function:code_parser/extractor.py:_traverse_pass2",
+      "type": "CALLS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:function:code_parser/extractor.py:_traverse_pass2",
+      "to": "repo:lithium-anode/graph-doc-gen:function:code_parser/extractor.py:_find_name_node",
+      "type": "CALLS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:function:code_parser/extractor.py:_traverse_pass2",
+      "to": "repo:lithium-anode/graph-doc-gen:function:code_parser/extractor.py:_get_call_identifier",
+      "type": "CALLS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:file:database/neo4j_client.py",
+      "to": "repo:lithium-anode/graph-doc-gen:module:ExternalModule",
+      "type": "IMPORTS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:file:database/neo4j_client.py",
+      "to": "repo:lithium-anode/graph-doc-gen:module:ExternalModule",
+      "type": "IMPORTS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:file:database/neo4j_client.py",
+      "to": "repo:lithium-anode/graph-doc-gen:module:ExternalModule",
+      "type": "IMPORTS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:file:maintenance/diff_agent.py",
+      "to": "repo:lithium-anode/graph-doc-gen:module:ExternalModule",
+      "type": "IMPORTS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:file:maintenance/diff_agent.py",
+      "to": "repo:lithium-anode/graph-doc-gen:module:ExternalModule",
+      "type": "IMPORTS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:file:maintenance/diff_agent.py",
+      "to": "repo:lithium-anode/graph-doc-gen:module:ExternalModule",
+      "type": "IMPORTS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:file:maintenance/diff_agent.py",
+      "to": "repo:lithium-anode/graph-doc-gen:module:ExternalModule",
+      "type": "IMPORTS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:file:maintenance/diff_agent.py",
+      "to": "repo:lithium-anode/graph-doc-gen:module:ExternalModule",
+      "type": "IMPORTS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:function:maintenance/diff_agent.py:update_graph_from_diff",
+      "to": "repo:lithium-anode/graph-doc-gen:class:database/neo4j_client.py:Neo4jClient",
+      "type": "CALLS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:function:maintenance/diff_agent.py:update_graph_from_diff",
+      "to": "repo:lithium-anode/graph-doc-gen:class:code_parser/extractor.py:Extractor",
+      "type": "CALLS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:function:maintenance/diff_agent.py:update_graph_from_diff",
+      "to": "repo:lithium-anode/graph-doc-gen:function:code_parser/extractor.py:_parse_file_pass1",
+      "type": "CALLS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:function:maintenance/diff_agent.py:update_graph_from_diff",
+      "to": "repo:lithium-anode/graph-doc-gen:function:code_parser/extractor.py:_execute_pass2",
+      "type": "CALLS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:function:maintenance/diff_agent.py:update_graph_from_diff",
+      "to": "repo:lithium-anode/graph-doc-gen:function:code_parser/extractor.py:get_graph",
+      "type": "CALLS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:function:maintenance/diff_agent.py:update_graph_from_diff",
+      "to": "repo:lithium-anode/graph-doc-gen:function:database/neo4j_client.py:upload_graph",
+      "type": "CALLS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:function:maintenance/diff_agent.py:update_graph_from_diff",
+      "to": "repo:lithium-anode/graph-doc-gen:function:database/neo4j_client.py:close",
+      "type": "CALLS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:file:maintenance/export.py",
+      "to": "repo:lithium-anode/graph-doc-gen:module:ExternalModule",
+      "type": "IMPORTS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:file:maintenance/export.py",
+      "to": "repo:lithium-anode/graph-doc-gen:module:ExternalModule",
+      "type": "IMPORTS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:file:maintenance/export.py",
+      "to": "repo:lithium-anode/graph-doc-gen:module:ExternalModule",
+      "type": "IMPORTS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:file:maintenance/export.py",
+      "to": "repo:lithium-anode/graph-doc-gen:module:ExternalModule",
+      "type": "IMPORTS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:file:maintenance/export.py",
+      "to": "repo:lithium-anode/graph-doc-gen:module:ExternalModule",
+      "type": "IMPORTS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:function:maintenance/export.py:export_diagram",
+      "to": "repo:lithium-anode/graph-doc-gen:class:database/neo4j_client.py:Neo4jClient",
+      "type": "CALLS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:function:maintenance/export.py:export_diagram",
+      "to": "repo:lithium-anode/graph-doc-gen:function:maintenance/export.py:_export_static",
+      "type": "CALLS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:function:maintenance/export.py:export_diagram",
+      "to": "repo:lithium-anode/graph-doc-gen:function:maintenance/export.py:_export_langchain",
+      "type": "CALLS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:function:maintenance/export.py:export_diagram",
+      "to": "repo:lithium-anode/graph-doc-gen:function:database/neo4j_client.py:close",
+      "type": "CALLS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:file:maintenance/stats.py",
+      "to": "repo:lithium-anode/graph-doc-gen:module:ExternalModule",
+      "type": "IMPORTS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:file:maintenance/stats.py",
+      "to": "repo:lithium-anode/graph-doc-gen:module:ExternalModule",
+      "type": "IMPORTS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:function:maintenance/stats.py:print_performance_stats",
+      "to": "repo:lithium-anode/graph-doc-gen:class:database/neo4j_client.py:Neo4jClient",
+      "type": "CALLS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:function:maintenance/stats.py:print_performance_stats",
+      "to": "repo:lithium-anode/graph-doc-gen:function:database/neo4j_client.py:close",
+      "type": "CALLS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:file:mcp_server/server.py",
+      "to": "repo:lithium-anode/graph-doc-gen:module:ExternalModule",
+      "type": "IMPORTS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:file:mcp_server/server.py",
+      "to": "repo:lithium-anode/graph-doc-gen:module:ExternalModule",
+      "type": "IMPORTS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:function:mcp_server/server.py:query_graph",
+      "to": "repo:lithium-anode/graph-doc-gen:class:database/neo4j_client.py:Neo4jClient",
+      "type": "CALLS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:function:mcp_server/server.py:query_graph",
+      "to": "repo:lithium-anode/graph-doc-gen:function:database/neo4j_client.py:close",
+      "type": "CALLS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:function:mcp_server/server.py:trace_call_chain",
+      "to": "repo:lithium-anode/graph-doc-gen:class:database/neo4j_client.py:Neo4jClient",
+      "type": "CALLS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:function:mcp_server/server.py:trace_call_chain",
+      "to": "repo:lithium-anode/graph-doc-gen:function:database/neo4j_client.py:close",
+      "type": "CALLS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    },
+    {
+      "from": "repo:lithium-anode/graph-doc-gen:file:mcp_server/server.py",
+      "to": "repo:lithium-anode/graph-doc-gen:function:mcp_server/server.py:run_server",
+      "type": "CALLS",
+      "repo_id": "lithium-anode/graph-doc-gen"
+    }
+  ]
+}

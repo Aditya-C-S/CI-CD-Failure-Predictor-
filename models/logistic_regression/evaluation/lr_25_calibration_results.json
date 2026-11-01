@@ -1,0 +1,105 @@
+{
+  "brier_score": 0.038212736979559764,
+  "ece": 0.03828235176126731,
+  "reliability_bins": [
+    {
+      "bin": 0,
+      "range": "[0.0, 0.1)",
+      "count": 229,
+      "mean_prob": 0.012044026691322993,
+      "empirical_accuracy": 0.0,
+      "abs_difference": 0.012044026691322993
+    },
+    {
+      "bin": 1,
+      "range": "[0.1, 0.2)",
+      "count": 0,
+      "mean_prob": 0.15000000000000002,
+      "empirical_accuracy": 0.0,
+      "abs_difference": 0.0
+    },
+    {
+      "bin": 2,
+      "range": "[0.2, 0.3)",
+      "count": 1,
+      "mean_prob": 0.2462675609270948,
+      "empirical_accuracy": 0.0,
+      "abs_difference": 0.2462675609270948
+    },
+    {
+      "bin": 3,
+      "range": "[0.3, 0.4)",
+      "count": 0,
+      "mean_prob": 0.35000000000000003,
+      "empirical_accuracy": 0.0,
+      "abs_difference": 0.0
+    },
+    {
+      "bin": 4,
+      "range": "[0.4, 0.5)",
+      "count": 1,
+      "mean_prob": 0.43729582142866086,
+      "empirical_accuracy": 1.0,
+      "abs_difference": 0.5627041785713391
+    },
+    {
+      "bin": 5,
+      "range": "[0.5, 0.6)",
+      "count": 167,
+      "mean_prob": 0.5266803988309617,
+      "empirical_accuracy": 0.7365269461077845,
+      "abs_difference": 0.20984654727682273
+    },
+    {
+      "bin": 6,
+      "range": "[0.6, 0.7)",
+      "count": 0,
+      "mean_prob": 0.6500000000000001,
+      "empirical_accuracy": 0.0,
+      "abs_difference": 0.0
+    },
+    {
+      "bin": 7,
+      "range": "[0.7, 0.8)",
+      "count": 0,
+      "mean_prob": 0.75,
+      "empirical_accuracy": 0.0,
+      "abs_difference": 0.0
+    },
+    {
+      "bin": 8,
+      "range": "[0.8, 0.9)",
+      "count": 1,
+      "mean_prob": 0.8628797773033109,
+      "empirical_accuracy": 0.0,
+      "abs_difference": 0.8628797773033109
+    },
+    {
+      "bin": 9,
+      "range": "[0.9, 1.0]",
+      "count": 673,
+      "mean_prob": 0.9976755214506174,
+      "empirical_accuracy": 1.0,
+      "abs_difference": 0.002324478549382558
+    }
+  ],
+  "reproduced_metrics": {
+    "accuracy": 0.957089552238806,
+    "precision_failure": 0.9464922711058263,
+    "recall_failure": 0.998745294855709,
+    "f1_failure": 0.9719169719169719,
+    "macro_f1": 0.9405039405039405,
+    "roc_auc": 0.9868871906011177,
+    "pr_auc": 0.991675163319315,
+    "confusion_matrix": [
+      [
+        796,
+        1
+      ],
+      [
+        45,
+        230
+      ]
+    ]
+  }
+}

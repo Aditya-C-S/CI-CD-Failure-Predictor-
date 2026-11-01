@@ -1,0 +1,52 @@
+ï»¿[TIMESTAMP] Current runner version: '[RUNNER_VERSION]'
+[TIMESTAMP] ##[group]Runner Image Provisioner
+[TIMESTAMP] Hosted Compute Agent
+[TIMESTAMP] Version: [VERSION_ID]
+[TIMESTAMP] Commit: [COMMIT_SHA]
+[TIMESTAMP] Build Date: [TIMESTAMP]
+[TIMESTAMP] Worker ID: [GUID]
+[TIMESTAMP] Region: [REGION]
+[TIMESTAMP] Cloud: Azure
+[TIMESTAMP] ##[endgroup]
+[TIMESTAMP] ##[group]Operating System
+[TIMESTAMP] Ubuntu
+[TIMESTAMP] 24.04.x
+[TIMESTAMP] LTS
+[TIMESTAMP] ##[endgroup]
+[TIMESTAMP] ##[group]Runner Image
+[TIMESTAMP] Image: ubuntu-24.04
+[TIMESTAMP] Version: [VERSION_ID]
+[TIMESTAMP] Included Software: https://github.com/actions/runner-images/blob/ubuntu24/[VERSION_ID]/images/ubuntu/Ubuntu2404-Readme.md
+[TIMESTAMP] Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261012.334
+[TIMESTAMP] ##[endgroup]
+[TIMESTAMP] ##[group]GITHUB_TOKEN Permissions
+[TIMESTAMP] Contents: read
+[TIMESTAMP] Metadata: read
+[TIMESTAMP] Packages: read
+[TIMESTAMP] ##[endgroup]
+[TIMESTAMP] Secret source: Actions
+[TIMESTAMP] Cache mode: write
+[TIMESTAMP] Prepare workflow directory
+[TIMESTAMP] Prepare all required actions
+[TIMESTAMP] Getting action download info
+[TIMESTAMP] Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+[TIMESTAMP] Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+[TIMESTAMP] Complete job name: [JOB_NAME]
+[TIMESTAMP] ##[group]Run actions/checkout@v4
+[TIMESTAMP] with:
+[TIMESTAMP]   fetch-depth: 1
+[TIMESTAMP]   repository: [REPO]
+[TIMESTAMP]   token: ***
+[TIMESTAMP]   ssh-strict: true
+[TIMESTAMP]   ssh-user: git
+[TIMESTAMP]   persist-credentials: true
+[TIMESTAMP]   clean: true
+[TIMESTAMP]   sparse-checkout-cone-mode: true
+[TIMESTAMP]   fetch-tags: false
+[TIMESTAMP]   show-progress: true
+[TIMESTAMP]   lfs: false
+[TIMESTAMP]   submodules: false
+[TIMESTAMP]   set-safe-directory: true
+[TIMESTAMP]   allow-unsafe-pr-checkout: false
+[TIMESTAMP] ##[endgroup]
+[TIMESTAMP] Syncing repository: [REPO]

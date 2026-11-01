@@ -1,0 +1,82 @@
+{
+  "task_A": {
+    "n_sampled": 200,
+    "n_sample_requested": 200,
+    "pattern_hits": {
+      "iso_timestamp": {
+        "files_with_hits": 0,
+        "hit_rate_pct": 0.0,
+        "examples": []
+      },
+      "github_timestamp": {
+        "files_with_hits": 0,
+        "hit_rate_pct": 0.0,
+        "examples": []
+      },
+      "workflow_header": {
+        "files_with_hits": 0,
+        "hit_rate_pct": 0.0,
+        "examples": []
+      },
+      "workflow_name_env": {
+        "files_with_hits": 183,
+        "hit_rate_pct": 91.5,
+        "examples": [
+          "workflow directory",
+          "workflow directory",
+          "workflow directory"
+        ]
+      },
+      "runner_name": {
+        "files_with_hits": 0,
+        "hit_rate_pct": 0.0,
+        "examples": []
+      },
+      "github_run_id_val": {
+        "files_with_hits": 0,
+        "hit_rate_pct": 0.0,
+        "examples": []
+      }
+    }
+  },
+  "task_B": {
+    "n_sampled": 200,
+    "n_sample_requested": 200,
+    "pattern_hits": {
+      "iso_timestamp": {
+        "files_with_hits": 0,
+        "hit_rate_pct": 0.0,
+        "examples": []
+      },
+      "github_timestamp": {
+        "files_with_hits": 0,
+        "hit_rate_pct": 0.0,
+        "examples": []
+      },
+      "workflow_header": {
+        "files_with_hits": 0,
+        "hit_rate_pct": 0.0,
+        "examples": []
+      },
+      "workflow_name_env": {
+        "files_with_hits": 166,
+        "hit_rate_pct": 83.0,
+        "examples": [
+          "workflow directory",
+          "workflow directory",
+          "workflow directory"
+        ]
+      },
+      "runner_name": {
+        "files_with_hits": 0,
+        "hit_rate_pct": 0.0,
+        "examples": []
+      },
+      "github_run_id_val": {
+        "files_with_hits": 0,
+        "hit_rate_pct": 0.0,
+        "examples": []
+      }
+    }
+  }
+}

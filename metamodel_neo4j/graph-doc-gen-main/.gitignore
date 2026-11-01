@@ -1,0 +1,20 @@
+# Python Environments & Cache
+__pycache__/
+
+# Virtual Environments
+venv/
+.env/
+.venv/
+env/
+ENV/
+
+# Environment Variables & Secrets
+.env
+.env.*
+!.env.example
+
+# Ignore exported artefacts
+# results/
+
+# OS & IDE Files
+.DS_Store

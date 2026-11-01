@@ -1,0 +1,30 @@
+﻿============================= test session starts =============================
+platform win32 -- Python 3.13.4, pytest-8.4.2, pluggy-1.6.0 -- C:\Users\DHRUV HEGDE\AppData\Local\Programs\Python\Python313\python.exe
+cachedir: .pytest_cache
+hypothesis profile 'default'
+rootdir: C:\Users\DHRUV HEGDE\Desktop\orc
+plugins: anyio-4.12.1, hypothesis-6.142.4, cov-7.0.0
+collecting ... collected 10 items
+
+tests/test_orchestrator_fixed.py::TestOrchestratorBasicFlow::test_low_risk_commit PASSED [ 10%]
+tests/test_orchestrator_fixed.py::TestOrchestratorBasicFlow::test_high_risk_commit PASSED [ 20%]
+tests/test_orchestrator_fixed.py::TestRegressionRisk72Threshold50::test_risk_72_percent_above_50_threshold PASSED [ 30%]
+tests/test_orchestrator_fixed.py::TestChangedFilesPropagation::test_changed_files_in_sync_result PASSED [ 40%]
+tests/test_orchestrator_fixed.py::TestPredictionCaching::test_graph_failure_reuses_prediction PASSED [ 50%]
+tests/test_orchestrator_fixed.py::TestRootCommitHandling::test_root_commit_empty_tree_as_base PASSED [ 60%]
+tests/test_orchestrator_fixed.py::TestDuplicateProcessing::test_duplicate_commit_returns_cached PASSED [ 70%]
+tests/test_orchestrator_fixed.py::TestThresholdConfiguration::test_custom_threshold PASSED [ 80%]
+tests/test_orchestrator_fixed.py::TestErrorHandling::test_invalid_commit_sha PASSED [ 90%]
+tests/test_orchestrator_fixed.py::TestGraphSynchronization::test_graph_always_synced_regardless_of_risk PASSED [100%]
+
+============================== warnings summary ===============================
+tests/test_orchestrator_fixed.py: 31 warnings
+  C:\Users\DHRUV HEGDE\Desktop\orc\src\storage\checkpoint.py:96: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    now = datetime.utcnow().isoformat()
+
+tests/test_orchestrator_fixed.py: 10 warnings
+  C:\Users\DHRUV HEGDE\Desktop\orc\src\models\result.py:45: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    timestamp: str = field(default_factory=lambda: datetime.utcnow().isoformat())
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+====================== 10 passed, 41 warnings in 12.29s =======================

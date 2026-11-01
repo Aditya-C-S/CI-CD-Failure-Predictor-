@@ -1,0 +1,363 @@
+ci_job	Set up job	[TIMESTAMP] Current runner version: '[RUNNER_VERSION]'
+ci_job	Set up job	[TIMESTAMP] ##[group]Runner Image Provisioner
+ci_job	Set up job	[TIMESTAMP] Hosted Compute Agent
+ci_job	Set up job	[TIMESTAMP] Version: [VERSION_ID]
+ci_job	Set up job	[TIMESTAMP] Commit: [COMMIT_SHA]
+ci_job	Set up job	[TIMESTAMP] Build Date: [TIMESTAMP]
+ci_job	Set up job	[TIMESTAMP] Worker ID: [GUID]
+ci_job	Set up job	[TIMESTAMP] Region: [REGION]
+ci_job	Set up job	[TIMESTAMP] Cloud: Azure
+ci_job	Set up job	[TIMESTAMP] ##[endgroup]
+ci_job	Set up job	[TIMESTAMP] ##[group]Operating System
+ci_job	Set up job	[TIMESTAMP] Ubuntu
+ci_job	Set up job	[TIMESTAMP] 24.04.x
+ci_job	Set up job	[TIMESTAMP] LTS
+ci_job	Set up job	[TIMESTAMP] ##[endgroup]
+ci_job	Set up job	[TIMESTAMP] ##[group]Runner Image
+ci_job	Set up job	[TIMESTAMP] Image: ubuntu-24.04
+ci_job	Set up job	[TIMESTAMP] Version: [VERSION_ID]
+ci_job	Set up job	[TIMESTAMP] Included Software: https://github.com/actions/runner-images/blob/ubuntu24/[VERSION_ID]/images/ubuntu/Ubuntu2404-Readme.md
+ci_job	Set up job	[TIMESTAMP] Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261012.334
+ci_job	Set up job	[TIMESTAMP] ##[endgroup]
+ci_job	Set up job	[TIMESTAMP] ##[group]GITHUB_TOKEN Permissions
+ci_job	Set up job	[TIMESTAMP] Contents: read
+ci_job	Set up job	[TIMESTAMP] Metadata: read
+ci_job	Set up job	[TIMESTAMP] ##[endgroup]
+ci_job	Set up job	[TIMESTAMP] Secret source: Actions
+ci_job	Set up job	[TIMESTAMP] Cache mode: write
+ci_job	Set up job	[TIMESTAMP] Prepare workflow directory
+ci_job	Set up job	[TIMESTAMP] Prepare all required actions
+ci_job	Set up job	[TIMESTAMP] Getting action download info
+ci_job	Set up job	[TIMESTAMP] Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+ci_job	Set up job	[TIMESTAMP] Download action repository 'docker/setup-buildx-action@v3' (SHA:8d2750c68a42422c14e847fe6c8ac0403b4cbd6f)
+ci_job	Set up job	[TIMESTAMP] Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+ci_job	Set up job	[TIMESTAMP] Complete job name: [JOB_NAME]
+ci_job	Checkout Repository	[TIMESTAMP] ##[group]Run actions/checkout@v4
+ci_job	Checkout Repository	[TIMESTAMP] with:
+ci_job	Checkout Repository	[TIMESTAMP]   repository: [REPO]
+ci_job	Checkout Repository	[TIMESTAMP]   token: ***
+ci_job	Checkout Repository	[TIMESTAMP]   ssh-strict: true
+ci_job	Checkout Repository	[TIMESTAMP]   ssh-user: git
+ci_job	Checkout Repository	[TIMESTAMP]   persist-credentials: true
+ci_job	Checkout Repository	[TIMESTAMP]   clean: true
+ci_job	Checkout Repository	[TIMESTAMP]   sparse-checkout-cone-mode: true
+ci_job	Checkout Repository	[TIMESTAMP]   fetch-depth: 1
+ci_job	Checkout Repository	[TIMESTAMP]   fetch-tags: false
+ci_job	Checkout Repository	[TIMESTAMP]   show-progress: true
+ci_job	Checkout Repository	[TIMESTAMP]   lfs: false
+ci_job	Checkout Repository	[TIMESTAMP]   submodules: false
+ci_job	Checkout Repository	[TIMESTAMP]   set-safe-directory: true
+ci_job	Checkout Repository	[TIMESTAMP]   allow-unsafe-pr-checkout: false
+ci_job	Checkout Repository	[TIMESTAMP] ##[endgroup]
+ci_job	Checkout Repository	[TIMESTAMP] Syncing repository: [REPO]
+ci_job	Checkout Repository	[TIMESTAMP] ##[group]Getting Git version info
+ci_job	Checkout Repository	[TIMESTAMP] Working directory is '/home/runner/work/[REPO]/[REPO]'
+ci_job	Checkout Repository	[TIMESTAMP] [command]/usr/bin/git version
+ci_job	Checkout Repository	[TIMESTAMP] git version 2.55.0
+ci_job	Checkout Repository	[TIMESTAMP] ##[endgroup]
+ci_job	Checkout Repository	[TIMESTAMP] Temporarily overriding HOME='/home/runner/work/[REPO]/[REPO]' before making global git config changes
+ci_job	Checkout Repository	[TIMESTAMP] Adding repository directory to the temporary git global config as a safe directory
+ci_job	Checkout Repository	[TIMESTAMP] [command]/usr/bin/git config --global --add safe.directory /home/runner/work/[REPO]/[REPO]
+ci_job	Checkout Repository	[TIMESTAMP] Deleting the contents of '/home/runner/work/[REPO]/[REPO]'
+ci_job	Checkout Repository	[TIMESTAMP] ##[group]Initializing the repository
+ci_job	Checkout Repository	[TIMESTAMP] [command]/usr/bin/git init /home/runner/work/[REPO]/[REPO]
+ci_job	Checkout Repository	[TIMESTAMP] hint: Using 'master' as the name for the initial branch. This default branch name
+ci_job	Checkout Repository	[TIMESTAMP] hint: will change to "main" in Git 3.0. To configure the initial branch name
+ci_job	Checkout Repository	[TIMESTAMP] hint: to use in all of your new repositories, which will suppress this warning,
+ci_job	Checkout Repository	[TIMESTAMP] hint: call:
+ci_job	Checkout Repository	[TIMESTAMP] hint:
+ci_job	Checkout Repository	[TIMESTAMP] hint: 	git config --global init.defaultBranch <name>
+ci_job	Checkout Repository	[TIMESTAMP] hint:
+ci_job	Checkout Repository	[TIMESTAMP] hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+ci_job	Checkout Repository	[TIMESTAMP] hint: 'development'. The just-created branch can be renamed via this command:
+ci_job	Checkout Repository	[TIMESTAMP] hint:
+ci_job	Checkout Repository	[TIMESTAMP] hint: 	git branch -m <name>
+ci_job	Checkout Repository	[TIMESTAMP] hint:
+ci_job	Checkout Repository	[TIMESTAMP] hint: Disable this message with "git config set advice.defaultBranchName false"
+ci_job	Checkout Repository	[TIMESTAMP] Initialized empty Git repository in /home/runner/work/[REPO]/[REPO]/.git/
+ci_job	Checkout Repository	[TIMESTAMP] [command]/usr/bin/git remote add origin https://github.com/DhruvHegde/log-generation
+ci_job	Checkout Repository	[TIMESTAMP] ##[endgroup]
+ci_job	Checkout Repository	[TIMESTAMP] ##[group]Disabling automatic garbage collection
+ci_job	Checkout Repository	[TIMESTAMP] [command]/usr/bin/git config --local gc.auto 0
+ci_job	Checkout Repository	[TIMESTAMP] ##[endgroup]
+ci_job	Checkout Repository	[TIMESTAMP] ##[group]Setting up auth
+ci_job	Checkout Repository	[TIMESTAMP] [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+ci_job	Checkout Repository	[TIMESTAMP] [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+ci_job	Checkout Repository	[TIMESTAMP] [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+ci_job	Checkout Repository	[TIMESTAMP] [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+ci_job	Checkout Repository	[TIMESTAMP] [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+ci_job	Checkout Repository	[TIMESTAMP] [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+ci_job	Checkout Repository	[TIMESTAMP] [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+ci_job	Checkout Repository	[TIMESTAMP] ##[endgroup]
+ci_job	Checkout Repository	[TIMESTAMP] ##[group]Fetching the repository
+ci_job	Checkout Repository	[TIMESTAMP] [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +b23caaeb758375d552c469d0cf35d6dc400f1e34:refs/remotes/origin/main
+ci_job	Checkout Repository	[TIMESTAMP] From https://github.com/[REPO]
+ci_job	Checkout Repository	[TIMESTAMP]  * [new ref]         b23caaeb758375d552c469d0cf35d6dc400f1e34 -> origin/main
+ci_job	Checkout Repository	[TIMESTAMP] ##[endgroup]
+ci_job	Checkout Repository	[TIMESTAMP] ##[group]Determining the checkout info
+ci_job	Checkout Repository	[TIMESTAMP] ##[endgroup]
+ci_job	Checkout Repository	[TIMESTAMP] [command]/usr/bin/git sparse-checkout disable
+ci_job	Checkout Repository	[TIMESTAMP] [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+ci_job	Checkout Repository	[TIMESTAMP] ##[group]Checking out the ref
+ci_job	Checkout Repository	[TIMESTAMP] [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+ci_job	Checkout Repository	[TIMESTAMP] Switched to a new branch 'main'
+ci_job	Checkout Repository	[TIMESTAMP] branch 'main' set up to track 'origin/main'.
+ci_job	Checkout Repository	[TIMESTAMP] ##[endgroup]
+ci_job	Checkout Repository	[TIMESTAMP] [command]/usr/bin/git log -1 --format=%H
+ci_job	Checkout Repository	[TIMESTAMP] b23caaeb758375d552c469d0cf35d6dc400f1e34
+ci_job	Set up Docker Buildx	[TIMESTAMP] ##[group]Run docker/setup-buildx-action@v3
+ci_job	Set up Docker Buildx	[TIMESTAMP] with:
+ci_job	Set up Docker Buildx	[TIMESTAMP]   driver: docker-container
+ci_job	Set up Docker Buildx	[TIMESTAMP]   use: true
+ci_job	Set up Docker Buildx	[TIMESTAMP]   keep-state: false
+ci_job	Set up Docker Buildx	[TIMESTAMP]   cache-binary: true
+ci_job	Set up Docker Buildx	[TIMESTAMP]   cleanup: true
+ci_job	Set up Docker Buildx	[TIMESTAMP]   install: false
+ci_job	Set up Docker Buildx	[TIMESTAMP] ##[endgroup]
+ci_job	Set up Docker Buildx	[TIMESTAMP] (node:2302) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+ci_job	Set up Docker Buildx	[TIMESTAMP] (Use `node --trace-deprecation ...` to show where the warning was created)
+ci_job	Set up Docker Buildx	[TIMESTAMP] ##[group]Docker info
+ci_job	Set up Docker Buildx	[TIMESTAMP] [command]/usr/bin/docker version
+ci_job	Set up Docker Buildx	[TIMESTAMP] Client: Docker Engine - Community
+ci_job	Set up Docker Buildx	[TIMESTAMP]  Version:           28.0.4
+ci_job	Set up Docker Buildx	[TIMESTAMP]  API version:       1.48
+ci_job	Set up Docker Buildx	[TIMESTAMP]  Go version:        go1.23.7
+ci_job	Set up Docker Buildx	[TIMESTAMP]  Git commit:        b8034c0
+ci_job	Set up Docker Buildx	[TIMESTAMP]  Built:             Tue Mar 25 15:07:16 2025
+ci_job	Set up Docker Buildx	[TIMESTAMP]  OS/Arch:           linux/amd64
+ci_job	Set up Docker Buildx	[TIMESTAMP]  Context:           default
+ci_job	Set up Docker Buildx	[TIMESTAMP] 
+ci_job	Set up Docker Buildx	[TIMESTAMP] Server: Docker Engine - Community
+ci_job	Set up Docker Buildx	[TIMESTAMP]  Engine:
+ci_job	Set up Docker Buildx	[TIMESTAMP]   Version:          28.0.4
+ci_job	Set up Docker Buildx	[TIMESTAMP]   API version:      1.48 (minimum version 1.24)
+ci_job	Set up Docker Buildx	[TIMESTAMP]   Go version:       go1.23.7
+ci_job	Set up Docker Buildx	[TIMESTAMP]   Git commit:       6430e49
+ci_job	Set up Docker Buildx	[TIMESTAMP]   Built:            Tue Mar 25 15:07:16 2025
+ci_job	Set up Docker Buildx	[TIMESTAMP]   OS/Arch:          linux/amd64
+ci_job	Set up Docker Buildx	[TIMESTAMP]   Experimental:     false
+ci_job	Set up Docker Buildx	[TIMESTAMP]  containerd:
+ci_job	Set up Docker Buildx	[TIMESTAMP]   Version:          v2.4.1
+ci_job	Set up Docker Buildx	[TIMESTAMP]   GitCommit: [COMMIT_SHA]
+ci_job	Set up Docker Buildx	[TIMESTAMP]  runc:
+ci_job	Set up Docker Buildx	[TIMESTAMP]   Version:          1.5.2
+ci_job	Set up Docker Buildx	[TIMESTAMP]   GitCommit:        v1.5.2-0-g29dd3dc2
+ci_job	Set up Docker Buildx	[TIMESTAMP]  docker-init:
+ci_job	Set up Docker Buildx	[TIMESTAMP]   Version:          0.19.0
+ci_job	Set up Docker Buildx	[TIMESTAMP]   GitCommit:        de40ad0
+ci_job	Set up Docker Buildx	[TIMESTAMP] [command]/usr/bin/docker info
+ci_job	Set up Docker Buildx	[TIMESTAMP] Client: Docker Engine - Community
+ci_job	Set up Docker Buildx	[TIMESTAMP]  Version:    28.0.4
+ci_job	Set up Docker Buildx	[TIMESTAMP]  Context:    default
+ci_job	Set up Docker Buildx	[TIMESTAMP]  Debug Mode: false
+ci_job	Set up Docker Buildx	[TIMESTAMP]  Plugins:
+ci_job	Set up Docker Buildx	[TIMESTAMP]   buildx: Docker Buildx (Docker Inc.)
+ci_job	Set up Docker Buildx	[TIMESTAMP]     Version:  v0.38.0
+ci_job	Set up Docker Buildx	[TIMESTAMP]     Path:     /usr/libexec/docker/cli-plugins/docker-buildx
+ci_job	Set up Docker Buildx	[TIMESTAMP]   compose: Docker Compose (Docker Inc.)
+ci_job	Set up Docker Buildx	[TIMESTAMP]     Version:  v2.38.2
+ci_job	Set up Docker Buildx	[TIMESTAMP]     Path:     /usr/libexec/docker/cli-plugins/docker-compose
+ci_job	Set up Docker Buildx	[TIMESTAMP] 
+ci_job	Set up Docker Buildx	[TIMESTAMP] Server:
+ci_job	Set up Docker Buildx	[TIMESTAMP]  Containers: 0
+ci_job	Set up Docker Buildx	[TIMESTAMP]   Running: 0
+ci_job	Set up Docker Buildx	[TIMESTAMP]   Paused: 0
+ci_job	Set up Docker Buildx	[TIMESTAMP]   Stopped: 0
+ci_job	Set up Docker Buildx	[TIMESTAMP]  Images: 6
+ci_job	Set up Docker Buildx	[TIMESTAMP]  Server Version: 28.0.4
+ci_job	Set up Docker Buildx	[TIMESTAMP]  Storage Driver: overlay2
+ci_job	Set up Docker Buildx	[TIMESTAMP]   Backing Filesystem: extfs
+ci_job	Set up Docker Buildx	[TIMESTAMP]   Supports d_type: true
+ci_job	Set up Docker Buildx	[TIMESTAMP]   Using metacopy: false
+ci_job	Set up Docker Buildx	[TIMESTAMP]   Native Overlay Diff: false
+ci_job	Set up Docker Buildx	[TIMESTAMP]   userxattr: false
+ci_job	Set up Docker Buildx	[TIMESTAMP]  Logging Driver: json-file
+ci_job	Set up Docker Buildx	[TIMESTAMP]  Cgroup Driver: systemd
+ci_job	Set up Docker Buildx	[TIMESTAMP]  Cgroup Version: 2
+ci_job	Set up Docker Buildx	[TIMESTAMP]  Plugins:
+ci_job	Set up Docker Buildx	[TIMESTAMP]   Volume: local
+ci_job	Set up Docker Buildx	[TIMESTAMP]   Network: bridge host ipvlan macvlan null overlay
+ci_job	Set up Docker Buildx	[TIMESTAMP]   Log: awslogs fluentd gcplogs gelf journald json-file local splunk syslog
+ci_job	Set up Docker Buildx	[TIMESTAMP]  Swarm: inactive
+ci_job	Set up Docker Buildx	[TIMESTAMP]  Runtimes: io.containerd.runc.v2 runc
+ci_job	Set up Docker Buildx	[TIMESTAMP]  Default Runtime: runc
+ci_job	Set up Docker Buildx	[TIMESTAMP]  Init Binary: docker-init
+ci_job	Set up Docker Buildx	[TIMESTAMP]  containerd version: f2551031d7276a770f65f98c9b52e57e7dad07e8
+ci_job	Set up Docker Buildx	[TIMESTAMP]  runc version: v1.5.2-0-g29dd3dc2
+ci_job	Set up Docker Buildx	[TIMESTAMP]  init version: de40ad0
+ci_job	Set up Docker Buildx	[TIMESTAMP]  Security Options:
+ci_job	Set up Docker Buildx	[TIMESTAMP]   apparmor
+ci_job	Set up Docker Buildx	[TIMESTAMP]   seccomp
+ci_job	Set up Docker Buildx	[TIMESTAMP]    Profile: builtin
+ci_job	Set up Docker Buildx	[TIMESTAMP]   cgroupns
+ci_job	Set up Docker Buildx	[TIMESTAMP]  Kernel Version: 6.17.0-1022-azure
+ci_job	Set up Docker Buildx	[TIMESTAMP]  Operating System: Ubuntu 24.04.x LTS
+ci_job	Set up Docker Buildx	[TIMESTAMP]  OSType: linux
+ci_job	Set up Docker Buildx	[TIMESTAMP]  Architecture: x86_64
+ci_job	Set up Docker Buildx	[TIMESTAMP]  CPUs: 4
+ci_job	Set up Docker Buildx	[TIMESTAMP]  Total Memory: 15.61GiB
+ci_job	Set up Docker Buildx	[TIMESTAMP]  Name: runnervm8k3b6
+ci_job	Set up Docker Buildx	[TIMESTAMP]  ID: [GUID]
+ci_job	Set up Docker Buildx	[TIMESTAMP]  Docker Root Dir: /var/lib/docker
+ci_job	Set up Docker Buildx	[TIMESTAMP]  Debug Mode: false
+ci_job	Set up Docker Buildx	[TIMESTAMP]  Username: githubactions
+ci_job	Set up Docker Buildx	[TIMESTAMP]  Experimental: false
+ci_job	Set up Docker Buildx	[TIMESTAMP]  Insecure Registries:
+ci_job	Set up Docker Buildx	[TIMESTAMP]   ::1/128
+ci_job	Set up Docker Buildx	[TIMESTAMP]   127.0.0.0/8
+ci_job	Set up Docker Buildx	[TIMESTAMP]  Live Restore Enabled: false
+ci_job	Set up Docker Buildx	[TIMESTAMP] 
+ci_job	Set up Docker Buildx	[TIMESTAMP] ##[endgroup]
+ci_job	Set up Docker Buildx	[TIMESTAMP] ##[group]Buildx version
+ci_job	Set up Docker Buildx	[TIMESTAMP] [command]/usr/bin/docker buildx version
+ci_job	Set up Docker Buildx	[TIMESTAMP] github.com/docker/buildx v0.38.0 0dbe87f36ed472fe36b6796c3f70b4210a731fc5
+ci_job	Set up Docker Buildx	[TIMESTAMP] ##[endgroup]
+ci_job	Set up Docker Buildx	[TIMESTAMP] ##[group]Inspecting default docker context
+ci_job	Set up Docker Buildx	[TIMESTAMP] [
+ci_job	Set up Docker Buildx	[TIMESTAMP]   {
+ci_job	Set up Docker Buildx	[TIMESTAMP]     "Name": "default",
+ci_job	Set up Docker Buildx	[TIMESTAMP]     "Metadata": {},
+ci_job	Set up Docker Buildx	[TIMESTAMP]     "Endpoints": {
+ci_job	Set up Docker Buildx	[TIMESTAMP]       "docker": {
+ci_job	Set up Docker Buildx	[TIMESTAMP]         "Host": "unix:///var/run/docker.sock",
+ci_job	Set up Docker Buildx	[TIMESTAMP]         "SkipTLSVerify": false
+ci_job	Set up Docker Buildx	[TIMESTAMP]       }
+ci_job	Set up Docker Buildx	[TIMESTAMP]     },
+ci_job	Set up Docker Buildx	[TIMESTAMP]     "TLSMaterial": {},
+ci_job	Set up Docker Buildx	[TIMESTAMP]     "Storage": {
+ci_job	Set up Docker Buildx	[TIMESTAMP]       "MetadataPath": "<IN MEMORY>",
+ci_job	Set up Docker Buildx	[TIMESTAMP]       "TLSPath": "<IN MEMORY>"
+ci_job	Set up Docker Buildx	[TIMESTAMP]     }
+ci_job	Set up Docker Buildx	[TIMESTAMP]   }
+ci_job	Set up Docker Buildx	[TIMESTAMP] ]
+ci_job	Set up Docker Buildx	[TIMESTAMP] ##[endgroup]
+ci_job	Set up Docker Buildx	[TIMESTAMP] ##[group]Creating a new builder instance
+ci_job	Set up Docker Buildx	[TIMESTAMP] [command]/usr/bin/docker buildx create --name builder-[GUID] --driver docker-container --buildkitd-flags --allow-insecure-entitlement security.insecure --allow-insecure-entitlement network.host --use
+ci_job	Set up Docker Buildx	[TIMESTAMP] builder-[GUID]
+ci_job	Set up Docker Buildx	[TIMESTAMP] ##[endgroup]
+ci_job	Set up Docker Buildx	[TIMESTAMP] ##[group]Booting builder
+ci_job	Set up Docker Buildx	[TIMESTAMP] [command]/usr/bin/docker buildx inspect --bootstrap --builder builder-[GUID]
+ci_job	Set up Docker Buildx	[TIMESTAMP] #1 [internal] booting buildkit
+ci_job	Set up Docker Buildx	[TIMESTAMP] #1 pulling image moby/buildkit:buildx-stable-1
+ci_job	Set up Docker Buildx	[TIMESTAMP] #1 pulling image moby/buildkit:buildx-stable-1 3.1s done
+ci_job	Set up Docker Buildx	[TIMESTAMP] #1 creating container buildx_buildkit_builder-fcb8b76c-11ff-4acb-baf3-3dc2e1e787970
+ci_job	Set up Docker Buildx	[TIMESTAMP] #1 creating container buildx_buildkit_builder-fcb8b76c-11ff-4acb-baf3-3dc2e1e787970 1.0s done
+ci_job	Set up Docker Buildx	[TIMESTAMP] #1 DONE 4.1s
+ci_job	Set up Docker Buildx	[TIMESTAMP] Name:          builder-[GUID]
+ci_job	Set up Docker Buildx	[TIMESTAMP] Driver:        docker-container
+ci_job	Set up Docker Buildx	[TIMESTAMP] Last Activity: [DATE] 14:37:31 +0000 UTC
+ci_job	Set up Docker Buildx	[TIMESTAMP] 
+ci_job	Set up Docker Buildx	[TIMESTAMP] Nodes:
+ci_job	Set up Docker Buildx	[TIMESTAMP] Name:                  builder-fcb8b76c-11ff-4acb-baf3-3dc2e1e787970
+ci_job	Set up Docker Buildx	[TIMESTAMP] Endpoint:              unix:///var/run/docker.sock
+ci_job	Set up Docker Buildx	[TIMESTAMP] Status:                running
+ci_job	Set up Docker Buildx	[TIMESTAMP] BuildKit daemon flags: --allow-insecure-entitlement security.insecure --allow-insecure-entitlement network.host
+ci_job	Set up Docker Buildx	[TIMESTAMP] BuildKit version:      v0.33.1
+ci_job	Set up Docker Buildx	[TIMESTAMP] Platforms:             linux/amd64, linux/amd64/v2, linux/amd64/v3, linux/386
+ci_job	Set up Docker Buildx	[TIMESTAMP] Labels:
+ci_job	Set up Docker Buildx	[TIMESTAMP]  org.mobyproject.buildkit.worker.executor:         oci
+ci_job	Set up Docker Buildx	[TIMESTAMP]  org.mobyproject.buildkit.worker.hostname:         f59b2408d8ee
+ci_job	Set up Docker Buildx	[TIMESTAMP]  org.mobyproject.buildkit.worker.network:          host
+ci_job	Set up Docker Buildx	[TIMESTAMP]  org.mobyproject.buildkit.worker.oci.process-mode: sandbox
+ci_job	Set up Docker Buildx	[TIMESTAMP]  org.mobyproject.buildkit.worker.selinux.enabled:  false
+ci_job	Set up Docker Buildx	[TIMESTAMP]  org.mobyproject.buildkit.worker.snapshotter:      overlayfs
+ci_job	Set up Docker Buildx	[TIMESTAMP] GC Policy rule#0:
+ci_job	Set up Docker Buildx	[TIMESTAMP]  All:            false
+ci_job	Set up Docker Buildx	[TIMESTAMP]  Filters:        type==source.local type==exec.cachemount type==source.git.checkout
+ci_job	Set up Docker Buildx	[TIMESTAMP]  Keep Duration:  48h0m0s
+ci_job	Set up Docker Buildx	[TIMESTAMP]  Max Used Space: 488.3MiB
+ci_job	Set up Docker Buildx	[TIMESTAMP] GC Policy rule#1:
+ci_job	Set up Docker Buildx	[TIMESTAMP]  All:            false
+ci_job	Set up Docker Buildx	[TIMESTAMP]  Keep Duration:  1440h0m0s
+ci_job	Set up Docker Buildx	[TIMESTAMP]  Reserved Space: 9.313GiB
+ci_job	Set up Docker Buildx	[TIMESTAMP]  Max Used Space: 93.13GiB
+ci_job	Set up Docker Buildx	[TIMESTAMP]  Min Free Space: 27.01GiB
+ci_job	Set up Docker Buildx	[TIMESTAMP] GC Policy rule#2:
+ci_job	Set up Docker Buildx	[TIMESTAMP]  All:            false
+ci_job	Set up Docker Buildx	[TIMESTAMP]  Reserved Space: 9.313GiB
+ci_job	Set up Docker Buildx	[TIMESTAMP]  Max Used Space: 93.13GiB
+ci_job	Set up Docker Buildx	[TIMESTAMP]  Min Free Space: 27.01GiB
+ci_job	Set up Docker Buildx	[TIMESTAMP] GC Policy rule#3:
+ci_job	Set up Docker Buildx	[TIMESTAMP]  All:            true
+ci_job	Set up Docker Buildx	[TIMESTAMP]  Reserved Space: 9.313GiB
+ci_job	Set up Docker Buildx	[TIMESTAMP]  Max Used Space: 93.13GiB
+ci_job	Set up Docker Buildx	[TIMESTAMP]  Min Free Space: 27.01GiB
+ci_job	Set up Docker Buildx	[TIMESTAMP] ##[endgroup]
+ci_job	Set up Docker Buildx	[TIMESTAMP] ##[group]Inspect builder
+ci_job	Set up Docker Buildx	[TIMESTAMP] {
+ci_job	Set up Docker Buildx	[TIMESTAMP]   "nodes": [
+ci_job	Set up Docker Buildx	[TIMESTAMP]     {
+ci_job	Set up Docker Buildx	[TIMESTAMP]       "name": "builder-fcb8b76c-11ff-4acb-baf3-3dc2e1e787970",
+ci_job	Set up Docker Buildx	[TIMESTAMP]       "endpoint": "unix:///var/run/docker.sock",
+ci_job	Set up Docker Buildx	[TIMESTAMP]       "status": "running",
+ci_job	Set up Docker Buildx	[TIMESTAMP]       "buildkitd-flags": "--allow-insecure-entitlement security.insecure --allow-insecure-entitlement network.host",
+ci_job	Set up Docker Buildx	[TIMESTAMP]       "buildkit": "v0.33.1",
+ci_job	Set up Docker Buildx	[TIMESTAMP]       "platforms": "linux/amd64,linux/amd64/v2,linux/amd64/v3,linux/386",
+ci_job	Set up Docker Buildx	[TIMESTAMP]       "features": {
+ci_job	Set up Docker Buildx	[TIMESTAMP]         "Automatically load images to the Docker Engine image store": true,
+ci_job	Set up Docker Buildx	[TIMESTAMP]         "Cache export": true,
+ci_job	Set up Docker Buildx	[TIMESTAMP]         "Direct push": true,
+ci_job	Set up Docker Buildx	[TIMESTAMP]         "Docker exporter": true,
+ci_job	Set up Docker Buildx	[TIMESTAMP]         "Multi-platform build": true,
+ci_job	Set up Docker Buildx	[TIMESTAMP]         "OCI exporter": true
+ci_job	Set up Docker Buildx	[TIMESTAMP]       },
+ci_job	Set up Docker Buildx	[TIMESTAMP]       "labels": {
+ci_job	Set up Docker Buildx	[TIMESTAMP]         "org.mobyproject.buildkit.worker.executor": "oci",
+ci_job	Set up Docker Buildx	[TIMESTAMP]         "org.mobyproject.buildkit.worker.hostname": "f59b2408d8ee",
+ci_job	Set up Docker Buildx	[TIMESTAMP]         "org.mobyproject.buildkit.worker.network": "host",
+ci_job	Set up Docker Buildx	[TIMESTAMP]         "org.mobyproject.buildkit.worker.oci.process-mode": "sandbox",
+ci_job	Set up Docker Buildx	[TIMESTAMP]         "org.mobyproject.buildkit.worker.selinux.enabled": "false",
+ci_job	Set up Docker Buildx	[TIMESTAMP]         "org.mobyproject.buildkit.worker.snapshotter": "overlayfs"
+ci_job	Set up Docker Buildx	[TIMESTAMP]       },
+ci_job	Set up Docker Buildx	[TIMESTAMP]       "gcPolicy": [
+ci_job	Set up Docker Buildx	[TIMESTAMP]         {
+ci_job	Set up Docker Buildx	[TIMESTAMP]           "all": false,
+ci_job	Set up Docker Buildx	[TIMESTAMP]           "filter": [
+ci_job	Set up Docker Buildx	[TIMESTAMP]             "type==source.local type==exec.cachemount type==source.git.checkout"
+ci_job	Set up Docker Buildx	[TIMESTAMP]           ],
+ci_job	Set up Docker Buildx	[TIMESTAMP]           "keepDuration": "48h0m0s",
+ci_job	Set up Docker Buildx	[TIMESTAMP]           "maxUsedSpace": "488.3MiB"
+ci_job	Set up Docker Buildx	[TIMESTAMP]         },
+ci_job	Set up Docker Buildx	[TIMESTAMP]         {
+ci_job	Set up Docker Buildx	[TIMESTAMP]           "all": false,
+ci_job	Set up Docker Buildx	[TIMESTAMP]           "keepDuration": "1440h0m0s",
+ci_job	Set up Docker Buildx	[TIMESTAMP]           "reservedSpace": "9.313GiB",
+ci_job	Set up Docker Buildx	[TIMESTAMP]           "maxUsedSpace": "93.13GiB",
+ci_job	Set up Docker Buildx	[TIMESTAMP]           "minFreeSpace": "27.01GiB"
+ci_job	Set up Docker Buildx	[TIMESTAMP]         },
+ci_job	Set up Docker Buildx	[TIMESTAMP]         {
+ci_job	Set up Docker Buildx	[TIMESTAMP]           "all": false,
+ci_job	Set up Docker Buildx	[TIMESTAMP]           "reservedSpace": "9.313GiB",
+ci_job	Set up Docker Buildx	[TIMESTAMP]           "maxUsedSpace": "93.13GiB",
+ci_job	Set up Docker Buildx	[TIMESTAMP]           "minFreeSpace": "27.01GiB"
+ci_job	Set up Docker Buildx	[TIMESTAMP]         },
+ci_job	Set up Docker Buildx	[TIMESTAMP]         {
+ci_job	Set up Docker Buildx	[TIMESTAMP]           "all": true,
+ci_job	Set up Docker Buildx	[TIMESTAMP]           "reservedSpace": "9.313GiB",
+ci_job	Set up Docker Buildx	[TIMESTAMP]           "maxUsedSpace": "93.13GiB",
+ci_job	Set up Docker Buildx	[TIMESTAMP]           "minFreeSpace": "27.01GiB"
+ci_job	Set up Docker Buildx	[TIMESTAMP]         }
+ci_job	Set up Docker Buildx	[TIMESTAMP]       ]
+ci_job	Set up Docker Buildx	[TIMESTAMP]     }
+ci_job	Set up Docker Buildx	[TIMESTAMP]   ],
+ci_job	Set up Docker Buildx	[TIMESTAMP]   "name": "builder-[GUID]",
+ci_job	Set up Docker Buildx	[TIMESTAMP]   "driver": "docker-container",
+ci_job	Set up Docker Buildx	[TIMESTAMP]   "lastActivity": "[TIMESTAMP]"
+ci_job	Set up Docker Buildx	[TIMESTAMP] }
+ci_job	Set up Docker Buildx	[TIMESTAMP] ##[endgroup]
+ci_job	Set up Docker Buildx	[TIMESTAMP] ##[group]BuildKit version
+ci_job	Set up Docker Buildx	[TIMESTAMP] builder-fcb8b76c-11ff-4acb-baf3-3dc2e1e787970: v0.33.1
+ci_job	Set up Docker Buildx	[TIMESTAMP] ##[endgroup]
+ci_job	Setup Python	[TIMESTAMP] ##[group]Run actions/setup-python@v5
+ci_job	Setup Python	[TIMESTAMP] with:
+ci_job	Setup Python	[TIMESTAMP]   python-version: 3.11
+ci_job	Setup Python	[TIMESTAMP]   check-latest: false
+ci_job	Setup Python	[TIMESTAMP]   token: ***
+ci_job	Setup Python	[TIMESTAMP]   update-environment: true
+ci_job	Setup Python	[TIMESTAMP]   allow-prereleases: false
+ci_job	Setup Python	[TIMESTAMP]   freethreaded: false
+ci_job	Setup Python	[TIMESTAMP] ##[endgroup]
+ci_job	Setup Python	[TIMESTAMP] ##[group]Installed versions
+ci_job	Setup Python	[TIMESTAMP] (node:2789) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+ci_job	Setup Python	[TIMESTAMP] (Use `node --trace-deprecation ...` to show where the warning was created)
+ci_job	Setup Python	[TIMESTAMP] Successfully set up CPython (3.11.17)

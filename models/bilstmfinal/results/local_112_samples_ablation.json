@@ -1,0 +1,24 @@
+{
+  "With LogNormalizer (Package Pipeline)": {
+    "ROC-AUC": 0.9614158163265306,
+    "PR-AUC": 0.961241561810113,
+    "Accuracy": 0.8928571428571429,
+    "Precision": 0.8333333333333334,
+    "Recall": 0.9821428571428571,
+    "F1": 0.9016393442622951,
+    "FPR (False Positive Rate)": 0.19642857142857142,
+    "Mean Prob Success": 0.12128060311079025,
+    "Mean Prob Failure": 0.8509219288825989
+  },
+  "Raw Un-normalized (Runtime Pipeline)": {
+    "ROC-AUC": 0.7080676020408163,
+    "PR-AUC": 0.7149744624141262,
+    "Accuracy": 0.5982142857142857,
+    "Precision": 0.5544554455445545,
+    "Recall": 1.0,
+    "F1": 0.7133757961783439,
+    "FPR (False Positive Rate)": 0.8035714285714286,
+    "Mean Prob Success": 0.6746938824653625,
+    "Mean Prob Failure": 0.8783579468727112
+  }
+}

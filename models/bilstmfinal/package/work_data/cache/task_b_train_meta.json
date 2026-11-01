@@ -1,0 +1,35 @@
+{
+  "label_map": {
+    "AssertionError": 0,
+    "AttributeError": 1,
+    "FileNotFoundError": 2,
+    "IndexError": 3,
+    "KeyError": 4,
+    "TypeError": 5,
+    "ValueError": 6,
+    "ZeroDivisionError": 7,
+    "ci_config_permission_failure": 8,
+    "dependency_resolution_failure": 9,
+    "docker_build_failure": 10,
+    "execution_timeout": 11,
+    "network_service_failure": 12,
+    "syntax_error": 13
+  },
+  "num_classes": 14,
+  "inv_label_map": {
+    "0": "AssertionError",
+    "1": "AttributeError",
+    "2": "FileNotFoundError",
+    "3": "IndexError",
+    "4": "KeyError",
+    "5": "TypeError",
+    "6": "ValueError",
+    "7": "ZeroDivisionError",
+    "8": "ci_config_permission_failure",
+    "9": "dependency_resolution_failure",
+    "10": "docker_build_failure",
+    "11": "execution_timeout",
+    "12": "network_service_failure",
+    "13": "syntax_error"
+  }
+}

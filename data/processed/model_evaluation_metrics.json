@@ -1,0 +1,327 @@
+{
+  "25": {
+    "logistic_regression": {
+      "model": "Logistic Regression (25%)",
+      "n_samples": 28,
+      "n_failures": 14,
+      "n_successes": 14,
+      "threshold": 0.5,
+      "roc_auc": 0.9898,
+      "pr_auc": 0.9821,
+      "brier_score": 0.0361,
+      "precision": 0.875,
+      "recall": 1.0,
+      "false_positive_rate": 0.1429,
+      "ece": 0.0118,
+      "mce": 0.0267,
+      "confusion_matrix": {
+        "tn": 12,
+        "fp": 2,
+        "fn": 0,
+        "tp": 14
+      }
+    },
+    "svm": {
+      "model": "SVM (25%)",
+      "n_samples": 28,
+      "n_failures": 14,
+      "n_successes": 14,
+      "threshold": 0.5,
+      "roc_auc": 0.9898,
+      "pr_auc": 0.9821,
+      "brier_score": 0.0919,
+      "precision": 0.875,
+      "recall": 1.0,
+      "false_positive_rate": 0.1429,
+      "ece": 0.2211,
+      "mce": 0.2645,
+      "confusion_matrix": {
+        "tn": 12,
+        "fp": 2,
+        "fn": 0,
+        "tp": 14
+      }
+    },
+    "bilstm": {
+      "model": "BiLSTM (25%)",
+      "n_samples": 28,
+      "n_failures": 14,
+      "n_successes": 14,
+      "threshold": 0.27,
+      "roc_auc": 0.1888,
+      "pr_auc": 0.3921,
+      "brier_score": 0.268,
+      "precision": 0.5,
+      "recall": 1.0,
+      "false_positive_rate": 1.0,
+      "ece": 0.1328,
+      "mce": 0.1328,
+      "confusion_matrix": {
+        "tn": 0,
+        "fp": 14,
+        "fn": 0,
+        "tp": 14
+      }
+    }
+  },
+  "50": {
+    "logistic_regression": {
+      "model": "Logistic Regression (50%)",
+      "n_samples": 28,
+      "n_failures": 14,
+      "n_successes": 14,
+      "threshold": 0.5,
+      "roc_auc": 0.9898,
+      "pr_auc": 0.9821,
+      "brier_score": 0.0361,
+      "precision": 0.875,
+      "recall": 1.0,
+      "false_positive_rate": 0.1429,
+      "ece": 0.012,
+      "mce": 0.0198,
+      "confusion_matrix": {
+        "tn": 12,
+        "fp": 2,
+        "fn": 0,
+        "tp": 14
+      }
+    },
+    "svm": {
+      "model": "SVM (50%)",
+      "n_samples": 28,
+      "n_failures": 14,
+      "n_successes": 14,
+      "threshold": 0.5,
+      "roc_auc": 0.9898,
+      "pr_auc": 0.9821,
+      "brier_score": 0.095,
+      "precision": 0.875,
+      "recall": 1.0,
+      "false_positive_rate": 0.1429,
+      "ece": 0.2278,
+      "mce": 0.2688,
+      "confusion_matrix": {
+        "tn": 12,
+        "fp": 2,
+        "fn": 0,
+        "tp": 14
+      }
+    },
+    "bilstm": {
+      "model": "BiLSTM (50%)",
+      "n_samples": 28,
+      "n_failures": 14,
+      "n_successes": 14,
+      "threshold": 0.27,
+      "roc_auc": 0.2857,
+      "pr_auc": 0.452,
+      "brier_score": 0.268,
+      "precision": 0.5,
+      "recall": 1.0,
+      "false_positive_rate": 1.0,
+      "ece": 0.1332,
+      "mce": 0.1332,
+      "confusion_matrix": {
+        "tn": 0,
+        "fp": 14,
+        "fn": 0,
+        "tp": 14
+      }
+    }
+  },
+  "75": {
+    "logistic_regression": {
+      "model": "Logistic Regression (75%)",
+      "n_samples": 28,
+      "n_failures": 14,
+      "n_successes": 14,
+      "threshold": 0.5,
+      "roc_auc": 1.0,
+      "pr_auc": 1.0,
+      "brier_score": 0.0269,
+      "precision": 1.0,
+      "recall": 1.0,
+      "false_positive_rate": 0.0,
+      "ece": 0.0959,
+      "mce": 0.4507,
+      "confusion_matrix": {
+        "tn": 14,
+        "fp": 0,
+        "fn": 0,
+        "tp": 14
+      }
+    },
+    "svm": {
+      "model": "SVM (75%)",
+      "n_samples": 28,
+      "n_failures": 14,
+      "n_successes": 14,
+      "threshold": 0.5,
+      "roc_auc": 1.0,
+      "pr_auc": 1.0,
+      "brier_score": 0.0714,
+      "precision": 1.0,
+      "recall": 1.0,
+      "false_positive_rate": 0.0,
+      "ece": 0.267,
+      "mce": 0.2686,
+      "confusion_matrix": {
+        "tn": 14,
+        "fp": 0,
+        "fn": 0,
+        "tp": 14
+      }
+    },
+    "bilstm": {
+      "model": "BiLSTM (75%)",
+      "n_samples": 28,
+      "n_failures": 14,
+      "n_successes": 14,
+      "threshold": 0.27,
+      "roc_auc": 0.4592,
+      "pr_auc": 0.5046,
+      "brier_score": 0.2393,
+      "precision": 0.5385,
+      "recall": 1.0,
+      "false_positive_rate": 0.8571,
+      "ece": 0.0893,
+      "mce": 0.0947,
+      "confusion_matrix": {
+        "tn": 2,
+        "fp": 12,
+        "fn": 0,
+        "tp": 14
+      }
+    }
+  },
+  "100": {
+    "logistic_regression": {
+      "model": "Logistic Regression (100%)",
+      "n_samples": 28,
+      "n_failures": 14,
+      "n_successes": 14,
+      "threshold": 0.5,
+      "roc_auc": 1.0,
+      "pr_auc": 1.0,
+      "brier_score": 0.0537,
+      "precision": 1.0,
+      "recall": 1.0,
+      "false_positive_rate": 0.0,
+      "ece": 0.2038,
+      "mce": 0.4927,
+      "confusion_matrix": {
+        "tn": 14,
+        "fp": 0,
+        "fn": 0,
+        "tp": 14
+      }
+    },
+    "svm": {
+      "model": "SVM (100%)",
+      "n_samples": 28,
+      "n_failures": 14,
+      "n_successes": 14,
+      "threshold": 0.5,
+      "roc_auc": 1.0,
+      "pr_auc": 1.0,
+      "brier_score": 0.1329,
+      "precision": 1.0,
+      "recall": 1.0,
+      "false_positive_rate": 0.0,
+      "ece": 0.3607,
+      "mce": 0.4984,
+      "confusion_matrix": {
+        "tn": 14,
+        "fp": 0,
+        "fn": 0,
+        "tp": 14
+      }
+    },
+    "bilstm": {
+      "model": "BiLSTM (100%)",
+      "n_samples": 28,
+      "n_failures": 14,
+      "n_successes": 14,
+      "threshold": 0.27,
+      "roc_auc": 0.5383,
+      "pr_auc": 0.5401,
+      "brier_score": 0.2391,
+      "precision": 0.5385,
+      "recall": 1.0,
+      "false_positive_rate": 0.8571,
+      "ece": 0.0877,
+      "mce": 0.0944,
+      "confusion_matrix": {
+        "tn": 2,
+        "fp": 12,
+        "fn": 0,
+        "tp": 14
+      }
+    }
+  },
+  "aggregate": {
+    "logistic_regression": {
+      "model": "Logistic Regression (Overall)",
+      "n_samples": 112,
+      "n_failures": 56,
+      "n_successes": 56,
+      "threshold": 0.5,
+      "roc_auc": 0.9974,
+      "pr_auc": 0.9963,
+      "brier_score": 0.0382,
+      "precision": 0.9333,
+      "recall": 1.0,
+      "false_positive_rate": 0.0714,
+      "ece": 0.0776,
+      "mce": 0.4717,
+      "confusion_matrix": {
+        "tn": 52,
+        "fp": 4,
+        "fn": 0,
+        "tp": 56
+      }
+    },
+    "svm": {
+      "model": "SVM (Overall)",
+      "n_samples": 112,
+      "n_failures": 56,
+      "n_successes": 56,
+      "threshold": 0.5,
+      "roc_auc": 0.9974,
+      "pr_auc": 0.9963,
+      "brier_score": 0.0978,
+      "precision": 0.9333,
+      "recall": 1.0,
+      "false_positive_rate": 0.0714,
+      "ece": 0.2662,
+      "mce": 0.4984,
+      "confusion_matrix": {
+        "tn": 52,
+        "fp": 4,
+        "fn": 0,
+        "tp": 56
+      }
+    },
+    "bilstm": {
+      "model": "BiLSTM (Overall)",
+      "n_samples": 112,
+      "n_failures": 56,
+      "n_successes": 56,
+      "threshold": 0.27,
+      "roc_auc": 0.3764,
+      "pr_auc": 0.4463,
+      "brier_score": 0.2536,
+      "precision": 0.5185,
+      "recall": 1.0,
+      "false_positive_rate": 0.9286,
+      "ece": 0.1107,
+      "mce": 0.1145,
+      "confusion_matrix": {
+        "tn": 4,
+        "fp": 52,
+        "fn": 0,
+        "tp": 56
+      }
+    }
+  }
+}

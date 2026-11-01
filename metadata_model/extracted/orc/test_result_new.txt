@@ -1,0 +1,72 @@
+﻿============================= test session starts =============================
+platform win32 -- Python 3.13.4, pytest-8.4.2, pluggy-1.6.0 -- C:\Users\DHRUV HEGDE\AppData\Local\Programs\Python\Python313\python.exe
+cachedir: .pytest_cache
+hypothesis profile 'default'
+rootdir: C:\Users\DHRUV HEGDE\Desktop\orc
+plugins: anyio-4.12.1, hypothesis-6.142.4, cov-7.0.0
+collecting ... collected 6 items
+
+tests/test_graph_adapter_repo_isolation.py::TestGraphAdapterRepoIsolation::test_repo_id_passed_to_sync PASSED [ 16%]
+tests/test_graph_adapter_repo_isolation.py::TestGraphAdapterRepoIsolation::test_repo_id_passed_to_get_connected_files PASSED [ 33%]
+tests/test_graph_adapter_repo_isolation.py::TestGraphAdapterRepoIsolation::test_same_repo_id_across_sync_and_investigation PASSED [ 50%]
+tests/test_graph_adapter_repo_isolation.py::TestGraphAdapterIntegration::test_sync_returns_changed_files FAILED [ 66%]
+tests/test_graph_adapter_repo_isolation.py::TestGraphAdapterIntegration::test_get_connected_files_returns_suspicious_files PASSED [ 83%]
+tests/test_graph_adapter_repo_isolation.py::TestGraphAdapterIntegration::test_get_connected_files_empty_input PASSED [100%]
+
+================================== FAILURES ===================================
+_________ TestGraphAdapterIntegration.test_sync_returns_changed_files _________
+
+self = <tests.test_graph_adapter_repo_isolation.TestGraphAdapterIntegration object at 0x000001E1BEA9AC10>
+tmp_path = WindowsPath('C:/Users/DHRUV HEGDE/AppData/Local/Temp/pytest-of-DHRUV HEGDE/pytest-68/test_sync_returns_changed_file0')
+
+    def test_sync_returns_changed_files(self, tmp_path):
+        """Verify sync returns list of changed files for investigation."""
+        repo_path = tmp_path / "test_repo4"
+        repo_path.mkdir()
+    
+        # Setup git repo
+        subprocess.run(["git", "init"], cwd=repo_path, check=True, capture_output=True)
+        subprocess.run(["git", "config", "user.email", "test@test.com"], cwd=repo_path, check=True, capture_output=True)
+        subprocess.run(["git", "config", "user.name", "Test User"], cwd=repo_path, check=True, capture_output=True)
+        (repo_path / "file_a.py").write_text("def a(): pass")
+        (repo_path / "file_b.py").write_text("def b(): pass")
+        subprocess.run(["git", "add", "."], cwd=repo_path, check=True, capture_output=True)
+        subprocess.run(["git", "commit", "-m", "initial"], cwd=repo_path, check=True, capture_output=True)
+    
+        # Modify one file
+        (repo_path / "file_a.py").write_text("def a():\n    pass\ndef a2():\n    pass")
+        subprocess.run(["git", "add", "."], cwd=repo_path, check=True, capture_output=True)
+        subprocess.run(["git", "commit", "-m", "update"], cwd=repo_path, check=True, capture_output=True)
+    
+        base_sha = subprocess.run(
+            ["git", "rev-parse", "HEAD~1"],
+            cwd=repo_path,
+            capture_output=True,
+            text=True,
+            check=True
+        ).stdout.strip()
+    
+        target_sha = subprocess.run(
+            ["git", "rev-parse", "HEAD"],
+            cwd=repo_path,
+            capture_output=True,
+            text=True,
+            check=True
+        ).stdout.strip()
+    
+        adapter = GraphAdapter(repo_id="test/repo", repo_path=str(repo_path))
+    
+        with patch("src.adapters.graph_adapter.update_graph_from_diff"):
+            result = adapter.sync_to_sha(base_sha, target_sha)
+    
+        # Verify changed_files list is populated
+        assert "changed_files" in result
+>       assert len(result["changed_files"]) > 0, "No changed files reported"
+E       AssertionError: No changed files reported
+E       assert 0 > 0
+E        +  where 0 = len([])
+
+tests\test_graph_adapter_repo_isolation.py:228: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_graph_adapter_repo_isolation.py::TestGraphAdapterIntegration::test_sync_returns_changed_files
+========================= 1 failed, 5 passed in 3.64s =========================

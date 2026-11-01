@@ -1,0 +1,367 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "1. Task A official row counts",
+      "pass": true,
+      "detail": "train=14976 val=3096 test_rows=4288",
+      "evidence": {
+        "expected": {
+          "train": 14976,
+          "val": 3096,
+          "test": 4288
+        }
+      }
+    },
+    {
+      "name": "2. Task B official row counts",
+      "pass": true,
+      "detail": "train=8976 val=1796 test=3188",
+      "evidence": {
+        "expected": {
+          "train": 8976,
+          "val": 1796,
+          "test": 3188
+        }
+      }
+    },
+    {
+      "name": "3. Composite run completeness (4 snapshots per run)",
+      "pass": true,
+      "detail": "5590 canonical runs, each 1 metadata row x 4 depths (22360 snapshots); all depth paths present=True",
+      "evidence": {
+        "keys": 5590,
+        "snapshots": 22360,
+        "rows_per_key": {
+          "1": 5590
+        }
+      }
+    },
+    {
+      "name": "4. Snapshot co-location (global split)",
+      "pass": true,
+      "detail": "runs spanning >1 global split: 0",
+      "evidence": {
+        "split_counts": {
+          "test": 1072,
+          "train": 3744,
+          "val": 774
+        }
+      }
+    },
+    {
+      "name": "5. Snapshot co-location (CV folds)",
+      "pass": true,
+      "detail": "run keys split across folds: {'task_a': {'keys': 3744, 'split_keys': 0}, 'task_b': {'keys': 2244, 'split_keys': 0}}",
+      "evidence": {
+        "task_a": {
+          "keys": 3744,
+          "split_keys": 0
+        },
+        "task_b": {
+          "keys": 2244,
+          "split_keys": 0
+        }
+      }
+    },
+    {
+      "name": "6. Global run disjointness",
+      "pass": true,
+      "detail": "overlap {'train/val': 0, 'train/test': 0, 'val/test': 0}",
+      "evidence": {
+        "sizes": {
+          "train": 3744,
+          "val": 774,
+          "test": 1072
+        },
+        "overlap": {
+          "train/val": 0,
+          "train/test": 0,
+          "val/test": 0
+        }
+      }
+    },
+    {
+      "name": "7. Global group disjointness",
+      "pass": true,
+      "detail": "overlap {'train/val': 0, 'train/test': 0, 'val/test': 0}",
+      "evidence": {
+        "sizes": {
+          "train": 3744,
+          "val": 774,
+          "test": 1072
+        },
+        "overlap": {
+          "train/val": 0,
+          "train/test": 0,
+          "val/test": 0
+        }
+      }
+    },
+    {
+      "name": "8. Task B 5-fold group disjointness (B4)",
+      "pass": true,
+      "detail": "overlap=0 in all folds; excluded_rows=0; rows covered exactly once=8976/8976",
+      "evidence": {
+        "folds": [
+          {
+            "fold": 0,
+            "train_groups": 1795,
+            "val_groups": 449,
+            "overlap": 0
+          },
+          {
+            "fold": 1,
+            "train_groups": 1795,
+            "val_groups": 449,
+            "overlap": 0
+          },
+          {
+            "fold": 2,
+            "train_groups": 1795,
+            "val_groups": 449,
+            "overlap": 0
+          },
+          {
+            "fold": 3,
+            "train_groups": 1796,
+            "val_groups": 448,
+            "overlap": 0
+          },
+          {
+            "fold": 4,
+            "train_groups": 1795,
+            "val_groups": 449,
+            "overlap": 0
+          }
+        ],
+        "excluded_rows": 0
+      }
+    },
+    {
+      "name": "9. Task B 14-class fold coverage",
+      "pass": true,
+      "detail": "classes=14; all folds cover all classes in both partitions",
+      "evidence": {
+        "folds": [
+          {
+            "fold": 0,
+            "train": 14,
+            "val": 14
+          },
+          {
+            "fold": 1,
+            "train": 14,
+            "val": 14
+          },
+          {
+            "fold": 2,
+            "train": 14,
+            "val": 14
+          },
+          {
+            "fold": 3,
+            "train": 14,
+            "val": 14
+          },
+          {
+            "fold": 4,
+            "train": 14,
+            "val": 14
+          }
+        ]
+      }
+    },
+    {
+      "name": "10. Task B minority Python exception support",
+      "pass": true,
+      "detail": "minimum per-class fold-val support=20 (required >= 20)",
+      "evidence": {
+        "folds": [
+          {
+            "fold": 0,
+            "min_support": 24,
+            "per_class": {
+              "AssertionError": 24,
+              "AttributeError": 24,
+              "FileNotFoundError": 28,
+              "IndexError": 24,
+              "KeyError": 24,
+              "TypeError": 24,
+              "ValueError": 28,
+              "ZeroDivisionError": 28
+            }
+          },
+          {
+            "fold": 1,
+            "min_support": 20,
+            "per_class": {
+              "AssertionError": 24,
+              "AttributeError": 28,
+              "FileNotFoundError": 24,
+              "IndexError": 24,
+              "KeyError": 24,
+              "TypeError": 20,
+              "ValueError": 28,
+              "ZeroDivisionError": 24
+            }
+          },
+          {
+            "fold": 2,
+            "min_support": 20,
+            "per_class": {
+              "AssertionError": 24,
+              "AttributeError": 28,
+              "FileNotFoundError": 28,
+              "IndexError": 24,
+              "KeyError": 20,
+              "TypeError": 20,
+              "ValueError": 28,
+              "ZeroDivisionError": 28
+            }
+          },
+          {
+            "fold": 3,
+            "min_support": 20,
+            "per_class": {
+              "AssertionError": 24,
+              "AttributeError": 28,
+              "FileNotFoundError": 28,
+              "IndexError": 24,
+              "KeyError": 24,
+              "TypeError": 20,
+              "ValueError": 28,
+              "ZeroDivisionError": 24
+            }
+          },
+          {
+            "fold": 4,
+            "min_support": 24,
+            "per_class": {
+              "AssertionError": 28,
+              "AttributeError": 24,
+              "FileNotFoundError": 28,
+              "IndexError": 24,
+              "KeyError": 24,
+              "TypeError": 24,
+              "ValueError": 24,
+              "ZeroDivisionError": 24
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "11. Tokenizer integrity",
+      "pass": true,
+      "detail": "vocab=19083; 8 exception tokens distinct and non-UNK; tokenizer artifact unchanged (sha256 c1e8996656cb...)",
+      "evidence": {
+        "exception_ids": {
+          "AssertionError": 1018,
+          "AttributeError": 1001,
+          "FileNotFoundError": 981,
+          "IndexError": 1023,
+          "KeyError": 1041,
+          "TypeError": 1059,
+          "ValueError": 979,
+          "ZeroDivisionError": 1005
+        },
+        "unk_id": 1,
+        "tokenizer_sha256": "c1e8996656cbff4e36ec6267e807d516dc05289e1ba514781ee4526aef8e8aa0"
+      }
+    },
+    {
+      "name": "12. Boilerplate and artifact purge",
+      "pass": true,
+      "detail": "BOM=0 ANSI=0 [TIMESTAMP]=0 mojibake-BOM rows=0",
+      "evidence": {
+        "bom": [],
+        "ansi": [],
+        "timestamp": [],
+        "mojibake_vocab_id": -1,
+        "mojibake_rows": {}
+      }
+    },
+    {
+      "name": "13. Model-view hash consistency (768-token val mask)",
+      "pass": true,
+      "detail": "recomputed mask equals saved tensor: {'task_a': {'val_rows': 3096, 'clean_rows': 938, 'matches_recompute': True}, 'task_b': {'val_rows': 1796, 'clean_rows': 378, 'matches_recompute': True}}",
+      "evidence": {
+        "task_a": {
+          "val_rows": 3096,
+          "clean_rows": 938,
+          "matches_recompute": true
+        },
+        "task_b": {
+          "val_rows": 1796,
+          "clean_rows": 378,
+          "matches_recompute": true
+        }
+      }
+    },
+    {
+      "name": "14. Taxonomy mapping contract",
+      "pass": true,
+      "detail": "14 granular classes deterministically map to F0-F7; all 8 Python exceptions map to F3",
+      "evidence": {
+        "mapping": {
+          "syntax_error": "F1",
+          "dependency_resolution_failure": "F2",
+          "AssertionError": "F3",
+          "AttributeError": "F3",
+          "FileNotFoundError": "F3",
+          "IndexError": "F3",
+          "KeyError": "F3",
+          "TypeError": "F3",
+          "ValueError": "F3",
+          "ZeroDivisionError": "F3",
+          "execution_timeout": "F4",
+          "docker_build_failure": "F5",
+          "ci_config_permission_failure": "F6",
+          "network_service_failure": "F7"
+        }
+      }
+    },
+    {
+      "name": "15. Test vault checksum integrity",
+      "pass": true,
+      "detail": "8 files verified, mismatches=[]",
+      "evidence": {
+        "files": 8
+      }
+    },
+    {
+      "name": "16. Pre-training scenario-name purity",
+      "pass": true,
+      "detail": "scenario/leak tokens in train vocabulary: 0; normalizer self-test=pass; placeholders that fired: ['<TEST_FUNC>', '<TEST_FILE>']",
+      "evidence": {
+        "leaks": [],
+        "leak_count": 0,
+        "normalizer_self_test": true,
+        "placeholders_present": [
+          "<TEST_FUNC>",
+          "<TEST_FILE>"
+        ],
+        "evidence_names": [
+          "runner-images",
+          "log-generation",
+          "dependency-error-repo",
+          "buildx",
+          "test_valid_configuration",
+          "test_tls_handshake_failure",
+          "test_rate_limit_exceeded",
+          "test_connection_reset",
+          "test_dns_resolution_failure",
+          "test_remote_server_5xx",
+          "test_package_repo_unreachable",
+          "test_external_service_outage",
+          "test_connection_refused",
+          "test_connection_timeout",
+          "test_value_error",
+          "test_file_not_found_error"
+        ]
+      }
+    }
+  ],
+  "generated_at": "2026-10-23T01:20:00"
+}

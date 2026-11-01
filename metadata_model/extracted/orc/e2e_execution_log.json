@@ -1,0 +1,340 @@
+{
+  "execution_date": "2026-10-22T18:07:06.705741",
+  "repository": "DhruvHegde/dependency-error-repo",
+  "target_sha": "396184b8566debf2f302fe411f9e9816f73b76ee",
+  "results": {
+    "failure_probability": 0.72061176477897,
+    "verdict": "PRE-MERGE BLOCK",
+    "num_features": 38,
+    "target_binary": 0.0,
+    "files_changed": 1,
+    "investigation_ran": true
+  },
+  "log_entries": [
+    {
+      "timestamp": "2026-10-22T18:06:51.633752",
+      "phase": "FEATURE_EXTRACTION",
+      "status": "info",
+      "message": "Extracting features for DhruvHegde/dependency-error-repo@396184b",
+      "data": null
+    },
+    {
+      "timestamp": "2026-10-22T18:06:51.633813",
+      "phase": "CHURN_METRICS",
+      "status": "info",
+      "message": "Computing churn metrics (local git only)",
+      "data": null
+    },
+    {
+      "timestamp": "2026-10-22T18:06:52.691775",
+      "phase": "CHURN_METRICS",
+      "status": "success",
+      "message": "Extracted 14 churn features",
+      "data": {
+        "total_files_changed": 1,
+        "code_churn_density": 2.0,
+        "git_diff_src_churn": 0,
+        "git_diff_test_churn": 0,
+        "test_to_src_churn_ratio": 0.0,
+        "gh_diff_files_added": 0,
+        "gh_diff_files_deleted": 0,
+        "gh_diff_files_modified": 1,
+        "gh_diff_tests_added": 0,
+        "gh_diff_tests_deleted": 0,
+        "gh_diff_src_files": 0,
+        "gh_diff_doc_files": 1,
+        "gh_diff_other_files": 0,
+        "gh_num_commits_on_files_touched": 812
+      }
+    },
+    {
+      "timestamp": "2026-10-22T18:06:52.691970",
+      "phase": "REPO_METRICS",
+      "status": "info",
+      "message": "Computing repository metrics",
+      "data": null
+    },
+    {
+      "timestamp": "2026-10-22T18:06:53.424902",
+      "phase": "REPO_METRICS",
+      "status": "success",
+      "message": "Extracted 9 repo metrics",
+      "data": {
+        "gh_repo_num_commits": 864,
+        "git_branch": "feature/success",
+        "git_merged_with": "",
+        "git_merged_with_present": 0,
+        "gh_num_commits_in_push": 1,
+        "gh_commits_in_push": "396184b8566debf2f302fe411f9e9816f73b76ee",
+        "gh_first_commit_created_at_year": 2026,
+        "gh_first_commit_created_at_month": 7,
+        "gh_repo_age": 108
+      }
+    },
+    {
+      "timestamp": "2026-10-22T18:06:53.425083",
+      "phase": "WORKSPACE_ANALYSIS",
+      "status": "info",
+      "message": "Analyzing repository workspace",
+      "data": null
+    },
+    {
+      "timestamp": "2026-10-22T18:06:53.846061",
+      "phase": "WORKSPACE_ANALYSIS",
+      "status": "success",
+      "message": "Extracted 7 workspace features",
+      "data": {
+        "gh_sloc": 2014,
+        "gh_asserts_cases_per_kloc": 67.03,
+        "gh_test_lines_per_kloc": 469.22,
+        "gh_test_cases_per_kloc": 31.28,
+        "gh_lang_java": 0,
+        "gh_lang_python": 1,
+        "gh_lang_ruby": 0
+      }
+    },
+    {
+      "timestamp": "2026-10-22T18:06:53.846532",
+      "phase": "GITHUB_METADATA",
+      "status": "info",
+      "message": "Fetching GitHub metadata (requires 'gh' CLI auth)",
+      "data": null
+    },
+    {
+      "timestamp": "2026-10-22T18:06:58.005661",
+      "phase": "GITHUB_METADATA",
+      "status": "success",
+      "message": "Extracted 14 GitHub features",
+      "data": {
+        "gh_project_name": "DhruvHegde/dependency-error-repo",
+        "pr_dayofweek": 6,
+        "gh_team_size": 4,
+        "log_team_size": 1.6094,
+        "gh_by_core_team_member": 1,
+        "gh_pushed_at": "2026-10-18T16:44:00Z"
+      }
+    },
+    {
+      "timestamp": "2026-10-22T18:06:58.005994",
+      "phase": "CI_METRICS",
+      "status": "info",
+      "message": "Fetching CI metrics (requires GitHub Actions API)",
+      "data": null
+    },
+    {
+      "timestamp": "2026-10-22T18:07:00.096965",
+      "phase": "CI_METRICS",
+      "status": "info",
+      "message": "Extracted 16 CI metrics. Defaulted: 7",
+      "data": {
+        "tr_original_commit": "396184b8566debf2f302fe411f9e9816f73b76ee",
+        "tr_jobs": 1,
+        "git_prev_built_commit": "5f68bf382b0bd14f529d6ed08dca99ac8606ab05",
+        "tr_prev_build": 39245183940,
+        "git_all_built_commits": "396184b8566debf2f302fe411f9e9816f73b76ee",
+        "git_num_all_built_commits": 10,
+        "log_built_commits": 2.3979,
+        "has_previous_build": 1,
+        "git_prev_commit_resolution_status_merge_found": 1
+      }
+    },
+    {
+      "timestamp": "2026-10-22T18:07:00.097191",
+      "phase": "NORMALIZE",
+      "status": "info",
+      "message": "Normalizing features to DataFrame",
+      "data": null
+    },
+    {
+      "timestamp": "2026-10-22T18:07:00.102212",
+      "phase": "NORMALIZE",
+      "status": "success",
+      "message": "Normalized to 39 columns",
+      "data": null
+    },
+    {
+      "timestamp": "2026-10-22T18:07:00.109719",
+      "phase": "FEATURE_EXTRACTION",
+      "status": "success",
+      "message": "FEATURES EXTRACTED: 38 predictive features + target=0.0",
+      "data": {
+        "num_features": 38,
+        "target_binary": 0.0,
+        "feature_sample": {
+          "git_diff_src_churn": 0.0,
+          "git_diff_test_churn": 0.0,
+          "gh_sloc": 2014.0,
+          "total_files_changed": 1.0
+        }
+      }
+    },
+    {
+      "timestamp": "2026-10-22T18:07:00.110188",
+      "phase": "MODEL_PREDICTION",
+      "status": "info",
+      "message": "Loading trained LightGBM model",
+      "data": null
+    },
+    {
+      "timestamp": "2026-10-22T18:07:03.456658",
+      "phase": "MODEL_PREDICTION",
+      "status": "success",
+      "message": "Model loaded successfully",
+      "data": null
+    },
+    {
+      "timestamp": "2026-10-22T18:07:03.456764",
+      "phase": "MODEL_PREDICTION",
+      "status": "info",
+      "message": "Creating feature DataFrame for model",
+      "data": null
+    },
+    {
+      "timestamp": "2026-10-22T18:07:03.458158",
+      "phase": "MODEL_PREDICTION",
+      "status": "success",
+      "message": "DataFrame shape: (1, 38)",
+      "data": null
+    },
+    {
+      "timestamp": "2026-10-22T18:07:03.458303",
+      "phase": "MODEL_PREDICTION",
+      "status": "info",
+      "message": "Running prediction",
+      "data": null
+    },
+    {
+      "timestamp": "2026-10-22T18:07:03.530408",
+      "phase": "MODEL_PREDICTION",
+      "status": "success",
+      "message": "PREDICTION COMPLETE",
+      "data": {
+        "failure_probability": "0.7206",
+        "verdict": "PRE-MERGE BLOCK",
+        "top_shap_drivers": {
+          "positive": [
+            [
+              "tr_build_number",
+              1.3081823395393648
+            ],
+            [
+              "log_built_commits",
+              0.6461994078202993
+            ],
+            [
+              "log_team_size",
+              0.4044379605091
+            ]
+          ],
+          "negative": [
+            [
+              "gh_asserts_cases_per_kloc",
+              -0.20395554360201854
+            ],
+            [
+              "gh_num_commits_on_files_touched",
+              -0.16024644319469433
+            ],
+            [
+              "gh_repo_age",
+              -0.15268037573133994
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "timestamp": "2026-10-22T18:07:03.532850",
+      "phase": "GRAPH_SYNC",
+      "status": "info",
+      "message": "Computing git diff for graph update",
+      "data": null
+    },
+    {
+      "timestamp": "2026-10-22T18:07:03.636819",
+      "phase": "GRAPH_SYNC",
+      "status": "info",
+      "message": "Computed base SHA: 5fc4a8b",
+      "data": null
+    },
+    {
+      "timestamp": "2026-10-22T18:07:03.687204",
+      "phase": "GRAPH_SYNC",
+      "status": "success",
+      "message": "Diff computed",
+      "data": {
+        "files_added": 0,
+        "files_modified": 1,
+        "files_deleted": 0,
+        "files_renamed": 0
+      }
+    },
+    {
+      "timestamp": "2026-10-22T18:07:03.687452",
+      "phase": "GRAPH_SYNC",
+      "status": "info",
+      "message": "Changed files for investigation: 1 files",
+      "data": null
+    },
+    {
+      "timestamp": "2026-10-22T18:07:03.687509",
+      "phase": "GRAPH_SYNC",
+      "status": "success",
+      "message": "GRAPH SYNCHRONIZATION COMPLETE",
+      "data": {
+        "base_sha": "5fc4a8b",
+        "target_sha": "396184b",
+        "files_changed": 1,
+        "changed_files_sample": [
+          "requirements.txt"
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-10-22T18:07:03.687873",
+      "phase": "INVESTIGATION",
+      "status": "info",
+      "message": "Risk 72.06% >= threshold 50%, running investigation",
+      "data": null
+    },
+    {
+      "timestamp": "2026-10-22T18:07:03.687937",
+      "phase": "INVESTIGATION",
+      "status": "info",
+      "message": "Connecting to Neo4j",
+      "data": null
+    },
+    {
+      "timestamp": "2026-10-22T18:07:03.688349",
+      "phase": "INVESTIGATION",
+      "status": "success",
+      "message": "Neo4j connected",
+      "data": null
+    },
+    {
+      "timestamp": "2026-10-22T18:07:03.688425",
+      "phase": "INVESTIGATION",
+      "status": "info",
+      "message": "Querying for files connected to 1 changed files",
+      "data": null
+    },
+    {
+      "timestamp": "2026-10-22T18:07:06.203715",
+      "phase": "INVESTIGATION",
+      "status": "success",
+      "message": "Neo4j has 10 File nodes",
+      "data": {
+        "file_count": 10
+      }
+    },
+    {
+      "timestamp": "2026-10-22T18:07:06.703871",
+      "phase": "INVESTIGATION",
+      "status": "info",
+      "message": "No connected files found in graph (expected for new repo)",
+      "data": {
+        "reason": "Graph may not yet contain these files"
+      }
+    }
+  ]
+}
